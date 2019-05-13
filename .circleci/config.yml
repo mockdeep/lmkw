@@ -1,0 +1,77 @@
+version: 2.1
+jobs:
+  build:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby:2.6.3-node-browsers
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          RAILS_ENV: test
+      - image: circleci/postgres:10.1-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: app_test
+          POSTGRES_PASSWORD:
+
+    working_directory: ~/app
+
+    steps:
+      - checkout
+
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      # https://circleci.com/docs/2.0/caching/
+      - restore_cache:
+          keys:
+            - faq-bundle-{{ checksum "Gemfile.lock" }}
+            - faq-bundle-
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - save_cache:
+          key: faq-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - restore_cache:
+          keys:
+            - faq-yarn-{{ checksum "yarn.lock" }}
+            - faq-yarn-
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      - save_cache:
+          key: faq-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:setup --trace
+
+      - run:
+          name: Run rspec in parallel
+          command: |
+            bundle exec rake
+            # bundle exec rspec --profile 10 \
+            #                   --format RspecJunitFormatter \
+            #                   --out test_results/rspec.xml \
+            #                   --format progress \
+            #                   $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      - store_test_results: # https://circleci.com/docs/2.0/collect-test-data/
+          path: test_results
