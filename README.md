@@ -2,7 +2,6 @@
 
 ## Todo
 * set up infrastructure
-  * set up on CirlceCI
   * set up Postgres for db
   * configure Github branch protection
   * set up deployment
@@ -29,6 +28,7 @@
   * shoulda-matchers
   * simplecov
   * webmock
+  * set up dependabot
 * clean up Gemfile
 * set up user accounts
 * create questions
