@@ -2,7 +2,6 @@
 
 ## Todo
 * set up infrastructure
-  * set up Postgres for db
   * configure Github branch protection
   * set up deployment
   * auto-deploy from CircleCI
@@ -18,7 +17,6 @@
   * sidekiq
   * strong migrations
   * webpacker
-  * sassc-rails
   * faker (dev/test)
   * guard, guard-rspec, guard-rubocop (dev/test)
   * haml-lint
