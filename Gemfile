@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.3"
 
-gem "rails", "~> 5.2.3"
+gem "rails", "~> 6.0.0"
 
 gem "bcrypt"
 gem "bootsnap", require: false
@@ -16,7 +16,9 @@ gem "puma"
 gem "sass-rails"
 gem "strong_migrations"
 gem "turbolinks"
-gem "uglifier"
+gem "webpacker"
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem "bundler-audit"
