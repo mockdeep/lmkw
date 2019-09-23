@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+require "sinatra/base"
+
+module FakeApi
+  module Trello
+    class Server < Sinatra::Base
+      enable(:sessions)
+      get("/1/authorize") do
+        if params.key?("requestKey")
+          <<-HTML
+            <form method="POST" action="/1/token/approve">
+              <input type="submit" class="deny" value="Deny">
+              <input type="submit" name="approve" value="Allow">
+            </form>
+          HTML
+        else
+          session["return_url"] = params["returnUrl"]
+          <<-HTML
+            <a href='/login'>Log in</a>
+          HTML
+        end
+      end
+
+      get("/login") do
+        <<-HTML
+          <form method="POST">
+            <label for="user">Email or Username</label>
+            <input type="email" name="user" id="user">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <input id="login" type="submit" value="Log in">
+          </form>
+        HTML
+      end
+
+      post("/login") do
+        redirect("/1/authorize?requestKey=boo")
+      end
+
+      post("/1/token/approve") do
+        redirect("#{session["return_url"]}#token=fake-trello-token")
+      end
+
+      run! if app_file == $PROGRAM_NAME
+    end
+  end
+end

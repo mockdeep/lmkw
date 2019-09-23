@@ -2,12 +2,20 @@
 
 Dir[File.join(__dir__, "./matchers/*.rb")].each { |path| require path }
 
+def have_check(expected_name, text:)
+  Matchers::HaveCheck.new(expected_name, text: text)
+end
+
 def have_error(expected_message)
   Matchers::HaveError.new(expected_message)
 end
 
 def have_flash(expected_type, expected_message)
   Matchers::HaveFlash.new(expected_type, expected_message)
+end
+
+def have_heading(text)
+  Matchers::HaveHeading.new(text)
 end
 
 def change_record(record, attribute)

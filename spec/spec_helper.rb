@@ -8,8 +8,8 @@ end
 
 require "pry-byebug"
 
-require_relative "support/webmock"
 require_relative "support/matchers"
+require_relative "support/fake_apis"
 
 def rails_require(path)
   require_relative "../#{path}"

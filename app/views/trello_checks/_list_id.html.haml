@@ -1,0 +1,9 @@
+%h2 Pick a list
+
+- submit_path = new_trello_integration_check_path(trello_integration)
+= form_with(model: check, url: submit_path, method: :get) do |form|
+  = form.hidden_field(:board_id)
+  = form.label(:list_id, "Lists")
+  = form.collection_select(:list_id, check.lists, :id, :name)
+
+  = form.submit("Next")

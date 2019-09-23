@@ -40,7 +40,7 @@ RSpec.describe AccountsController, type: :controller do
       it "redirects to the root path" do
         post(:create, params: valid_create_params)
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(checks_path)
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe AccountsController, type: :controller do
 
         put(:update, params: valid_update_params)
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(account_path)
       end
     end
 

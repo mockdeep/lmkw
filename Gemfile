@@ -13,6 +13,7 @@ gem "haml-rails"
 gem "pg"
 gem "pry-rails"
 gem "puma"
+gem "ruby-trello", require: "trello"
 gem "sass-rails"
 gem "sidekiq"
 gem "strong_migrations"
@@ -49,9 +50,11 @@ end
 group :test do
   gem "capybara", require: false
   gem "capybara-screenshot", require: false
+  gem "capybara_discoball", require: false
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov", require: false
+  gem "sinatra", require: false
   gem "webdrivers"
   gem "webmock", require: false
 end

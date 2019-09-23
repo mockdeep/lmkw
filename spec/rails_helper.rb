@@ -11,6 +11,7 @@ end
 require "rspec/rails"
 
 require_relative "support/capybara"
+require_relative "support/fake_apis_rails"
 require_relative "support/mocks"
 require_relative "support/shoulda_matchers"
 
