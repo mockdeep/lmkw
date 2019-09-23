@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: yourappnamehere_development
+  database: letmeknowwhen_development
 
 test:
   <<: *default
-  database: yourappnamehere_test
+  database: letmeknowwhen_test
 
 production:
   <<: *default
-  database: yourappnamehere_production
+  database: letmeknowwhen_production
