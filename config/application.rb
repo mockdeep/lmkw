@@ -21,6 +21,7 @@ module LetMeKnowWhen
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.active_record.belongs_to_required_by_default = false
     config.action_view.form_with_generates_remote_forms = false
 
     config.autoload_paths << Rails.root.join("app/models/nulls")
