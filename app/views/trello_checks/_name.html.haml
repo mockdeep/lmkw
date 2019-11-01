@@ -1,0 +1,10 @@
+%h2 Name your check
+
+- submit_path = trello_integration_checks_path(trello_integration)
+= form_with(model: check, url: submit_path) do |form|
+  = form.hidden_field(:board_id)
+  = form.hidden_field(:list_id)
+  = form.label(:name)
+  = form.text_field(:name)
+
+  = form.submit("Done")

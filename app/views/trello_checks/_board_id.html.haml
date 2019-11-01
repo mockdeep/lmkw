@@ -1,0 +1,8 @@
+%h2 Pick a board
+
+- submit_path = new_trello_integration_check_path(trello_integration)
+= form_with(model: check, url: submit_path, method: :get) do |form|
+  = form.label(:board_id, "Boards")
+  = form.collection_select(:board_id, check.boards, :id, :name)
+
+  = form.submit("Next")

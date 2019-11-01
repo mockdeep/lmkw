@@ -39,7 +39,7 @@ RSpec.describe SessionsController, type: :controller do
 
         post(:create, params: valid_create_params)
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(checks_path)
       end
     end
 

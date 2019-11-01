@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
     if user.save
       flash[:success] = "Account created successfully"
       log_in(user)
-      redirect_to(root_path)
+      redirect_to(checks_path)
     else
       flash.now[:error] = "There was a problem setting up your account"
       render(:new, locals: { user: user })
@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
   def update
     if current_user.update(user_params)
       flash[:success] = "Account updated successfully"
-      redirect_to(root_path)
+      redirect_to(account_path)
     else
       flash.now[:error] = "There was a problem updating your account"
       render(:show, locals: { user: current_user })
