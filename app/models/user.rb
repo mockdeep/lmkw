@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
     def find(id)
       id ? super : NullUser.new
-    end # class << self
-  end
+    end
+  end # class << self
 
   def logged_in?
     true
