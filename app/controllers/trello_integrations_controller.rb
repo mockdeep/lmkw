@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "trello"
-
 class TrelloIntegrationsController < ApplicationController
   def new
     render(locals: { trello_authorize_url: trello_authorize_url })
