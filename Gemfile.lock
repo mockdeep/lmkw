@@ -282,7 +282,7 @@ GEM
       json
       oauth (>= 0.4.5)
       rest-client (>= 1.8.0)
-    ruby2_keywords (0.0.1)
+    ruby2_keywords (0.0.2)
     ruby_parser (3.14.1)
       sexp_processor (~> 4.9)
     rubyzip (2.0.0)
