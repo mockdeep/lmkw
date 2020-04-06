@@ -19,6 +19,9 @@ AllCops:
 # https://github.com/rubocop-hq/rubocop/issues/7841
 Style/TrailingCommaInBlockArgs: { Enabled: false }
 Layout/LineLength:
+  Exclude:
+    - 'config/**/*'
+    - 'db/schema.rb'
   AutoCorrect: true
 Layout/TrailingEmptyLines: { Enabled: false }
 Metrics/BlockLength:
