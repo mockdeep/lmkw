@@ -5,11 +5,15 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.3"
 
+# needs to be included before any other gems that use environment variables
+gem "dotenv-rails", groups: [:development, :test]
+
 gem "rails", "~> 6.0.2"
 
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "haml-rails"
+gem "octokit"
 gem "pg"
 gem "pry-rails"
 gem "puma"

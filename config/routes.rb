@@ -14,5 +14,10 @@ Rails.application.routes.draw do
     resources :checks, only: [:new, :create], controller: "trello_checks"
   end
 
+  resources :github_integrations, only: [:new] do
+    resources :checks, only: [:new, :create], controller: "github_checks"
+  end
+
   get "/trello_integrations/create", to: "trello_integrations#create"
+  get "/github_integrations/create", to: "github_integrations#create"
 end
