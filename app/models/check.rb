@@ -8,6 +8,14 @@ class Check < ApplicationRecord
            dependent: :restrict_with_exception
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :integration_id, :user_id, presence: true
+  scope(
+    :last_counted_before,
+    lambda { |timestamp|
+      joins(:counts)
+          .having("MAX(check_counts.created_at) < ?", timestamp)
+          .group("checks.id")
+    },
+  )
 
   class << self
     def model_name
