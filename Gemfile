@@ -8,7 +8,7 @@ ruby "2.6.3"
 # needs to be included before any other gems that use environment variables
 gem "dotenv-rails", groups: [:development, :test]
 
-gem "rails", "~> 6.0.2"
+gem "rails", "~> 6.0.3"
 
 gem "bcrypt"
 gem "bootsnap", require: false
