@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.6.3"
+ruby File.read("./.ruby-version").strip
 
 # needs to be included before any other gems that use environment variables
 gem "dotenv-rails", groups: [:development, :test]
