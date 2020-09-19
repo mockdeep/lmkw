@@ -12,11 +12,11 @@ module Matchers
         self.memoized_results = Hash.new { |hash, key| hash[key] = {} }
       end
 
-      def method_missing(method_name, *args)
+      def method_missing(method_name, *args, **kwargs)
         super unless element.respond_to?(method_name)
 
-        memoized_results[method_name].fetch(args) do
-          memoize(element.public_send(method_name, *args))
+        memoized_results[method_name].fetch([args, kwargs]) do
+          memoize(element.public_send(method_name, *args, **kwargs))
         end
       end
 

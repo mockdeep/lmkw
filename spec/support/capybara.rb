@@ -6,8 +6,8 @@ require "capybara-screenshot/rspec"
 require_relative "capybara/rack_test"
 
 Capybara.server = :puma, { Silent: true }
-Capybara.drivers[:chrome] = Capybara.drivers[:selenium_chrome]
-Capybara.drivers[:firefox] = Capybara.drivers[:selenium]
+Capybara.register_driver(:chrome, &Capybara.drivers[:selenium_chrome])
+Capybara.register_driver(:firefox, &Capybara.drivers[:selenium])
 Capybara.save_path = ENV.fetch("CIRCLE_ARTIFACTS", Capybara.save_path)
 
 driver = ENV.fetch("DRIVER").to_sym if ENV.key?("DRIVER")
