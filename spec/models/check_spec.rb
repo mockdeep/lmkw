@@ -40,22 +40,22 @@ RSpec.describe Check, type: :model do
   describe ".last_counted_before" do
     it "returns checks with counts prior to timestamp" do
       check = create_check(
-        counts: [{ created_at: 1.day.ago, created_at: 5.minutes.ago }],
+        counts: [{ created_at: 1.day.ago }],
       )
 
       expect(described_class.last_counted_before(1.minute.ago)).to eq([check])
     end
 
     it "does not return checks with counts after the timestamp" do
-      check = create_check(
-        counts: [{ created_at: 1.day.ago, created_at: 5.minutes.ago }],
+      create_check(
+        counts: [{ created_at: 5.minutes.ago }],
       )
 
       expect(described_class.last_counted_before(1.hour.ago)).to eq([])
     end
 
     it "does not return checks with no counts" do
-      check = create_check
+      create_check
 
       expect(described_class.last_counted_before(Time.zone.now)).to eq([])
     end

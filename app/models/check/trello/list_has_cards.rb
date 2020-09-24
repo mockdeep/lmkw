@@ -3,7 +3,7 @@
 class Check < ApplicationRecord
   module Trello
     class ListHasCards < Check
-      store_accessor :data, :board_id, :list_id
+      store_accessor :data, :board_id, :list_id, :list_name
       validates :board_id, :list_id, presence: true
       delegate :boards, to: :integration
       delegate :lists, :url, to: :board

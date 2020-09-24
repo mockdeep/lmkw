@@ -28,6 +28,9 @@ Metrics/BlockLength:
     - describe
   Exclude:
     - Guardfile
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/**/*'
 Rails/FilePath: { EnforcedStyle: slashes }
 RSpec/MultipleExpectations:
   Exclude:
