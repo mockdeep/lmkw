@@ -7,12 +7,16 @@ class Check < ApplicationRecord
 
       STEPS = ["name"].freeze
 
+      def refresh
+        counts.create!(value: pull_requests.count)
+      end
+
       def next_step
         STEPS.find { |step| public_send(step).nil? }
       end
 
       def message
-        "#{pull_requests.count} assigned pull requests"
+        "#{last_value} assigned pull requests"
       end
 
       def url
