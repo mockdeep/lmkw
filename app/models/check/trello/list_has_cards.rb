@@ -11,12 +11,16 @@ class Check < ApplicationRecord
 
       STEPS = ["board_id", "list_id", "name"].freeze
 
+      def refresh
+        counts.create!(value: cards.count)
+      end
+
       def next_step
         STEPS.find { |step| public_send(step).nil? }
       end
 
       def message
-        "#{cards.count} cards in #{list.name}"
+        "#{last_value} cards in #{list.name}"
       end
 
       def board
