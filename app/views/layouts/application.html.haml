@@ -9,6 +9,8 @@
                           media: "all",
                           "data-turbolinks-track": "reload")
     = javascript_pack_tag("application", "data-turbolinks-track": "reload")
+    - colors = ["black", "blue", "purple", "orange"]
+    = favicon_link_tag("fat-dot-#{colors.sample}.ico")
 
   %body
     - if current_user.logged_in?
