@@ -26,5 +26,7 @@ module LetMeKnowWhen
 
     config.autoload_paths << Rails.root.join("app/models/nulls")
     config.autoload_paths << Rails.root.join("lib/route_constraints")
+
+    config.action_mailer.deliver_later_queue_name = :default
   end
 end

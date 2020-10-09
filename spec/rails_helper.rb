@@ -9,6 +9,7 @@ if Rails.env.production?
 end
 
 require "rspec/rails"
+require "sidekiq/testing"
 
 require_relative "support/capybara"
 require_relative "support/fake_apis_rails"
