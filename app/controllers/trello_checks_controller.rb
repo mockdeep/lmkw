@@ -7,6 +7,7 @@ class TrelloChecksController < ApplicationController
 
   def create
     check.save!
+    check.refresh
 
     redirect_to(checks_path)
   end
@@ -14,7 +15,7 @@ class TrelloChecksController < ApplicationController
   private
 
   def check
-    Check::Trello::ListHasCards.new(check_params.merge(base_params))
+    @check ||= Check::Trello::ListHasCards.new(check_params.merge(base_params))
   end
 
   def trello_integration

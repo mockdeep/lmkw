@@ -7,6 +7,7 @@ class GithubChecksController < ApplicationController
 
   def create
     check.save!
+    check.refresh
 
     redirect_to(checks_path)
   end
@@ -14,7 +15,7 @@ class GithubChecksController < ApplicationController
   private
 
   def check
-    Check::Github::UserHasAssignedPullRequests.new(check_params)
+    @check ||= Check::Github::UserHasAssignedPullRequests.new(check_params)
   end
 
   def integration
