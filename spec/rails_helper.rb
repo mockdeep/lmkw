@@ -12,9 +12,11 @@ require "rspec/rails"
 require "sidekiq/testing"
 
 require_relative "support/capybara"
+require_relative "support/factories"
 require_relative "support/fake_apis_rails"
 require_relative "support/mocks"
 require_relative "support/shoulda_matchers"
+require_relative "support/test_models"
 
 begin
   ActiveRecord::Migration.maintain_test_schema!

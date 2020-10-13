@@ -42,7 +42,7 @@ group :everything, halt_on_fail: true do
     watch(%r{(?:.+/)?\.haml-lint\.yml$}) { |m| File.dirname(m[0]) }
   end
 
-  guard :rubocop, all_on_start: false, cli: ["-a", "--display-cop-names"] do
+  guard :rubocop, all_on_start: false, cli: ["-A", "--display-cop-names"] do
     watch(/.+\.rb$/)
     watch(%r{bin/*})
     watch(/Guardfile/)
