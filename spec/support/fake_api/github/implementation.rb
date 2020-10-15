@@ -39,7 +39,7 @@ module FakeApi
           ]
         end
 
-        def api_endpoint
+        def web_endpoint
           "/fake_github_url"
         end
       end
