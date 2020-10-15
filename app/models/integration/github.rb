@@ -27,7 +27,7 @@ class Integration < ApplicationRecord
     validates :access_token, presence: true
     store_accessor :data, :access_token
     delegate :implementation, to: :class
-    delegate :api_endpoint, to: :client
+    delegate :web_endpoint, to: :client
 
     def code=(code)
       data = client.exchange_code_for_token(code)

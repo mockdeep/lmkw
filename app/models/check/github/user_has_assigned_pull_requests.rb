@@ -20,7 +20,7 @@ class Check < ApplicationRecord
       end
 
       def url
-        "#{integration.api_endpoint}pulls/assigned"
+        "#{integration.web_endpoint}pulls/assigned"
       end
     end
   end
