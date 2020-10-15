@@ -11,6 +11,10 @@ class Check < ApplicationRecord
 
       STEPS = ["board_id", "list_id", "name"].freeze
 
+      def service
+        "trello"
+      end
+
       def refresh
         counts.create!(value: cards.count)
       end

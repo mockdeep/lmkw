@@ -7,6 +7,10 @@ class Check < ApplicationRecord
 
       STEPS = ["name"].freeze
 
+      def service
+        "github"
+      end
+
       def refresh
         counts.create!(value: pull_requests.count)
       end
