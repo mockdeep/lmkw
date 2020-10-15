@@ -2,7 +2,9 @@
 
 - checks.each do |check|
   .check
-    %h3= check.name
+    %h3
+      %span{ class: "fab fa-#{check.service} fa-lg" }
+      = check.name
     %p= link_to(check.message, check.url, target: :_blank, rel: :noreferrer)
 
 = link_to("+ New Check", new_check_path)
