@@ -13,9 +13,9 @@
  */
 
 // primary colors
-// blue: 4778ba
-// orange: c57013
-// purple/pink: bc2fbf
+// orange: c57013 -- rgb(197, 112, 19)
+// purple/pink: bc2fbf -- rgb(188, 47, 191)
+// blue: 4778ba -- rgba(71, 120, 186)
 
 @import '@fortawesome/fontawesome-free/css/all.css';
 
@@ -106,4 +106,49 @@ div.actions {
 
 label {
   display: block;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 350px);
+  grid-gap: 25px;
+  justify-content: center;
+}
+
+.check {
+  h3 {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 1.25em;
+  }
+
+  a {
+    text-decoration: none;
+
+    span {
+      padding-left: 5px;
+    }
+  }
+
+  background-color: rgba(71, 120, 186, 0.4);
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.check_value {
+  font-weight: bold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  background: #fff;
+  text-align: center;
+  display: inline-block;
+  color: #555;
+  font-size: 20px;
 }

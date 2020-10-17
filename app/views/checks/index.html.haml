@@ -1,10 +1,15 @@
 %h2 Checks
 
-- checks.each do |check|
-  .check
-    %h3
-      %span{ class: "fab fa-#{check.service} fa-lg" }
-      = check.name
-    %p= link_to(check.message, check.url, target: :_blank, rel: :noreferrer)
+%main
+  - checks.each do |check|
+    .check
+      %h3
+        %span{ class: "fab fa-#{check.service} fa-lg" }
+        = check.name
+      %p
+        %span.check_value= check.last_value
+        = link_to(check.url, target: :_blank, rel: :noreferrer) do
+          = check.message
+          %span.fas.fa-external-link-alt
 
-= link_to("+ New Check", new_check_path)
+  = link_to("+ New Check", new_check_path)
