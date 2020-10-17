@@ -24,7 +24,7 @@ class Check < ApplicationRecord
       end
 
       def message
-        "#{last_value} cards in #{list.name}"
+        "cards in #{list.name}"
       end
 
       def board

@@ -20,7 +20,7 @@ class Check < ApplicationRecord
       end
 
       def message
-        "#{last_value} assigned pull requests"
+        "assigned pull requests"
       end
 
       def url
