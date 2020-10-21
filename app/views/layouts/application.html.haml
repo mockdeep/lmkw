@@ -14,14 +14,21 @@
     = favicon_link_tag("fat-dot-#{colors.sample}.ico")
 
   %body
-    - if current_user.logged_in?
-      = current_user.email
-      = link_to("Account", account_path(current_user))
-      = link_to("Log Out", session_path, method: :delete)
-    - else
-      = link_to("Log In", new_session_path)
-      = link_to("Sign Up", new_account_path)
-    .flashes
-      - flash.each do |type, message|
-        %div{ class: "flash-#{type}" }= message
+    .logo
+      = image_tag("LMKW-logo-black.png", height: 100)
+      %br
+      .title
+        Let Me Know When
+    .nav
+      - if current_user.logged_in?
+        = current_user.email
+        %br
+        = link_to("Account", account_path(current_user))
+        = link_to("Log Out", session_path, method: :delete)
+      - else
+        = link_to("Log In", new_session_path)
+        = link_to("Sign Up", new_account_path)
+      .flashes
+        - flash.each do |type, message|
+          %div{ class: "flash-#{type}" }= message
     = yield
