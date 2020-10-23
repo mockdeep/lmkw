@@ -12,6 +12,7 @@ gem "rails", "~> 6.0.2"
 
 gem "bcrypt"
 gem "bootsnap", require: false
+gem "font-awesome-sass"
 gem "haml-rails"
 gem "junk_drawer"
 gem "octokit"

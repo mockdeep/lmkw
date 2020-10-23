@@ -18,7 +18,8 @@
 // blue: 4778ba -- rgba(71, 120, 186)
 
 @import 'reset';
-@import '@fortawesome/fontawesome-free/css/all.css';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body {
   background-color: #fff;
