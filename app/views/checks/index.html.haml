@@ -8,7 +8,7 @@
     - checks.each do |check|
       .check
         %h3
-          %span{ class: "fab fa-#{check.service} fa-lg" }
+          = icon("fab", check.service, class: "fa-lg")
           = check.name
         %p
           %span.check_value= check.last_value
