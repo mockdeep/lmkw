@@ -18,8 +18,17 @@ module Factories
     CheckCount.create!({ value: 0 }.merge(params))
   end
 
-  def create_integration
-    Test::Integration.create!(user: create_user)
+  def create_integration(type = :test, user: create_user)
+    case type
+    when :github
+      Integration::Github.create!(user: user, access_token: "foo")
+    when :trello
+      Integration::Trello.create!(user: user, member_token: "foo")
+    when :test
+      Test::Integration.create!(user: user)
+    else
+      raise ArgumentError, "invalid type: #{type}"
+    end
   end
 
   def create_user
