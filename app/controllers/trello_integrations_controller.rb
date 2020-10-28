@@ -2,7 +2,12 @@
 
 class TrelloIntegrationsController < ApplicationController
   def new
-    render(locals: { trello_authorize_url: trello_authorize_url })
+    integration = current_user.integrations.trello.first
+    if integration
+      redirect_to(new_trello_integration_check_path(integration))
+    else
+      render(locals: { trello_authorize_url: trello_authorize_url })
+    end
   end
 
   def create

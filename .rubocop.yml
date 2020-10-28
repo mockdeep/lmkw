@@ -63,6 +63,7 @@ Style/MethodCallWithArgsParentheses:
     - require
     - require_relative
     - ruby
+    - scope
     - source
     - store_accessor
     - to

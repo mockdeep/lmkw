@@ -2,7 +2,12 @@
 
 class GithubIntegrationsController < ApplicationController
   def new
-    render(locals: { github_authorize_url: github_authorize_url })
+    integration = current_user.integrations.github.first
+    if integration
+      redirect_to(new_github_integration_check_path(integration))
+    else
+      render(locals: { github_authorize_url: github_authorize_url })
+    end
   end
 
   def create

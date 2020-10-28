@@ -13,8 +13,6 @@ group :everything, halt_on_fail: true do
     dsl = Guard::RSpec::Dsl.new(self)
 
     rspec = dsl.rspec
-    watch(rspec.spec_helper) { rspec.spec_dir }
-    watch(rspec.spec_support) { rspec.spec_dir }
     watch(rspec.spec_files)
 
     ruby = dsl.ruby
@@ -30,11 +28,7 @@ group :everything, halt_on_fail: true do
       ]
     end
 
-    watch(rails.spec_helper)     { rspec.spec_dir }
-    watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
-
-    watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
-    watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
+    watch(rails.app_controller) { "#{rspec.spec_dir}/controllers" }
   end
 
   guard :haml_lint, all_on_start: false do
