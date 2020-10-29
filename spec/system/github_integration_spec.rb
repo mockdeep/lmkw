@@ -53,7 +53,8 @@ RSpec.describe "GitHub integration", type: :system, js: true do
 
   def input_name(name)
     # wait to allow time to copy/paste email verification code if necessary
-    expect(page).to have_text("Name your check", wait: 10.minutes)
+    wait_time = fake_apis? ? Capybara.default_max_wait_time : 10.minutes
+    expect(page).to have_text("Name your check", wait: wait_time)
     fill_in("Name", with: name)
     click_button("Done")
   end
