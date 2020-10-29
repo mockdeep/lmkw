@@ -6,7 +6,10 @@ class Integration < ApplicationRecord
 
   class Github < Integration
     class << self
-      attr_writer :implementation
+      def implementation=(implementation)
+        @implementation = implementation
+        @client = nil
+      end
 
       def implementation
         @implementation ||= ::Octokit
