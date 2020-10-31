@@ -77,7 +77,7 @@ module Matchers
     end
 
     def has_name?
-      page.has_selector?(".check > h3", text: expected_name)
+      page.has_selector?(".card > h3", text: expected_name)
     end
 
     def has_text?
@@ -85,7 +85,7 @@ module Matchers
     end
 
     def check
-      page.find(".check > h3", text: expected_name).find(:xpath, "..")
+      page.find(".card > h3", text: expected_name).find(:xpath, "..")
     end
   end
 end

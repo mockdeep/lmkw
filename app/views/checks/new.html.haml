@@ -1,4 +1,12 @@
-%h2 Pick an integration
+.header
+  %h2 Pick an integration
 
-= link_to("Trello", new_trello_integration_path)
-= link_to("GitHub", new_github_integration_path)
+.card-list
+  .card
+    %h3
+      = icon("fab", "trello", class: "fa-lg")
+      = link_to("Trello", new_trello_integration_path)
+  .card
+    %h3
+      = icon("fab", "github", class: "fa-lg")
+      = link_to("GitHub", new_github_integration_path)

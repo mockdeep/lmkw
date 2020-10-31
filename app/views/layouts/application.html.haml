@@ -31,4 +31,5 @@
       .flashes
         - flash.each do |type, message|
           %div{ class: "flash-#{type}" }= message
-    = yield
+    %main
+      = yield
