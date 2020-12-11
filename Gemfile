@@ -8,7 +8,7 @@ ruby File.read("./.ruby-version").strip
 # needs to be included before any other gems that use environment variables
 gem "dotenv-rails", groups: [:development, :test]
 
-gem "rails", "~> 6.0.2"
+gem "rails", "~> 6.1.0"
 
 gem "bcrypt"
 gem "bootsnap", require: false
