@@ -24,7 +24,7 @@ Layout/LineLength:
   AutoCorrect: true
 Layout/TrailingEmptyLines: { Enabled: false }
 Metrics/BlockLength:
-  ExcludedMethods:
+  IgnoredMethods:
     - describe
   Exclude:
     - Guardfile
