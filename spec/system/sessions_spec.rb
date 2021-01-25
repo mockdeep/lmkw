@@ -3,29 +3,10 @@
 require "rails_helper"
 
 RSpec.describe "user sessions", type: :system do
-  user_params = {
-    email: "demo@lmkw.io",
-    password: "secret",
-    password_confirmation: "secret",
-  }
-
-  def sign_in_with(email:, password:)
-    visit("/")
-
-    click_link("Log In")
-
-    expect(page).to have_text("Log in to LetMeKnowWhen")
-
-    fill_in("Email", with: email)
-    fill_in("Password", with: password)
-
-    click_button("Log In")
-  end
-
   it "allows a user to log into their account" do
     user = User.create!(user_params)
 
-    sign_in_with(email: user.email, password: user.password)
+    sign_in(user)
 
     expect(page).to have_text(user.email)
     expect(page).to have_link("Account")
@@ -55,7 +36,7 @@ RSpec.describe "user sessions", type: :system do
   it "allows a user to log out" do
     user = User.create!(user_params)
 
-    sign_in_with(email: user.email, password: user.password)
+    sign_in(user)
 
     click_link("Log Out")
 

@@ -3,20 +3,13 @@
 require "rails_helper"
 
 RSpec.describe SessionsController, type: :controller do
-  user_params = {
-    email: "demo@exampoo.com",
-    password: "super-secure",
-    password_confirmation: "super-secure",
-  }
+  def valid_create_params
+    { session: user_params.slice(:email, :password) }
+  end
 
-  valid_create_params = { session: user_params.slice(:email, :password) }
-
-  invalid_create_params = {
-    session: {
-      email: "wrong@email",
-      password: "wrong password",
-    },
-  }
+  def invalid_create_params
+    { session: { email: "wrong@email", password: "wrong password" } }
+  end
 
   describe "#new" do
     it "renders a new form" do

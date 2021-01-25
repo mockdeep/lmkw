@@ -15,6 +15,8 @@ require_relative "support/capybara"
 require_relative "support/factories"
 require_relative "support/fake_apis_rails"
 require_relative "support/helpers/controller"
+require_relative "support/helpers/system"
+require_relative "support/helpers/users"
 require_relative "support/mocks"
 require_relative "support/shoulda_matchers"
 require_relative "support/test_models"
@@ -37,5 +39,7 @@ RSpec.configure do |config|
 
   config.render_views
 
+  config.include(Helpers::Users)
   config.include(Helpers::Controller, type: :controller)
+  config.include(Helpers::System, type: :system)
 end
