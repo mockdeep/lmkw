@@ -3,27 +3,8 @@
 require "rails_helper"
 
 RSpec.describe "GitHub integration", type: :system, js: true do
-  user_params = {
-    email: "demo@lmkw.io",
-    password: "secret",
-    password_confirmation: "secret",
-  }
-
   def github_params
     { email: ENV.fetch("GITHUB_EMAIL"), password: ENV.fetch("GITHUB_PASSWORD") }
-  end
-
-  def sign_in(user)
-    visit("/")
-
-    click_link("Log In")
-
-    expect(page).to have_text("Log in to LetMeKnowWhen")
-
-    fill_in("Email", with: user.email)
-    fill_in("Password", with: user.password)
-
-    click_button("Log In")
   end
 
   def start_new_check
