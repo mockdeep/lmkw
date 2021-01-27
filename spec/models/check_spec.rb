@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Check, type: :model do
   it { is_expected.to belong_to(:integration) }
   it { is_expected.to belong_to(:user) }
-  it { is_expected.to have_many(:counts).class_name("CheckCount") }
+  it { is_expected.to have_many(:counts).class_name("CheckCount").dependent(:delete_all) }
   it { is_expected.to validate_presence_of(:user_id) }
 
   describe ".last_counted_before" do

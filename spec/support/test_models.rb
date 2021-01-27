@@ -8,5 +8,17 @@ module Test
     def refresh
       counts.create!(value: 53)
     end
+
+    def service
+      "test"
+    end
+
+    def url
+      "/test"
+    end
+
+    def message
+      "test values"
+    end
   end
 end

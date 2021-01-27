@@ -12,6 +12,9 @@
       %h3
         = icon("fab", check.service, class: "fa-lg")
         = check.name
+        - data = { confirm: "delete check? #{check.name}" }
+        = link_to(check_path(check), method: :delete, data: data) do
+          = icon("far", "trash-alt")
       %p
         %span.check_value= check.last_value
         = link_to(check.url, target: :_blank, rel: :noreferrer) do

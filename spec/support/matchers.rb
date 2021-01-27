@@ -6,6 +6,10 @@ def have_check(expected_name, text:)
   Matchers::HaveCheck.new(expected_name, text: text)
 end
 
+def have_no_checks
+  Matchers::HaveNoChecks.new
+end
+
 def have_error(expected_message)
   Matchers::HaveError.new(expected_message)
 end

@@ -3,9 +3,7 @@
 class Check < ApplicationRecord
   belongs_to :user
   belongs_to :integration
-  has_many :counts,
-           class_name: "CheckCount",
-           dependent: :restrict_with_exception
+  has_many :counts, class_name: "CheckCount", dependent: :delete_all
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :integration_id, :user_id, presence: true
   scope(
