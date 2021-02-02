@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../capybara/page/check"
+
 module Helpers
   module System
     def sign_in(user)

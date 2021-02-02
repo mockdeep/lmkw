@@ -16,13 +16,24 @@ module Matchers
     end
 
     def failure_message
+      actual.has_selector?("[class^='flash-']") ? some_message : none_message
+    end
+
+    private
+
+    def some_message
       <<~MESSAGE.squish
         expected to find #{expected_type} flash with text '#{expected_message}'
         but found #{actual.all("[class^='flash-']").map(&:text)}
       MESSAGE
     end
 
-    private
+    def none_message
+      <<~MESSAGE.squish
+        expected to find #{expected_type} flash with text '#{expected_message}'
+        but found no flash messages
+      MESSAGE
+    end
 
     def expected_selector
       ".flash-#{expected_type}"

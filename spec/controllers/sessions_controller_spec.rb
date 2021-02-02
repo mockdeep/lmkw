@@ -3,8 +3,8 @@
 require "rails_helper"
 
 RSpec.describe SessionsController, type: :controller do
-  def valid_create_params
-    { session: user_params.slice(:email, :password) }
+  def valid_create_params(user)
+    { session: user.slice(:email, :password) }
   end
 
   def invalid_create_params
@@ -24,15 +24,15 @@ RSpec.describe SessionsController, type: :controller do
       it "sets the user id in the session" do
         user = User.create!(user_params)
 
-        post(:create, params: valid_create_params)
+        post(:create, params: valid_create_params(user))
 
         expect(session[:user_id]).to eq(user.id)
       end
 
       it "redirects to the home page" do
-        User.create!(user_params)
+        user = User.create!(user_params)
 
-        post(:create, params: valid_create_params)
+        post(:create, params: valid_create_params(user))
 
         expect(response).to redirect_to(checks_path)
       end
