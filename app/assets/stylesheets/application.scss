@@ -113,17 +113,33 @@ main {
 
 .card-list {
   display: grid;
+  margin-top: 50px;
   grid-template-columns: repeat(auto-fill, 350px);
   grid-gap: 25px;
   justify-content: center;
 }
 
+hr {
+  margin-top: 50px;
+}
+
+.active h2,
+.inactive h2 {
+  margin-top: 50px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.inactive {
+  opacity: 50%;
+}
+
 .new-check-btn {
+  float: right;
   padding: 9px 12px;
   font-size: 18px;
   border-radius: 4px;
   text-align: center;
-  vertical-align: middle;
   color: #fff;
   background-color: rgba(71, 120, 186, 1);
   text-decoration: none;
@@ -146,17 +162,8 @@ main {
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   margin: 10px 0;
   padding: 10px 0;
-
-  h2 {
-    font-weight: bold;
-    font-size: 30px;
-    margin-top: 10px;
-  }
 }
 
 .title {

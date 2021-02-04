@@ -24,6 +24,10 @@ class Check < ApplicationRecord
     end
   end # class << self
 
+  def active?
+    last_value.present? && last_value.positive?
+  end
+
   def refresh
     raise NotImplementedError
   end

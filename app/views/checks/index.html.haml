@@ -2,22 +2,17 @@
   %meta{ "http-equiv": "refresh", content: "300" }
 
 .header
-  %h2 Checks
-
   = link_to("+ New Check", new_check_path, class: "new-check-btn")
 
-.card-list
-  - checks.each do |check|
-    .card
-      %h3
-        = icon("fab", check.service, class: "fa-lg")
-        = check.name
-        - data = { confirm: "delete check? #{check.name}" }
-        = link_to(check_path(check), method: :delete, data: data) do
-          = icon("far", "trash-alt")
-      %p
-        %span.check_value= check.last_value
-        = link_to(check.url, target: :_blank, rel: :noreferrer) do
-          = check.message
-          %span.fas.fa-external-link-alt
+- active_checks, inactive_checks = checks.partition(&:active?)
 
+.active
+  %h2 Active Checks
+
+  = render("list", checks: active_checks)
+
+.inactive
+  %hr
+  %h2 Inactive Checks
+
+  = render("list", checks: inactive_checks)
