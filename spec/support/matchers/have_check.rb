@@ -40,7 +40,7 @@ module Matchers
       end
     end
 
-    attr_accessor :page, :expected_name, :expected_text
+    attr_accessor :element, :expected_name, :expected_text
 
     def initialize(expected_name, text:)
       self.expected_name = expected_name
@@ -48,7 +48,7 @@ module Matchers
     end
 
     def matches?(page)
-      self.page = MemoizedElement.new(page)
+      self.element = MemoizedElement.new(page)
       has_name? && has_text?
     end
 
@@ -65,7 +65,7 @@ module Matchers
     def no_check_with_name_message
       <<~MESSAGE.squish
         expected to find check with name "#{expected_name}" but found checks
-        with names: #{page.all("h3").map(&:text)}
+        with names: #{element.all("h3").map(&:text)}
       MESSAGE
     end
 
@@ -77,7 +77,7 @@ module Matchers
     end
 
     def has_name?
-      page.has_selector?(".card > h3", text: expected_name)
+      element.has_selector?(".card > h3", text: expected_name)
     end
 
     def has_text?
@@ -85,7 +85,7 @@ module Matchers
     end
 
     def check
-      page.find(".card > h3", text: expected_name).find(:xpath, "..")
+      element.find(".card > h3", text: expected_name).find(:xpath, "..")
     end
   end
 end

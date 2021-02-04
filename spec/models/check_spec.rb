@@ -30,6 +30,26 @@ RSpec.describe Check, type: :model do
     end
   end
 
+  describe "#active?" do
+    it "returns true when most recent count > 0" do
+      check = create_check(counts: [{ value: 1 }])
+
+      expect(check.active?).to be(true)
+    end
+
+    it "returns false when most recent count == 0" do
+      check = create_check(counts: [{ value: 0 }])
+
+      expect(check.active?).to be(false)
+    end
+
+    it "returns false when no counts exist" do
+      check = create_check
+
+      expect(check.active?).to be(false)
+    end
+  end
+
   describe "#refresh" do
     it "raises a NotImplementedError" do
       expect { described_class.new.refresh }

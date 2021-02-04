@@ -6,8 +6,24 @@ def have_check(expected_name, text:)
   Matchers::HaveCheck.new(expected_name, text: text)
 end
 
+def have_active_check(expected_name, text:)
+  Matchers::HaveActiveCheck.new(expected_name, text: text)
+end
+
+def have_inactive_check(expected_name, text:)
+  Matchers::HaveInactiveCheck.new(expected_name, text: text)
+end
+
 def have_no_checks
   Matchers::HaveNoChecks.new
+end
+
+def have_no_active_checks
+  Matchers::HaveNoActiveChecks.new
+end
+
+def have_no_inactive_checks
+  Matchers::HaveNoInactiveChecks.new
 end
 
 def have_error(expected_message)
