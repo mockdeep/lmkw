@@ -7,6 +7,8 @@
         - data = { confirm: "delete check? #{check.name}" }
         = link_to(check_path(check), method: :delete, data: data) do
           = icon("far", "trash-alt")
+        = link_to(edit_check_path(check)) do
+          = icon("fas", "pen")
       %p
         %span.check_value= check.last_value
         = link_to(check.url, target: :_blank, rel: :noreferrer) do

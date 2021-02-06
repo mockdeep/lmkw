@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resource :account, only: [:new, :create, :show, :update, :destroy]
   resource :session, only: [:new, :create, :destroy]
-  resources :checks, only: [:index, :new, :destroy]
+  resources :checks, only: [:index, :new, :edit, :update, :destroy]
   resources :trello_integrations, only: [:new] do
     resources :checks, only: [:new, :create], controller: "trello_checks"
   end

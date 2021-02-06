@@ -1,17 +1,22 @@
 # frozen_string_literal: true
 
 module Factories
-  def create_check(counts: [])
+  def create_check(counts: [], target: 0)
     integration = create_integration
     check = Test::Check.create!(
       name: "some check",
       integration: integration,
       user: integration.user,
+      target: target,
     )
+    create_counts(check, counts)
+    check
+  end
+
+  def create_counts(check, counts)
     counts.each do |count_params|
       create_count(count_params.merge(check: check))
     end
-    check
   end
 
   def create_count(params)
