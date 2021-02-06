@@ -11,5 +11,9 @@ module Page
     def delete_icon
       element.find(".fa-trash-alt")
     end
+
+    def edit_icon
+      element.find(".fa-pen")
+    end
   end
 end

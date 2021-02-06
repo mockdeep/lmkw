@@ -5,7 +5,7 @@ class Check < ApplicationRecord
   belongs_to :integration
   has_many :counts, class_name: "CheckCount", dependent: :delete_all
   validates :name, presence: true, uniqueness: { scope: :user_id }
-  validates :integration_id, :user_id, presence: true
+  validates :integration_id, :user_id, :target, presence: true
   scope(
     :last_counted_before,
     lambda { |timestamp|
@@ -25,7 +25,7 @@ class Check < ApplicationRecord
   end # class << self
 
   def active?
-    last_value.present? && last_value.positive?
+    last_value.present? && last_value > target
   end
 
   def refresh

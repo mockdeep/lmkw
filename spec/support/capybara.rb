@@ -20,4 +20,12 @@ RSpec.configure do |config|
   config.before(:each, type: :system, js: true) do
     driven_by(driver || :selenium_headless)
   end
+
+  config.before(:each, type: :controller) do
+    Capybara.default_normalize_ws = true
+  end
+
+  config.after(:each, type: :controller) do
+    Capybara.default_normalize_ws = false
+  end
 end

@@ -6,7 +6,9 @@ RSpec.describe Check, type: :model do
   it { is_expected.to belong_to(:integration) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:counts).class_name("CheckCount").dependent(:delete_all) }
+  it { is_expected.to validate_presence_of(:integration_id) }
   it { is_expected.to validate_presence_of(:user_id) }
+  it { is_expected.to validate_presence_of(:target) }
 
   describe ".last_counted_before" do
     it "returns checks with counts prior to timestamp" do
@@ -47,6 +49,24 @@ RSpec.describe Check, type: :model do
       check = create_check
 
       expect(check.active?).to be(false)
+    end
+
+    it "returns false when most recent count < target value" do
+      check = create_check(counts: [{ value: 1 }], target: 2)
+
+      expect(check.active?).to be(false)
+    end
+
+    it "returns false when most recent count == target value" do
+      check = create_check(counts: [{ value: 1 }], target: 1)
+
+      expect(check.active?).to be(false)
+    end
+
+    it "returns true when most recent count > target value" do
+      check = create_check(counts: [{ value: 2 }], target: 1)
+
+      expect(check.active?).to be(true)
     end
   end
 

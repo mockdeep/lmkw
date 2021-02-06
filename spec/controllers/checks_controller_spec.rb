@@ -13,6 +13,68 @@ RSpec.describe ChecksController, type: :controller do
     end
   end
 
+  describe "#edit" do
+    it "renders the edit page for a check" do
+      check = create_check
+      login_as(check.user)
+
+      get(:edit, params: { id: check.id })
+
+      expect(rendered).to have_content("Editing Check: #{check.name}")
+    end
+  end
+
+  describe "#update" do
+    context "when params are valid" do
+      it "updates the check" do
+        check = create_check
+        login_as(check.user)
+
+        put(:update, params: { id: check.id, check: { target: 5 } })
+
+        expect(check.reload.target).to eq(5)
+      end
+
+      it "redirects to checks/index" do
+        check = create_check
+        login_as(check.user)
+
+        put(:update, params: { id: check.id, check: { target: 5 } })
+
+        expect(response).to redirect_to(checks_path)
+      end
+
+      it "flashes a success message" do
+        check = create_check
+        login_as(check.user)
+
+        put(:update, params: { id: check.id, check: { target: 5 } })
+
+        expect(flash[:success]).to eq("Check updated")
+      end
+    end
+
+    context "when params are invalid" do
+      it "flashes an error message" do
+        check = create_check
+        login_as(check.user)
+
+        put(:update, params: { id: check.id, check: { target: "" } })
+
+        expect(response.body).to include("Unable to update check")
+      end
+
+      it "renders the edit view" do
+        check = create_check
+        login_as(check.user)
+
+        put(:update, params: { id: check.id, check: { target: "" } })
+
+        expect(rendered).to have_content("Editing Check: #{check.name}")
+      end
+    end
+  end
+
   describe "#destroy" do
     it "deletes the check" do
       check = create_check
