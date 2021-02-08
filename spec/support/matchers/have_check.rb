@@ -42,6 +42,8 @@ module Matchers
 
     attr_accessor :element, :expected_name, :expected_text
 
+    NAME_SELECTOR = ".card h3"
+
     def initialize(expected_name, text:)
       self.expected_name = expected_name
       self.expected_text = text
@@ -65,7 +67,7 @@ module Matchers
     def no_check_with_name_message
       <<~MESSAGE.squish
         expected to find check with name "#{expected_name}" but found checks
-        with names: #{element.all("h3").map(&:text)}
+        with names: #{element.all(NAME_SELECTOR).map(&:text)}
       MESSAGE
     end
 
@@ -77,7 +79,7 @@ module Matchers
     end
 
     def has_name?
-      element.has_selector?(".card > h3", text: expected_name)
+      element.has_selector?(NAME_SELECTOR, text: expected_name)
     end
 
     def has_text?
@@ -85,7 +87,7 @@ module Matchers
     end
 
     def check
-      element.find(".card > h3", text: expected_name).find(:xpath, "..")
+      element.find(NAME_SELECTOR, text: expected_name).find(:xpath, "..")
     end
   end
 end

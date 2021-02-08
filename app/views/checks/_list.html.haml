@@ -1,16 +1,18 @@
 .card-list
   - checks.each do |check|
     .card
-      %h3
-        = icon("fab", check.service, class: "fa-lg")
-        = check.name
-        - data = { confirm: "delete check? #{check.name}" }
-        = link_to(check_path(check), method: :delete, data: data) do
-          = icon("far", "trash-alt")
+      .card-main
+        %h3
+          = icon("fab", check.service, class: "fa-lg")
+          = check.name
+          - data = { confirm: "delete check? #{check.name}" }
+        %p
+          %span.check_value= check.last_value
+          = link_to(check.url, target: :_blank, rel: :noreferrer) do
+            = check.message
+            %span.fas.fa-external-link-alt
+      .card-actions
         = link_to(edit_check_path(check)) do
           = icon("fas", "pen")
-      %p
-        %span.check_value= check.last_value
-        = link_to(check.url, target: :_blank, rel: :noreferrer) do
-          = check.message
-          %span.fas.fa-external-link-alt
+        = link_to(check_path(check), method: :delete, data: data) do
+          = icon("far", "trash-alt")

@@ -179,6 +179,9 @@ hr {
 }
 
 .card {
+  display: grid;
+  grid-template-columns: auto 10px;
+
   h3 {
     font-size: 1.5em;
     margin-bottom: 25px;
@@ -206,6 +209,13 @@ hr {
   border-radius: 15px;
 }
 
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.25em;
+}
+
 .check_value {
   font-weight: bold;
   border-radius: 50%;
@@ -216,10 +226,4 @@ hr {
   color: #555;
   font-size: 20px;
   line-height: 30px;
-}
-
-.fa-trash-alt {
-  float: right;
-  margin-top: -10px;
-  margin-right: -10px;
 }
