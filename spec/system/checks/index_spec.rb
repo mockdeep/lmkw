@@ -3,15 +3,15 @@
 require "rails_helper"
 
 RSpec.describe "checks/index", type: :system, js: true do
-  def find_check(name)
-    Page::Check.new(find(".card > h3", text: name))
+  def find_check(check)
+    Page::Check.find(page, check)
   end
 
   it "allows deleting checks" do
     check = create_check
     sign_in(check.user)
 
-    accept_confirm { find_check(check.name).delete_icon.click }
+    accept_confirm { find_check(check).delete_icon.click }
 
     expect(page).to have_flash(:success, "Check deleted")
     expect(page).to have_no_checks
@@ -45,7 +45,7 @@ RSpec.describe "checks/index", type: :system, js: true do
     check = create_check
     sign_in(check.user)
 
-    find_check(check.name).edit_icon.click
+    find_check(check).edit_icon.click
 
     expect(page).to have_content("Editing Check: #{check.name}")
   end
