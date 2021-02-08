@@ -181,8 +181,7 @@ hr {
 .card {
   h3 {
     font-size: 1.5em;
-    text-align: center;
-    margin: 15px 0;
+    margin-bottom: 25px;
   }
 
   p {
@@ -203,26 +202,24 @@ hr {
   }
 
   background-color: rgba(71, 120, 186, 0.4);
-  padding: 10px 20px;
+  padding: 20px;
   border-radius: 15px;
 }
 
 .check_value {
   font-weight: bold;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
   padding: 10px;
   margin-right: 10px;
   background: #fff;
   text-align: center;
-  display: inline-block;
   color: #555;
   font-size: 20px;
+  line-height: 30px;
 }
 
 .fa-trash-alt {
   float: right;
-  margin-top: -15px;
+  margin-top: -10px;
   margin-right: -10px;
 }
