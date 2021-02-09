@@ -49,4 +49,13 @@ RSpec.describe "checks/index", type: :system, js: true do
 
     expect(page).to have_content("Editing Check: #{check.name}")
   end
+
+  it "allows refreshing checks" do
+    check = create_check
+    sign_in(check.user)
+
+    find_check(check).refresh_icon.click
+
+    expect(page).to have_active_check(check.name, text: check.message)
+  end
 end

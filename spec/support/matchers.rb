@@ -46,6 +46,10 @@ def delete_record(record)
   Matchers::DeleteRecord.new(record)
 end
 
+def invoke(expected_method)
+  Matchers::Invoke.new(expected_method)
+end
+
 RSpec::Matchers.define_negated_matcher(:not_change, :change)
 RSpec::Matchers.define_negated_matcher(:not_change_record, :change_record)
 RSpec::Matchers.define_negated_matcher(:not_delete_record, :delete_record)
