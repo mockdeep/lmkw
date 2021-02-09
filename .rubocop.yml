@@ -28,11 +28,14 @@ Metrics/BlockLength:
     - describe
   Exclude:
     - Guardfile
+Rails/Delegate: { Exclude: [spec/support/matchers/**/*.rb] }
 Rails/FilePath: { EnforcedStyle: slashes }
 RSpec/MultipleExpectations:
   Exclude:
     - spec/system/**/*.rb
-RSpec/MessageExpectation: { EnforcedStyle: expect }
+RSpec/MessageExpectation:
+  EnforcedStyle: expect
+  Exclude: [spec/support/matchers/invoke_matcher.rb]
 Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
   IgnoredMethods:

@@ -28,6 +28,10 @@ class Check < ApplicationRecord
     last_value.present? && last_value > target
   end
 
+  def refresh=(refresh)
+    self.refresh if ["true", true].include?(refresh)
+  end
+
   def refresh
     raise NotImplementedError
   end

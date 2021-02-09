@@ -19,5 +19,9 @@ module Page
     def edit_icon
       element.find(".fa-pen")
     end
+
+    def refresh_icon
+      element.find(".fa-sync-alt")
+    end
   end
 end

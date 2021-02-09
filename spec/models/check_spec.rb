@@ -70,6 +70,32 @@ RSpec.describe Check, type: :model do
     end
   end
 
+  describe "#refresh=" do
+    it "calls #refresh when given the string 'true'" do
+      check = create_check
+
+      expect { check.refresh = "true" }.to invoke(:refresh).on(check)
+    end
+
+    it "calls #refresh when given true" do
+      check = create_check
+
+      expect { check.refresh = true }.to invoke(:refresh).on(check)
+    end
+
+    it "does not call #refresh when given false" do
+      check = create_check
+
+      expect { check.refresh = false }.not_to invoke(:refresh).on(check)
+    end
+
+    it "does not call #refresh when given something truthy" do
+      check = create_check
+
+      expect { check.refresh = "troof" }.not_to invoke(:refresh).on(check)
+    end
+  end
+
   describe "#refresh" do
     it "raises a NotImplementedError" do
       expect { described_class.new.refresh }

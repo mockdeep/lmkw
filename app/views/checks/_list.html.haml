@@ -11,6 +11,9 @@
             = check.message
             %span.fas.fa-external-link-alt
       .card-actions
+        - params = { check: { refresh: true } }
+        = link_to(check_path(check, params), method: :patch) do
+          = icon("fas", "sync-alt")
         = link_to(edit_check_path(check)) do
           = icon("fas", "pen")
         - data = { confirm: "delete check? #{check.name}" }
