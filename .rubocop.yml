@@ -19,6 +19,7 @@ AllCops:
 # https://github.com/rubocop-hq/rubocop/issues/7841
 Style/TrailingCommaInBlockArgs: { Enabled: false }
 Layout/LineLength:
+  Max: 80
   Exclude:
     - 'config/**/*'
   AutoCorrect: true
@@ -30,6 +31,7 @@ Metrics/BlockLength:
     - Guardfile
 Rails/Delegate: { Exclude: [spec/support/matchers/**/*.rb] }
 Rails/FilePath: { EnforcedStyle: slashes }
+RSpec/ImplicitSubject: { EnforcedStyle: single_statement_only }
 RSpec/MultipleExpectations:
   Exclude:
     - spec/system/**/*.rb

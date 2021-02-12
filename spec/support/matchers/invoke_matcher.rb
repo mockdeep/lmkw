@@ -65,9 +65,13 @@ module Matchers
     def receive_expected
       receive_expected = receive(@expected_method)
 
-      receive_expected = receive_expected.and_return(*@return_arguments) if defined?(@return_arguments)
+      if defined?(@return_arguments)
+        receive_expected = receive_expected.and_return(*@return_arguments)
+      end
 
-      receive_expected = receive_expected.and_call_original if defined?(@and_call_original)
+      if defined?(@and_call_original)
+        receive_expected = receive_expected.and_call_original
+      end
 
       receive_expected
     end
@@ -85,7 +89,9 @@ module Matchers
         begin
           matcher = RSpec::Mocks::Matchers::HaveReceived.new(@expected_method)
 
-          matcher = matcher.with(*@expected_arguments) if defined?(@expected_arguments)
+          if defined?(@expected_arguments)
+            matcher = matcher.with(*@expected_arguments)
+          end
 
           matcher = matcher.exactly(@times).times if defined?(@times)
 
