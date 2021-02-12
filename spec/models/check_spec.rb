@@ -62,19 +62,19 @@ RSpec.describe Check, type: :model do
     end
 
     it "returns false when most recent count < target value" do
-      check = create_check(counts: [{ value: 1 }], target: 2)
+      check = create_check(counts: [{ value: 1 }], target: { value: 2 })
 
       expect(check.active?).to be(false)
     end
 
     it "returns false when most recent count == target value" do
-      check = create_check(counts: [{ value: 1 }], target: 1)
+      check = create_check(counts: [{ value: 1 }], target: { value: 1 })
 
       expect(check.active?).to be(false)
     end
 
     it "returns true when most recent count > target value" do
-      check = create_check(counts: [{ value: 2 }], target: 1)
+      check = create_check(counts: [{ value: 2 }], target: { value: 1 })
 
       expect(check.active?).to be(true)
     end
@@ -107,8 +107,25 @@ RSpec.describe Check, type: :model do
   end
 
   describe "#refresh" do
+    it "creates the next count" do
+      check = create_check
+      Test::Check.next_values << 21
+
+      check.refresh
+      expect(check.last_value).to eq(21)
+    end
+
+    it "refreshes its target" do
+      check = create_check
+      Test::Check.next_values << 21
+
+      expect { check.refresh }.to invoke(:refresh).on(check.target)
+    end
+  end
+
+  describe "#next_count" do
     it "raises a NotImplementedError" do
-      expect { described_class.new.refresh }
+      expect { described_class.new.next_count }
         .to raise_error(NotImplementedError)
     end
   end

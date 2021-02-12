@@ -5,8 +5,16 @@ module Test
   end
 
   class Check < Check
-    def refresh
-      counts.create!(value: 53)
+    def self.next_values
+      @next_values ||= []
+    end
+
+    def next_count
+      next_value = self.class.next_values.shift
+
+      raise StandardError, "no next value provided" unless next_value
+
+      next_value
     end
 
     def service
@@ -20,5 +28,11 @@ module Test
     def message
       "test values"
     end
+  end
+end
+
+RSpec.configure do |config|
+  config.after do
+    Test::Check.next_values.clear
   end
 end

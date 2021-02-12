@@ -27,7 +27,7 @@ class TrelloChecksController < ApplicationController
     {
       user: current_user,
       integration: trello_integration,
-      target_attributes: { value: 0 },
+      target_attributes: {},
     }
   end
 

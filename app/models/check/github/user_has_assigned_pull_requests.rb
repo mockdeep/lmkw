@@ -11,8 +11,8 @@ class Check < ApplicationRecord
         "github"
       end
 
-      def refresh
-        counts.create!(value: pull_requests.count)
+      def next_count
+        pull_requests.count
       end
 
       def next_step

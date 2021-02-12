@@ -38,6 +38,7 @@ RSpec.configure do |config|
 
   config.render_views
 
+  config.include(ActiveSupport::Testing::TimeHelpers)
   config.include(Helpers::Controller, type: :controller)
   config.include(Helpers::System, type: :system)
 end

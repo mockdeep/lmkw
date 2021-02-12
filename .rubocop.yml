@@ -42,11 +42,15 @@ Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
   IgnoredMethods:
     - accepts_nested_attributes_for
+    - and
     - attr_accessor
     - attr_reader
     - attr_writer
+    - attribute
     - belongs_to
     - cattr_accessor
+    - cattr_reader
+    - cattr_writer
     - context
     - default
     - delegate

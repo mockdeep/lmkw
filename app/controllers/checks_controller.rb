@@ -31,10 +31,14 @@ class ChecksController < ApplicationController
 
   private
 
+  def target_attributes
+    [:value, :id, :delta, :goal_value]
+  end
+
   def check_params
     params
       .require(:check)
-      .permit(:name, :refresh, target_attributes: [:value, :id])
+      .permit(:name, :refresh, target_attributes: target_attributes)
   end
 
   def find_check(id)
