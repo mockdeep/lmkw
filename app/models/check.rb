@@ -3,9 +3,11 @@
 class Check < ApplicationRecord
   belongs_to :user
   belongs_to :integration
+  has_one :target, dependent: :delete, class_name: "Check::Target"
   has_many :counts, class_name: "CheckCount", dependent: :delete_all
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :integration_id, :user_id, :target, presence: true
+  accepts_nested_attributes_for :target, update_only: true
   scope(
     :last_counted_before,
     lambda { |timestamp|
@@ -25,7 +27,7 @@ class Check < ApplicationRecord
   end # class << self
 
   def active?
-    last_value.present? && last_value > target
+    last_value.present? && last_value > target.value
   end
 
   def refresh=(refresh)

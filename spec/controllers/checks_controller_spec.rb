@@ -30,16 +30,17 @@ RSpec.describe ChecksController, type: :controller do
         check = create_check
         login_as(check.user)
 
-        put(:update, params: { id: check.id, check: { target: 5 } })
-
-        expect(check.reload.target).to eq(5)
+        check_params = { target_attributes: { value: 5 } }
+        expect { put(:update, params: { id: check.id, check: check_params }) }
+          .to change_record(check.target, :value).from(0).to(5)
       end
 
       it "redirects to checks/index" do
         check = create_check
         login_as(check.user)
 
-        put(:update, params: { id: check.id, check: { target: 5 } })
+        check_params = { target_attributes: { value: 5 } }
+        put(:update, params: { id: check.id, check: check_params })
 
         expect(response).to redirect_to(checks_path)
       end
@@ -48,7 +49,8 @@ RSpec.describe ChecksController, type: :controller do
         check = create_check
         login_as(check.user)
 
-        put(:update, params: { id: check.id, check: { target: 5 } })
+        check_params = { target_attributes: { value: 5 } }
+        put(:update, params: { id: check.id, check: check_params })
 
         expect(flash[:success]).to eq("Check updated")
       end
@@ -59,7 +61,8 @@ RSpec.describe ChecksController, type: :controller do
         check = create_check
         login_as(check.user)
 
-        put(:update, params: { id: check.id, check: { target: "" } })
+        check_params = { target_attributes: { value: "" } }
+        put(:update, params: { id: check.id, check: check_params })
 
         expect(response.body).to include("Unable to update check")
       end
@@ -68,7 +71,8 @@ RSpec.describe ChecksController, type: :controller do
         check = create_check
         login_as(check.user)
 
-        put(:update, params: { id: check.id, check: { target: "" } })
+        check_params = { target_attributes: { value: "" } }
+        put(:update, params: { id: check.id, check: check_params })
 
         expect(rendered).to have_content("Editing Check: #{check.name}")
       end

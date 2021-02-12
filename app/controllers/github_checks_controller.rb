@@ -23,6 +23,14 @@ class GithubChecksController < ApplicationController
       current_user.integrations.find(params.fetch(:github_integration_id))
   end
 
+  def base_params
+    {
+      user: current_user,
+      integration: integration,
+      target_attributes: { value: 0 },
+    }
+  end
+
   def check_params
     check_params =
       if params.key?(:check)
@@ -30,6 +38,6 @@ class GithubChecksController < ApplicationController
       else
         {}
       end
-    check_params.merge(user: current_user, integration: integration)
+    check_params.merge(base_params)
   end
 end

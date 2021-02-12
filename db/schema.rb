@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_031210) do
+ActiveRecord::Schema.define(version: 2021_02_12_195209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 2021_02_06_031210) do
     t.index ["check_id"], name: "index_check_counts_on_check_id"
   end
 
+  create_table "check_targets", force: :cascade do |t|
+    t.bigint "value", null: false
+    t.bigint "check_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["check_id"], name: "index_check_targets_on_check_id", unique: true
+  end
+
   create_table "checks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "integration_id", null: false
@@ -31,7 +39,6 @@ ActiveRecord::Schema.define(version: 2021_02_06_031210) do
     t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "target", default: 0, null: false
     t.index ["integration_id"], name: "index_checks_on_integration_id"
     t.index ["user_id", "name"], name: "index_checks_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_checks_on_user_id"
@@ -57,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_02_06_031210) do
   end
 
   add_foreign_key "check_counts", "checks"
+  add_foreign_key "check_targets", "checks"
   add_foreign_key "checks", "integrations"
   add_foreign_key "checks", "users"
   add_foreign_key "integrations", "users"

@@ -8,6 +8,11 @@ RSpec.describe Check, type: :model do
 
   it {
     is_expected
+      .to have_one(:target).class_name("Check::Target").dependent(:delete)
+  }
+
+  it {
+    is_expected
       .to have_many(:counts).class_name("CheckCount").dependent(:delete_all)
   }
 
