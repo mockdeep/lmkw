@@ -5,7 +5,12 @@ require "rails_helper"
 RSpec.describe Check, type: :model do
   it { is_expected.to belong_to(:integration) }
   it { is_expected.to belong_to(:user) }
-  it { is_expected.to have_many(:counts).class_name("CheckCount").dependent(:delete_all) }
+
+  it {
+    is_expected
+      .to have_many(:counts).class_name("CheckCount").dependent(:delete_all)
+  }
+
   it { is_expected.to validate_presence_of(:integration_id) }
   it { is_expected.to validate_presence_of(:user_id) }
   it { is_expected.to validate_presence_of(:target) }
