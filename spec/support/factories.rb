@@ -7,7 +7,7 @@ module Factories
       name: "some check",
       integration: integration,
       user: integration.user,
-      target: target,
+      target_attributes: { value: target },
     )
     create_counts(check, counts)
     check

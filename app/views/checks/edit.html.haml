@@ -15,8 +15,9 @@
     = form.text_field(:name, required: true)
 
   .field
-    = form.label(:target)
-    = form.number_field(:target, required: true)
+    = form.fields_for(:target) do |target_form|
+      = target_form.label(:value, "Target")
+      = target_form.number_field(:value, required: true)
 
   .actions
     = form.submit("Update Check")

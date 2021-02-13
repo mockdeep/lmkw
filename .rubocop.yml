@@ -41,6 +41,7 @@ RSpec/MessageExpectation:
 Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
   IgnoredMethods:
+    - accepts_nested_attributes_for
     - attr_accessor
     - attr_reader
     - attr_writer
@@ -55,6 +56,7 @@ Style/MethodCallWithArgsParentheses:
     - fit
     - gem
     - has_many
+    - has_one
     - helper_method
     - include
     - it

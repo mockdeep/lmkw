@@ -15,7 +15,7 @@ class TrelloChecksController < ApplicationController
   private
 
   def check
-    @check ||= Check::Trello::ListHasCards.new(check_params.merge(base_params))
+    @check ||= Check::Trello::ListHasCards.new(check_params)
   end
 
   def trello_integration
@@ -24,14 +24,20 @@ class TrelloChecksController < ApplicationController
   end
 
   def base_params
-    { user: current_user, integration: trello_integration }
+    {
+      user: current_user,
+      integration: trello_integration,
+      target_attributes: { value: 0 },
+    }
   end
 
   def check_params
-    if params.key?(:check)
-      params.require(:check).permit(:board_id, :list_id, :name)
-    else
-      {}
-    end
+    check_params =
+      if params.key?(:check)
+        params.require(:check).permit(:board_id, :list_id, :name)
+      else
+        {}
+      end
+    check_params.merge(base_params)
   end
 end
