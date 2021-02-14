@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_195209) do
+ActiveRecord::Schema.define(version: 2021_02_13_184922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 2021_02_12_195209) do
     t.bigint "check_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "delta", null: false
+    t.bigint "goal_value", null: false
+    t.datetime "next_refresh_at", null: false
     t.index ["check_id"], name: "index_check_targets_on_check_id", unique: true
   end
 

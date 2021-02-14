@@ -15,8 +15,8 @@ class Check < ApplicationRecord
         "trello"
       end
 
-      def refresh
-        counts.create!(value: cards.count)
+      def next_count
+        cards.count
       end
 
       def next_step

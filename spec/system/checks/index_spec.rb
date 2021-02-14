@@ -34,7 +34,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "displays checks that are below target in inactive section" do
-    check = create_check(counts: [{ value: 5 }], target: 6)
+    check = create_check(counts: [{ value: 5 }], target: { value: 6 })
     sign_in(check.user)
 
     expect(page).to have_inactive_check(check.name, text: check.message)
@@ -51,6 +51,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "allows refreshing checks" do
+    Test::Check.next_values << 52
     check = create_check
     sign_in(check.user)
 

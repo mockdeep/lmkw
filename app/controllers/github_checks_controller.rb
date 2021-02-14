@@ -27,7 +27,7 @@ class GithubChecksController < ApplicationController
     {
       user: current_user,
       integration: integration,
-      target_attributes: { value: 0 },
+      target_attributes: {},
     }
   end
 

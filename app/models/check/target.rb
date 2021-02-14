@@ -2,7 +2,25 @@
 
 class Check < ApplicationRecord
   class Target < ApplicationRecord
+    attribute :delta, :integer, default: 0
+    attribute :goal_value, :integer, default: 0
+    attribute :next_refresh_at, :datetime, default: -> { Time.zone.tomorrow }
+    attribute :value, :integer, default: 0
     belongs_to :check
-    validates :value, :check, presence: true
+    validates :check_id, uniqueness: true
+    validates :value,
+              :check,
+              :delta,
+              :goal_value,
+              :next_refresh_at,
+              presence: true
+
+    def refresh
+      return if next_refresh_at > Time.zone.now
+
+      next_value = [goal_value, value - delta].max
+
+      update!(next_refresh_at: Time.zone.tomorrow, value: next_value)
+    end
   end
 end

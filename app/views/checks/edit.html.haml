@@ -14,10 +14,18 @@
     = form.label(:name)
     = form.text_field(:name, required: true)
 
-  .field
-    = form.fields_for(:target) do |target_form|
+  = form.fields_for(:target) do |target_form|
+    .field
       = target_form.label(:value, "Target")
       = target_form.number_field(:value, required: true)
+
+    .field
+      = target_form.label(:delta)
+      = target_form.number_field(:delta, required: true)
+
+    .field
+      = target_form.label(:goal_value, "Goal Target")
+      = target_form.number_field(:goal_value, required: true)
 
   .actions
     = form.submit("Update Check")

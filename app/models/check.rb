@@ -35,6 +35,11 @@ class Check < ApplicationRecord
   end
 
   def refresh
+    counts.create!(value: next_count)
+    target.refresh
+  end
+
+  def next_count
     raise NotImplementedError
   end
 
