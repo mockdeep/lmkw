@@ -47,6 +47,6 @@ RSpec.describe "GitHub integration", type: :system, js: true do
     authenticate_with_github
     create_github_check(name: "Pulls for Me")
 
-    expect(page).to have_check("Pulls for Me", text: "2 assigned pull requests")
+    expect(page).to have_check("Pulls for Me")
   end
 end

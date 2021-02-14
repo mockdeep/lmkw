@@ -2,16 +2,16 @@
 
 Dir[File.join(__dir__, "./matchers/*.rb")].sort.each { |path| require path }
 
-def have_check(expected_name, text:)
-  Matchers::HaveCheck.new(expected_name, text: text)
+def have_check(expected_name)
+  Matchers::HaveCheck.new(expected_name)
 end
 
-def have_active_check(expected_name, text:)
-  Matchers::HaveActiveCheck.new(expected_name, text: text)
+def have_active_check(expected_name)
+  Matchers::HaveActiveCheck.new(expected_name)
 end
 
-def have_inactive_check(expected_name, text:)
-  Matchers::HaveInactiveCheck.new(expected_name, text: text)
+def have_inactive_check(expected_name)
+  Matchers::HaveInactiveCheck.new(expected_name)
 end
 
 def have_no_checks

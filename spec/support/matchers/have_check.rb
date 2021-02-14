@@ -40,26 +40,21 @@ module Matchers
       end
     end
 
-    attr_accessor :element, :expected_name, :expected_text
+    attr_accessor :element, :expected_name
 
     NAME_SELECTOR = ".card h3"
 
-    def initialize(expected_name, text:)
+    def initialize(expected_name)
       self.expected_name = expected_name
-      self.expected_text = text
     end
 
     def matches?(page)
       self.element = MemoizedElement.new(page)
-      has_name? && has_text?
+      has_name?
     end
 
     def failure_message
-      if !has_name?
-        no_check_with_name_message
-      elsif !has_text?
-        check_has_wrong_text_message
-      end
+      no_check_with_name_message
     end
 
     private
@@ -71,23 +66,8 @@ module Matchers
       MESSAGE
     end
 
-    def check_has_wrong_text_message
-      <<~MESSAGE.squish
-        expected check with name "#{expected_name}" to have text
-        "#{expected_text}" but had "#{check.find("p").text}"
-      MESSAGE
-    end
-
     def has_name?
       element.has_selector?(NAME_SELECTOR, text: expected_name)
-    end
-
-    def has_text?
-      check.has_selector?("p", text: expected_text)
-    end
-
-    def check
-      element.find(NAME_SELECTOR, text: expected_name).find(:xpath, "..")
     end
   end
 end

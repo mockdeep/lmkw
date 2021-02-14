@@ -16,23 +16,23 @@ RSpec.describe "checks/edit", type: :system, js: true do
   end
 
   def expect_check_to_activate(check)
-    expect(page).to have_inactive_check(check.name, text: check.message)
+    expect(page).to have_inactive_check(check.name)
 
     yield
 
     find_check(check).refresh_icon.click
 
-    expect(page).to have_active_check(check.name, text: check.message)
+    expect(page).to have_active_check(check.name)
   end
 
   it "allows editing a check" do
     check = create_check(counts: [{ value: 5 }])
     sign_in(check.user)
-    expect(page).to have_active_check(check.name, text: check.message)
+    expect(page).to have_active_check(check.name)
 
     update_check(check, Target: 5)
 
-    expect(page).to have_inactive_check(check.name, text: check.message)
+    expect(page).to have_inactive_check(check.name)
   end
 
   it "allows setting a moving target on a check" do

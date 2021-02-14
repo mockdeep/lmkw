@@ -8,7 +8,7 @@ class Check < ApplicationRecord
       STEPS = ["name"].freeze
 
       def service
-        "github"
+        "GitHub"
       end
 
       def next_count
@@ -17,10 +17,6 @@ class Check < ApplicationRecord
 
       def next_step
         STEPS.find { |step| public_send(step).nil? }
-      end
-
-      def message
-        "assigned pull requests"
       end
 
       def url
