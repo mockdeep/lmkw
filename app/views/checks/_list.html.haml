@@ -3,12 +3,12 @@
     .card
       .card-main
         %h3
-          = icon("fab", check.service, class: "fa-lg")
+          = icon("fab", check.service.downcase, class: "fa-lg")
           = check.name
         %p
           %span.check_value= check.last_value
           = link_to(check.url, target: :_blank, rel: :noreferrer) do
-            = check.message
+            visit #{check.service}
             %span.fas.fa-external-link-alt
       .card-actions
         - params = { check: { refresh: true } }

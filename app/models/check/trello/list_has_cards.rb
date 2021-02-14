@@ -12,7 +12,7 @@ class Check < ApplicationRecord
       STEPS = ["board_id", "list_id", "name"].freeze
 
       def service
-        "trello"
+        "Trello"
       end
 
       def next_count
@@ -21,10 +21,6 @@ class Check < ApplicationRecord
 
       def next_step
         STEPS.find { |step| public_send(step).nil? }
-      end
-
-      def message
-        "cards in #{list.name}"
       end
 
       def board

@@ -21,7 +21,7 @@ RSpec.describe "checks/index", type: :system, js: true do
     check = create_check(counts: [{ value: 5 }])
     sign_in(check.user)
 
-    expect(page).to have_active_check(check.name, text: check.message)
+    expect(page).to have_active_check(check.name)
     expect(page).to have_no_inactive_checks
   end
 
@@ -29,7 +29,7 @@ RSpec.describe "checks/index", type: :system, js: true do
     check = create_check
     sign_in(check.user)
 
-    expect(page).to have_inactive_check(check.name, text: check.message)
+    expect(page).to have_inactive_check(check.name)
     expect(page).to have_no_active_checks
   end
 
@@ -37,7 +37,7 @@ RSpec.describe "checks/index", type: :system, js: true do
     check = create_check(counts: [{ value: 5 }], target: { value: 6 })
     sign_in(check.user)
 
-    expect(page).to have_inactive_check(check.name, text: check.message)
+    expect(page).to have_inactive_check(check.name)
     expect(page).to have_no_active_checks
   end
 
@@ -57,6 +57,6 @@ RSpec.describe "checks/index", type: :system, js: true do
 
     find_check(check).refresh_icon.click
 
-    expect(page).to have_active_check(check.name, text: check.message)
+    expect(page).to have_active_check(check.name)
   end
 end

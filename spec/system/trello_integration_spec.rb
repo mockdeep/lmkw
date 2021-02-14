@@ -65,6 +65,6 @@ RSpec.describe "Trello integration", type: :system, js: true do
     authenticate_with_trello
     create_trello_check(board: "Dev Board", list: "Inbox", name: "Inbox cards")
 
-    expect(page).to have_check("Inbox cards", text: "3 cards in Inbox")
+    expect(page).to have_check("Inbox cards")
   end
 end
