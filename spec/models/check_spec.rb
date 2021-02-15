@@ -84,42 +84,27 @@ RSpec.describe Check, type: :model do
     it "calls #refresh when given the string 'true'" do
       check = create_check
 
-      expect { check.refresh = "true" }.to invoke(:refresh).on(check)
+      expect { check.refresh = "true" }
+        .to invoke(:call).on(Check::Refresh).with(check)
     end
 
     it "calls #refresh when given true" do
       check = create_check
 
-      expect { check.refresh = true }.to invoke(:refresh).on(check)
+      expect { check.refresh = true }
+        .to invoke(:call).on(Check::Refresh).with(check)
     end
 
     it "does not call #refresh when given false" do
       check = create_check
 
-      expect { check.refresh = false }.not_to invoke(:refresh).on(check)
+      expect { check.refresh = false }.not_to invoke(:call).on(Check::Refresh)
     end
 
     it "does not call #refresh when given something truthy" do
       check = create_check
 
-      expect { check.refresh = "troof" }.not_to invoke(:refresh).on(check)
-    end
-  end
-
-  describe "#refresh" do
-    it "creates the next count" do
-      check = create_check
-      Test::Check.next_values << 21
-
-      check.refresh
-      expect(check.last_value).to eq(21)
-    end
-
-    it "refreshes its target" do
-      check = create_check
-      Test::Check.next_values << 21
-
-      expect { check.refresh }.to invoke(:refresh).on(check.target)
+      expect { check.refresh = "troof" }.not_to invoke(:call).on(Check::Refresh)
     end
   end
 

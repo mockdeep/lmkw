@@ -31,12 +31,7 @@ class Check < ApplicationRecord
   end
 
   def refresh=(refresh)
-    self.refresh if ["true", true].include?(refresh)
-  end
-
-  def refresh
-    counts.create!(value: next_count)
-    target.refresh
+    Check::Refresh.call(self) if ["true", true].include?(refresh)
   end
 
   def next_count

@@ -14,13 +14,5 @@ class Check < ApplicationRecord
               :goal_value,
               :next_refresh_at,
               presence: true
-
-    def refresh
-      return if next_refresh_at > Time.zone.now
-
-      next_value = [goal_value, value - delta].max
-
-      update!(next_refresh_at: Time.zone.tomorrow, value: next_value)
-    end
   end
 end

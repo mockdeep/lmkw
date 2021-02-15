@@ -7,7 +7,7 @@ class GithubChecksController < ApplicationController
 
   def create
     check.save!
-    check.refresh
+    Check::Refresh.call(check)
 
     redirect_to(checks_path)
   end
