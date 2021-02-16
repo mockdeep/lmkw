@@ -9,13 +9,21 @@ Rails.application.routes.draw do
 
   resource :account, only: [:new, :create, :show, :update, :destroy]
   resource :session, only: [:new, :create, :destroy]
-  resources :checks, only: [:index, :new, :edit, :update, :destroy]
+
+  resources :checks, only: [:index, :new, :edit, :update, :destroy] do
+    resources :counts, only: [:new, :create], controller: "check_counts"
+  end
+
   resources :trello_integrations, only: [:new] do
     resources :checks, only: [:new, :create], controller: "trello_checks"
   end
 
   resources :github_integrations, only: [:new] do
     resources :checks, only: [:new, :create], controller: "github_checks"
+  end
+
+  resources :manual_integrations, only: [:new] do
+    resources :checks, only: [:new, :create], controller: "manual_checks"
   end
 
   get "/trello_integrations/create", to: "trello_integrations#create"

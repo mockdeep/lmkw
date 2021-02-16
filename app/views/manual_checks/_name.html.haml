@@ -1,0 +1,8 @@
+%h2 Name your check
+
+- submit_path = manual_integration_checks_path(integration)
+= form_with(model: check, url: submit_path) do |form|
+  = form.label(:name)
+  = form.text_field(:name)
+
+  = form.submit("Done")

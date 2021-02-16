@@ -19,4 +19,11 @@ RSpec.describe Check::Refresh do
     expect { described_class.call(check) }
       .to invoke(:call).on(Check::Target::Refresh).with(check.target)
   end
+
+  it "does not try to create a count for manual checks" do
+    check = create_manual_check
+
+    expect { described_class.call(check) }
+      .not_to change(check, :last_value).from(nil)
+  end
 end

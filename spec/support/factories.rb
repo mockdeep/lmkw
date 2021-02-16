@@ -13,6 +13,18 @@ module Factories
     check
   end
 
+  def create_manual_check(counts: [], target: {})
+    integration = create_manual_integration
+    check = Check::Manual::AnyCount.create!(
+      name: "some check",
+      integration: integration,
+      user: integration.user,
+      target_attributes: target,
+    )
+    create_counts(check, counts)
+    check
+  end
+
   def create_counts(check, counts)
     counts.each do |count_params|
       create_count(count_params.merge(check: check))
@@ -33,16 +45,23 @@ module Factories
   end
 
   def create_integration(type = :test, user: create_user)
-    case type
-    when :github
-      Integration::Github.create!(user: user, access_token: "foo")
-    when :trello
-      Integration::Trello.create!(user: user, member_token: "foo")
-    when :test
-      Test::Integration.create!(user: user)
-    else
-      raise ArgumentError, "invalid type: #{type}"
-    end
+    method("create_#{type}_integration").call(user: user)
+  end
+
+  def create_github_integration(user: create_user)
+    Integration::Github.create!(user: user, access_token: "foo")
+  end
+
+  def create_trello_integration(user: create_user)
+    Integration::Trello.create!(user: user, member_token: "foo")
+  end
+
+  def create_manual_integration(user: create_user)
+    Integration::Manual.create!(user: user)
+  end
+
+  def create_test_integration(user: create_user)
+    Test::Integration.create!(user: user)
   end
 
   def next_id

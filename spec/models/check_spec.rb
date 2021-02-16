@@ -42,6 +42,12 @@ RSpec.describe Check, type: :model do
     end
   end
 
+  describe "#manual?" do
+    it "returns false" do
+      expect(described_class.new.manual?).to be(false)
+    end
+  end
+
   describe "#active?" do
     it "returns true when most recent count > 0" do
       check = create_check(counts: [{ value: 1 }])
