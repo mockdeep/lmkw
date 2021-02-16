@@ -23,7 +23,6 @@ RSpec.describe "GitHub integration", type: :system, js: true do
     fill_in("Username or email", with: github_params[:email])
     fill_in("Password", with: github_params[:password])
     click_button("Sign in")
-    # click_button("Authorize")
   end
 
   def create_github_check(name:)

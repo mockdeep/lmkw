@@ -26,6 +26,10 @@ class Check < ApplicationRecord
     end
   end # class << self
 
+  def manual?
+    false
+  end
+
   def active?
     last_value.present? && last_value > target.value
   end
@@ -35,7 +39,7 @@ class Check < ApplicationRecord
   end
 
   def next_count
-    raise NotImplementedError
+    raise NotImplementedError, "next_count should be implemented on sub-classes"
   end
 
   def last_value

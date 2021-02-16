@@ -25,6 +25,7 @@ group :everything, halt_on_fail: true do
     watch(rails.controllers) do |m|
       [
         rspec.spec.call("controllers/#{m[1]}_controller"),
+        rspec.spec.call("requests/#{m[1]}_controller"),
       ]
     end
 
