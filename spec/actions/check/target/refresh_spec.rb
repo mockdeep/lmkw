@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Check::Target::Refresh do
   it "does nothing when next_refresh_at is in future" do
-    target = create_target(next_refresh_at: 2.days.from_now.beginning_of_day)
+    target = create_target(value: 2, delta: 1)
 
     expect { described_class.call(target) }
       .to not_change_record(target, :next_refresh_at)
@@ -25,7 +25,7 @@ RSpec.describe Check::Target::Refresh do
   end
 
   it "subtracts the delta from the value" do
-    target = create_target(next_refresh_at: 1.day.ago, value: 50, delta: 6)
+    target = create_target(:refreshable, value: 50, delta: 6)
 
     expect { described_class.call(target) }
       .to change_record(target, :value).to(44)
@@ -36,5 +36,12 @@ RSpec.describe Check::Target::Refresh do
 
     expect { described_class.call(target) }
       .to change_record(target, :value).to(48)
+  end
+
+  it "updates the value when next_refresh_at is in future and force is true" do
+    target = create_target(value: 2, delta: 1)
+
+    expect { described_class.call(target, force: true) }
+      .to change_record(target, :value).from(2).to(1)
   end
 end
