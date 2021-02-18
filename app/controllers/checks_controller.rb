@@ -2,7 +2,12 @@
 
 class ChecksController < ApplicationController
   def index
-    render(locals: { checks: current_user.checks })
+    render(
+      locals: {
+        checks: current_user.checks,
+        unreached_goal_targets: current_user.targets.unreached_goal,
+      },
+    )
   end
 
   def new; end

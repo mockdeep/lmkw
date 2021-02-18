@@ -5,12 +5,30 @@ require "rails_helper"
 RSpec.describe ChecksController, type: :controller do
   describe "#index" do
     it "renders the checks page" do
-      session[:user_id] = User.create!(user_params).id
+      login_as(create_user)
 
       get(:index)
 
-      expect(response.body).to include("Checks")
+      expect(rendered).to have_content("Checks")
     end
+  end
+
+  it "displays Refresh All Targets when targets have unreached goal" do
+    check = create_check(counts: [{ value: 3 }], target: { value: 5, delta: 5 })
+    login_as(check.user)
+
+    get(:index)
+
+    expect(rendered).to have_button("Refresh All Targets")
+  end
+
+  it "does not display Refresh All Targets when all targets match goal" do
+    check = create_check(counts: [{ value: 0 }])
+    login_as(check.user)
+
+    get(:index)
+
+    expect(rendered).to have_no_button("Refresh All Targets")
   end
 
   describe "#edit" do

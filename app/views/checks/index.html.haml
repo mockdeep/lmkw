@@ -2,14 +2,24 @@
   %meta{ "http-equiv": "refresh", content: "300" }
 
 .header
-  = link_to("+ New Check", new_check_path, class: "new-check-btn")
+  = link_to("+ New Check", new_check_path, class: "btn-primary new-check-btn")
 
 - active_checks, inactive_checks = checks.partition(&:active?)
 
 .active
   %h2 Active Checks
 
-  = render("list", checks: active_checks)
+  - if active_checks.any?
+    = render("list", checks: active_checks)
+  - else
+    %h3 Congrats you have no active checks!
+
+    - if unreached_goal_targets.any?
+      = button_to("Refresh All Targets",
+        targets_path,
+        remote: false,
+        method: :patch,
+        class: "btn-primary")
 
 .inactive
   %hr

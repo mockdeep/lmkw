@@ -5,8 +5,8 @@ class Check < ApplicationRecord
     class Refresh
       include JunkDrawer::Callable
 
-      def call(target)
-        return if target.next_refresh_at > Time.zone.now
+      def call(target, force: false)
+        return if target.next_refresh_at > Time.zone.now && !force
 
         next_value = [target.goal_value, target.value - target.delta].max
 
