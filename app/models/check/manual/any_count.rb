@@ -15,6 +15,10 @@ class Check < ApplicationRecord
         "manual"
       end
 
+      def icon
+        ["fas", "exclamation"]
+      end
+
       def manual?
         true
       end

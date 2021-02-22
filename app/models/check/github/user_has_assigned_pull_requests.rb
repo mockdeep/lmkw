@@ -11,6 +11,10 @@ class Check < ApplicationRecord
         "GitHub"
       end
 
+      def icon
+        ["fab", "github"]
+      end
+
       def next_count
         pull_requests.count
       end

@@ -15,6 +15,10 @@ class Check < ApplicationRecord
         "Trello"
       end
 
+      def icon
+        ["fab", "trello"]
+      end
+
       def next_count
         cards.count
       end

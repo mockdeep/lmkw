@@ -19,6 +19,7 @@ RSpec.describe Check, type: :model do
   it { is_expected.to validate_presence_of(:integration_id) }
   it { is_expected.to validate_presence_of(:user_id) }
   it { is_expected.to validate_presence_of(:target) }
+  it { is_expected.to delegate_method(:value).to(:target).with_prefix }
 
   describe ".last_counted_before" do
     it "returns checks with counts prior to timestamp" do

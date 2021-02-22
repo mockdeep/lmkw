@@ -22,4 +22,10 @@ RSpec.describe Check::Trello::ListHasCards do
       end
     end
   end
+
+  describe "#icon" do
+    it "returns an array for the icon" do
+      expect(described_class.new.icon).to eq(["fab", "trello"])
+    end
+  end
 end
