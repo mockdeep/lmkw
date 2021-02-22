@@ -21,6 +21,12 @@ RSpec.describe Check::Manual::AnyCount, type: :model do
     end
   end
 
+  describe "#icon" do
+    it "returns an array for the icon" do
+      expect(described_class.new.icon).to eq(["fas", "exclamation"])
+    end
+  end
+
   describe "#manual?" do
     it "returns true" do
       expect(described_class.new.manual?).to be(true)

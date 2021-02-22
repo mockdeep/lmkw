@@ -219,6 +219,12 @@ hr {
   border-radius: 15px;
 }
 
+.card-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .card-actions {
   display: flex;
   flex-direction: column;
@@ -226,14 +232,26 @@ hr {
   font-size: 1.25em;
 }
 
+.check_values {
+  display: flex;
+  flex-basis: 70px;
+  align-items: baseline;
+  justify-content: space-evenly;
+}
+
 .check_value {
   font-weight: bold;
   border-radius: 50%;
   padding: 10px;
-  margin-right: 10px;
   background: #fff;
   text-align: center;
   color: #555;
   font-size: 20px;
   line-height: 30px;
+  display: inline-block;
+  min-width: 30px;
+}
+
+.target_value {
+  background: #ddd;
 }

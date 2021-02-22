@@ -19,6 +19,7 @@ class Check < ApplicationRecord
           .group("checks.id")
     },
   )
+  delegate :value, to: :target, prefix: true
 
   class << self
     def model_name

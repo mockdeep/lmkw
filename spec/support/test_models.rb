@@ -21,6 +21,10 @@ module Test
       "test"
     end
 
+    def icon
+      ["fas", "test"]
+    end
+
     def url
       "/test"
     end
