@@ -17,7 +17,6 @@ require_relative "support/fake_apis_rails"
 require_relative "support/helpers/controller"
 require_relative "support/helpers/request"
 require_relative "support/helpers/system"
-require_relative "support/mocks"
 require_relative "support/shoulda_matchers"
 require_relative "support/test_models"
 

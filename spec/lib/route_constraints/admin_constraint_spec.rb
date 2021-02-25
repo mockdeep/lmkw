@@ -9,7 +9,7 @@ RSpec.describe AdminConstraint do
     end
 
     it "returns true when user is admin" do
-      user = record_double(User, admin?: true)
+      user = create_user(admin: true)
       request = make_request(session: { user_id: user.id })
 
       expect(described_class.new.matches?(request)).to be(true)
@@ -22,7 +22,7 @@ RSpec.describe AdminConstraint do
     end
 
     it "returns false when user is not admin" do
-      user = record_double(User)
+      user = create_user(admin: false)
       request = make_request(session: { user_id: user.id })
 
       expect(described_class.new.matches?(request)).to be(false)

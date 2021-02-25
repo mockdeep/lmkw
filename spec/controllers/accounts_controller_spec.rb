@@ -173,55 +173,31 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
-    context "when the user is successfully destroyed" do
-      it "clears the session" do
-        user = User.create!(valid_create_params[:user])
-        session[:user_id] = user.id
+    it "clears the session" do
+      user = User.create!(valid_create_params[:user])
+      session[:user_id] = user.id
 
-        delete(:destroy)
+      delete(:destroy)
 
-        expect(session[:user_id]).to be_nil
-      end
-
-      it "flashes a success message" do
-        user = User.create!(valid_create_params[:user])
-        session[:user_id] = user.id
-
-        delete(:destroy)
-
-        expect(flash[:success]).to include("Account permanently deleted")
-      end
-
-      it "redirects to the root path" do
-        user = User.create!(valid_create_params[:user])
-        session[:user_id] = user.id
-
-        delete(:destroy)
-
-        expect(response).to redirect_to(root_path)
-      end
+      expect(session[:user_id]).to be_nil
     end
 
-    context "when the user is not successfully destroyed" do
-      it "flashes an error message" do
-        fake_user = record_double(User, destroy: false)
+    it "flashes a success message" do
+      user = User.create!(valid_create_params[:user])
+      session[:user_id] = user.id
 
-        session[:user_id] = fake_user.id
+      delete(:destroy)
 
-        delete(:destroy)
+      expect(flash[:success]).to include("Account permanently deleted")
+    end
 
-        expect(flash.now[:error]).to include("Account could not be deleted")
-      end
+    it "redirects to the root path" do
+      user = User.create!(valid_create_params[:user])
+      session[:user_id] = user.id
 
-      it "renders the show template" do
-        fake_user = record_double(User, destroy: false)
+      delete(:destroy)
 
-        session[:user_id] = fake_user.id
-
-        delete(:destroy)
-
-        expect(response.body).to include("My Account")
-      end
+      expect(response).to redirect_to(root_path)
     end
   end
 end
