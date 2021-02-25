@@ -9,21 +9,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, format: URI::MailTo::EMAIL_REGEXP
 
-  class << self
-    def find_by(args)
-      super || NullUser.new
-    end
-
-    def find(id)
-      id ? super : NullUser.new
-    end
-  end # class << self
-
   def logged_in?
     true
-  end
-
-  def admin?
-    false
   end
 end

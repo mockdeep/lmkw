@@ -2,8 +2,6 @@
 
 class AdminConstraint
   def matches?(request)
-    return true if Rails.env.development?
-
-    User.find(request.session[:user_id]).admin?
+    User::SessionFind.call(request.session).admin?
   end
 end

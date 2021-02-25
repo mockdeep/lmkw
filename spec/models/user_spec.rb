@@ -24,37 +24,6 @@ RSpec.describe User, type: :model do
     expect(described_class.new).not_to allow_values(bad_emails).for(:email)
   end
 
-  describe ".find_by" do
-    it "returns a user record when it exists" do
-      user = described_class.create!(user_params)
-
-      expect(described_class.find_by(email: user.email)).to eq(user)
-    end
-
-    it "returns a null user when a user does not exist" do
-      expect(described_class.find_by(email: "boo@email")).to be_a(NullUser)
-    end
-  end
-
-  describe ".find" do
-    context "when id is present" do
-      it "returns the user when found" do
-        user = described_class.create!(user_params)
-
-        expect(described_class.find(user.id)).to eq(user)
-      end
-
-      it "raises an error when user is not found" do
-        expect { described_class.find(5) }
-          .to raise_error(ActiveRecord::RecordNotFound)
-      end
-    end
-
-    it "returns a null user when id is not present" do
-      expect(described_class.find(nil)).to be_a(NullUser)
-    end
-  end
-
   describe "#logged_in?" do
     it "returns true" do
       expect(described_class.new.logged_in?).to be(true)

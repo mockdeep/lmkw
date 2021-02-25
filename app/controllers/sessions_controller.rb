@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by(email: session_params[:email])
+    user = User::FindBy.call(email: session_params[:email])
     if user.authenticate(session_params[:password])
       log_in(user)
       redirect_to(checks_path)
