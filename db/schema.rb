@@ -15,6 +15,16 @@ ActiveRecord::Schema.define(version: 2021_02_25_214921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "api_keys", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.string "value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_api_keys_on_user_id"
+    t.index ["value"], name: "index_api_keys_on_value", unique: true
+  end
+
   create_table "check_counts", force: :cascade do |t|
     t.bigint "check_id", null: false
     t.bigint "value", null: false
@@ -67,6 +77,7 @@ ActiveRecord::Schema.define(version: 2021_02_25_214921) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "api_keys", "users"
   add_foreign_key "check_counts", "checks"
   add_foreign_key "check_targets", "checks"
   add_foreign_key "checks", "integrations"

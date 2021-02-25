@@ -3,10 +3,6 @@
 require "rails_helper"
 
 RSpec.describe User::RequestFind do
-  def make_request(session:)
-    instance_double(ActionDispatch::Request, session: session)
-  end
-
   it "finds the user by session when user_id is present" do
     user = create_user
     request = make_request(session: { user_id: user.id })
@@ -14,8 +10,16 @@ RSpec.describe User::RequestFind do
     expect(described_class.call(request)).to eq(user)
   end
 
+  it "finds the user by api key when present" do
+    api_key = create_api_key
+    headers = api_key_headers(api_key)
+    request = make_request(headers: headers)
+
+    expect(described_class.call(request)).to eq(api_key.user)
+  end
+
   it "returns a NullUser when no session[:user_id]" do
-    request = make_request(session: {})
+    request = make_request
 
     expect(described_class.call(request)).to be_kind_of(NullUser)
   end
