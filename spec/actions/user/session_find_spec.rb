@@ -3,10 +3,6 @@
 require "rails_helper"
 
 RSpec.describe User::SessionFind do
-  it "returns a NullUser when there is no session[:user_id]" do
-    expect(described_class.call({})).to be_kind_of(NullUser)
-  end
-
   it "returns the user when found" do
     user = create_user
 

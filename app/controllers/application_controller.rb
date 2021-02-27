@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User::SessionFind.call(session)
+    @current_user ||= User::RequestFind.call(request)
   end
   helper_method :current_user
 

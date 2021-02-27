@@ -5,8 +5,6 @@ class User < ApplicationRecord
     include JunkDrawer::Callable
 
     def call(session)
-      return NullUser.new unless session.key?(:user_id)
-
       user = User.find_by(id: session[:user_id])
 
       unless user

@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe User::RequestFind do
+  def make_request(session:)
+    instance_double(ActionDispatch::Request, session: session)
+  end
+
+  it "finds the user by session when user_id is present" do
+    user = create_user
+    request = make_request(session: { user_id: user.id })
+
+    expect(described_class.call(request)).to eq(user)
+  end
+
+  it "returns a NullUser when no session[:user_id]" do
+    request = make_request(session: {})
+
+    expect(described_class.call(request)).to be_kind_of(NullUser)
+  end
+end
