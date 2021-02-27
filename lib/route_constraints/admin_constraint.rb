@@ -2,6 +2,6 @@
 
 class AdminConstraint
   def matches?(request)
-    User::SessionFind.call(request.session).admin?
+    User::RequestFind.call(request).admin?
   end
 end
