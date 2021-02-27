@@ -61,6 +61,7 @@ Style/MethodCallWithArgsParentheses:
     - gem
     - has_many
     - has_one
+    - has_secure_token
     - helper_method
     - include
     - it

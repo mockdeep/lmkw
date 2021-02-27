@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "factories/api_keys"
+require_relative "factories/requests"
+
 module Factories
   def create_check(counts: [], target: {})
     integration = create_integration

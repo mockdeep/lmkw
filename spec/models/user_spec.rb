@@ -3,7 +3,10 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
+  it { is_expected.to have_many(:integrations).dependent(:delete_all) }
+  it { is_expected.to have_many(:checks).dependent(:delete_all) }
   it { is_expected.to have_many(:targets).through(:checks) }
+  it { is_expected.to have_many(:api_keys).dependent(:delete_all) }
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to have_secure_password }

@@ -4,10 +4,6 @@ require "rails_helper"
 
 RSpec.describe AdminConstraint do
   describe "#matches?" do
-    def make_request(session:)
-      instance_double(ActionDispatch::Request, session: session)
-    end
-
     it "returns true when user is admin" do
       user = create_user(admin: true)
       request = make_request(session: { user_id: user.id })

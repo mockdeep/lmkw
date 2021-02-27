@@ -4,6 +4,7 @@ require "action_controller"
 
 class ApplicationController < ActionController::Base
   before_action(:authenticate_user)
+  protect_from_forgery(with: :exception, unless: :api_request?)
 
   private
 
@@ -24,5 +25,9 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     redirect_to(new_session_path) unless current_user.logged_in?
+  end
+
+  def api_request?
+    request.headers.key?("X-User-ID")
   end
 end
