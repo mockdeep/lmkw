@@ -3,7 +3,11 @@
 module Target
   class RefreshesController < ApplicationController
     def create
-      Check::Target::RefreshAll.call(current_user)
+      if params[:checks] == "all"
+        Check::Target::RefreshAll.call(current_user)
+      else
+        Check::Target::RefreshOne.call(current_user)
+      end
 
       redirect_to(checks_path)
     end

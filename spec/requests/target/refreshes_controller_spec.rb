@@ -4,28 +4,56 @@ require "rails_helper"
 
 RSpec.describe Target::RefreshesController do
   describe "#create" do
-    it "refreshes unreached goal targets" do
-      target = create(:target, value: 5, delta: 5)
-      login_as(target.user)
+    context "when checks: 'all'" do
+      it "refreshes all unreached goal targets" do
+        target = create(:target, value: 5, delta: 5)
+        login_as(target.user)
 
-      expect { post(target_refreshes_path) }
-        .to change_record(target, :value).from(5).to(0)
+        expect { post(target_refreshes_path(checks: "all")) }
+          .to change_record(target, :value).from(5).to(0)
+      end
+
+      it "does not refresh targets that match their goal" do
+        target = create(:target, value: 5, goal_value: 5, delta: 5)
+        login_as(target.user)
+
+        expect { post(target_refreshes_path(checks: "all")) }
+          .to not_change_record(target, :value).from(5)
+      end
+
+      it "redirects to checks/index" do
+        login_as(create(:user))
+
+        post(target_refreshes_path(checks: "all"))
+
+        expect(response).to redirect_to(checks_path)
+      end
     end
 
-    it "does not refresh targets that match their goal" do
-      target = create(:target, value: 5, goal_value: 5, delta: 5)
-      login_as(target.user)
+    context "when checks: 'one'" do
+      it "refreshes a single unreached goal target" do
+        target = create(:target, value: 5, delta: 5)
+        login_as(target.user)
 
-      expect { post(target_refreshes_path) }
-        .to not_change_record(target, :value).from(5)
-    end
+        expect { post(target_refreshes_path(checks: "one")) }
+          .to change_record(target, :value).from(5).to(0)
+      end
 
-    it "redirects to checks/index" do
-      login_as(create(:user))
+      it "does not refresh a target that matches its goal" do
+        target = create(:target, value: 5, goal_value: 5, delta: 5)
+        login_as(target.user)
 
-      post(target_refreshes_path)
+        expect { post(target_refreshes_path(checks: "one")) }
+          .to not_change_record(target, :value).from(5)
+      end
 
-      expect(response).to redirect_to(checks_path)
+      it "redirects to checks/index" do
+        login_as(create(:user))
+
+        post(target_refreshes_path(checks: "one"))
+
+        expect(response).to redirect_to(checks_path)
+      end
     end
   end
 end

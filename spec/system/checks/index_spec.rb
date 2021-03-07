@@ -60,14 +60,23 @@ RSpec.describe "checks/index", type: :system, js: true do
     expect(page).to have_active_check(check.name)
   end
 
-  it "displays a button to refresh targets when no active checks" do
-    check = create(:check, value: 3, target_value: 5, target_delta: 1)
-    sign_in(check.user)
+  it "displays a button to refresh one target when no active checks" do
+    checks = create_list(:check, 2, value: 5, target_value: 5, target_delta: 1)
+    sign_in(default_user)
 
-    expect(page).to have_inactive_check(check.name)
+    click_button("Refresh 1 Target")
 
-    click_button("Refresh All Targets")
+    expect(page).to have_active_check(checks.first.name)
+    expect(page).to have_inactive_check(checks.second.name)
+  end
 
-    expect(page).to have_active_check(check.name)
+  it "displays a button to refresh all targets when no active checks" do
+    checks = create_list(:check, 2, value: 5, target_value: 5, target_delta: 1)
+    sign_in(default_user)
+
+    click_button("Refresh All 2 Targets")
+
+    expect(page).to have_active_check(checks.first.name)
+    expect(page).to have_active_check(checks.second.name)
   end
 end

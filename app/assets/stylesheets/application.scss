@@ -187,15 +187,16 @@ hr {
   }
 }
 
+h3 {
+  font-size: 1.5em;
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
 .card {
   display: grid;
   grid-template-columns: auto 10px;
   min-height: 100px;
-
-  h3 {
-    font-size: 1.5em;
-    margin-bottom: 25px;
-  }
 
   p {
     font-size: 1.25em;
