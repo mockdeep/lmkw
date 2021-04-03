@@ -5,7 +5,7 @@ class User < ApplicationRecord
     include JunkDrawer::Callable
 
     def call(headers)
-      user = User.find(headers["X-User-ID"])
+      user = User.preload(:api_keys).find(headers["X-User-ID"])
 
       validate_api_key(user, headers["X-API-Key"])
 

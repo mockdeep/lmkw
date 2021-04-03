@@ -12,6 +12,8 @@ module Factories
       user: integration.user,
       target_attributes: target,
     )
+    # https://github.com/rails/rails/issues/41827
+    check.instance_variable_set(:@strict_loading, false)
     create_counts(check, counts)
     check
   end
@@ -24,6 +26,8 @@ module Factories
       user: integration.user,
       target_attributes: target,
     )
+    # https://github.com/rails/rails/issues/41827
+    check.instance_variable_set(:@strict_loading, false)
     create_counts(check, counts)
     check
   end
@@ -34,8 +38,8 @@ module Factories
     end
   end
 
-  def create_count(params)
-    CheckCount.create!({ value: 0 }.merge(params))
+  def create_count(check:, **params)
+    check.counts.create!({ value: 0 }.merge(params))
   end
 
   TARGET_TRAITS = {

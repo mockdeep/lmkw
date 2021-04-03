@@ -4,7 +4,7 @@ class ChecksController < ApplicationController
   def index
     render(
       locals: {
-        checks: current_user.checks,
+        checks: current_user.checks.preload(:counts, :target, :integration),
         unreached_goal_targets: current_user.targets.unreached_goal,
       },
     )
@@ -47,6 +47,6 @@ class ChecksController < ApplicationController
   end
 
   def find_check(id)
-    current_user.checks.find(id)
+    current_user.checks.preload(:target).find(id)
   end
 end
