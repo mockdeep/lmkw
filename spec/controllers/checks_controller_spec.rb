@@ -107,6 +107,15 @@ RSpec.describe ChecksController, type: :controller do
       expect(Check.find_by(id: check.id)).to be_nil
     end
 
+    it "deletes associated records" do
+      check = create_check(counts: [{ value: 5 }])
+      login_as(check.user)
+
+      delete(:destroy, params: { id: check.id })
+
+      expect(CheckCount.where(check_id: check.id)).to be_empty
+    end
+
     it "flashes a success message" do
       check = create_check
       login_as(check.user)
