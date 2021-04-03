@@ -11,7 +11,7 @@ class Check < ApplicationRecord
     private
 
     def stale_checks
-      Check.last_counted_before(5.minutes.ago).preload(:target)
+      Check.last_counted_before(5.minutes.ago).preload(:integration, :target)
     end
   end
 end
