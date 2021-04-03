@@ -47,6 +47,6 @@ class ChecksController < ApplicationController
   end
 
   def find_check(id)
-    current_user.checks.preload(:target).find(id)
+    current_user.checks.preload(:integration, :target).find(id)
   end
 end
