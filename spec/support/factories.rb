@@ -33,12 +33,15 @@ module Factories
   end
 
   def create_counts(check, counts)
-    counts.each do |count_params|
-      create_count(count_params.merge(check: check))
-    end
+    created_counts =
+      counts.map do |count_params|
+        create_count(count_params.merge(check: check))
+      end
+    check.update!(latest_count: created_counts.last)
+    created_counts
   end
 
-  def create_count(check:, **params)
+  def create_count(check: create_check, **params)
     check.counts.create!({ value: 0 }.merge(params))
   end
 

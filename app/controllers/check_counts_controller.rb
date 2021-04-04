@@ -11,6 +11,7 @@ class CheckCountsController < ApplicationController
     count = check.counts.new(count_params)
 
     if count.save
+      check.update!(latest_count: count)
       flash[:success] = "Count updated"
       redirect_to(checks_path)
     else

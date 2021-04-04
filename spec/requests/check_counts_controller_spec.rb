@@ -22,7 +22,7 @@ RSpec.describe CheckCountsController, type: :request do
         params = { check_count: { value: 5 } }
 
         expect { post(check_counts_path(check), params: params) }
-          .to change(check, :last_value).from(nil).to(5)
+          .to change { check.reload.last_value }.from(nil).to(5)
       end
 
       it "flashes a success message" do

@@ -50,37 +50,37 @@ RSpec.describe Check, type: :model do
   end
 
   describe "#active?" do
-    it "returns true when most recent count > 0" do
+    it "returns true when latest count > 0" do
       check = create_check(counts: [{ value: 1 }])
 
       expect(check.active?).to be(true)
     end
 
-    it "returns false when most recent count == 0" do
+    it "returns false when latest count == 0" do
       check = create_check(counts: [{ value: 0 }])
 
       expect(check.active?).to be(false)
     end
 
-    it "returns false when no counts exist" do
+    it "returns false when no latest count exist" do
       check = create_check
 
       expect(check.active?).to be(false)
     end
 
-    it "returns false when most recent count < target value" do
+    it "returns false when latest count < target value" do
       check = create_check(counts: [{ value: 1 }], target: { value: 2 })
 
       expect(check.active?).to be(false)
     end
 
-    it "returns false when most recent count == target value" do
+    it "returns false when latest count == target value" do
       check = create_check(counts: [{ value: 1 }], target: { value: 1 })
 
       expect(check.active?).to be(false)
     end
 
-    it "returns true when most recent count > target value" do
+    it "returns true when latest count > target value" do
       check = create_check(counts: [{ value: 2 }], target: { value: 1 })
 
       expect(check.active?).to be(true)

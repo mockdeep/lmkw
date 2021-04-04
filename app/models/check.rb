@@ -3,11 +3,15 @@
 class Check < ApplicationRecord
   belongs_to :user
   belongs_to :integration
-  has_one :target, dependent: :delete, class_name: "Check::Target"
+  belongs_to :latest_count, class_name: "CheckCount"
+  has_one :target, class_name: "Check::Target", dependent: :delete
   has_many :counts, class_name: "CheckCount", dependent: :delete_all
+
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :integration_id, :user_id, :target, presence: true
+
   accepts_nested_attributes_for :target, update_only: true
+
   scope(
     :last_counted_before,
     lambda { |timestamp|
@@ -19,6 +23,7 @@ class Check < ApplicationRecord
           .group("checks.id")
     },
   )
+
   delegate :value, to: :target, prefix: true
 
   class << self
@@ -44,6 +49,6 @@ class Check < ApplicationRecord
   end
 
   def last_value
-    counts.last && counts.last.value
+    latest_count && latest_count.value
   end
 end
