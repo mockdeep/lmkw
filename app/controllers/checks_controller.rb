@@ -2,12 +2,10 @@
 
 class ChecksController < ApplicationController
   def index
-    render(
-      locals: {
-        checks: current_user.checks.preload(:counts, :target, :integration),
-        unreached_goal_targets: current_user.targets.unreached_goal,
-      },
-    )
+    checks = current_user.checks.preload(:latest_count, :target, :integration)
+    targets = current_user.targets.unreached_goal
+
+    render(locals: { checks: checks, unreached_goal_targets: targets })
   end
 
   def new; end
@@ -28,7 +26,7 @@ class ChecksController < ApplicationController
   end
 
   def destroy
-    find_check(params[:id]).destroy!
+    Check::Destroy.call(find_check(params[:id]))
 
     flash[:success] = "Check deleted"
     redirect_to(checks_path)

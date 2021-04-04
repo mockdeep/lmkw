@@ -5,7 +5,10 @@ class Check < ApplicationRecord
     include JunkDrawer::Callable
 
     def call(check)
-      check.counts.create!(value: check.next_count) unless check.manual?
+      unless check.manual?
+        count = check.counts.create!(value: check.next_count)
+        check.update!(latest_count: count)
+      end
       Check::Target::Refresh.call(check.target)
     end
   end

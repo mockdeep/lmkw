@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_214921) do
+ActiveRecord::Schema.define(version: 2021_04_04_221132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,9 @@ ActiveRecord::Schema.define(version: 2021_02_25_214921) do
     t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "latest_count_id"
     t.index ["integration_id"], name: "index_checks_on_integration_id"
+    t.index ["latest_count_id"], name: "index_checks_on_latest_count_id"
     t.index ["user_id", "name"], name: "index_checks_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_checks_on_user_id"
   end
@@ -80,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_02_25_214921) do
   add_foreign_key "api_keys", "users"
   add_foreign_key "check_counts", "checks"
   add_foreign_key "check_targets", "checks"
+  add_foreign_key "checks", "check_counts", column: "latest_count_id"
   add_foreign_key "checks", "integrations"
   add_foreign_key "checks", "users"
   add_foreign_key "integrations", "users"
