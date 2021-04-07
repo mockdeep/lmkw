@@ -35,7 +35,7 @@ module Factories
   def create_counts(check, counts)
     created_counts =
       counts.map do |count_params|
-        create_count(count_params.merge(check: check))
+        create_count(**count_params.merge(check: check))
       end
     check.update!(latest_count: created_counts.last)
     created_counts
