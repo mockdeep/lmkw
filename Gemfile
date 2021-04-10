@@ -63,4 +63,5 @@ group :test do
   gem "sinatra", require: false
   gem "webdrivers"
   gem "webmock", require: false
+  gem "webrick", require: false # needed by capybara_discoball
 end
