@@ -3,6 +3,12 @@
 require "rails_helper"
 
 RSpec.describe Check::RunAllOutdated do
+  include ActiveJob::TestHelper
+
+  around do |example|
+    perform_enqueued_jobs { example.run }
+  end
+
   it "runs checks that have not been updated in the last five minutes" do
     check = create_check(counts: [{ created_at: 6.minutes.ago }])
     Test::Check.next_values << 5
