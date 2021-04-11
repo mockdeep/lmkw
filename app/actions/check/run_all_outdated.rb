@@ -5,7 +5,9 @@ class Check < ApplicationRecord
     include JunkDrawer::Callable
 
     def call
-      stale_checks.find_each(&Check::Refresh)
+      stale_checks.find_each do |check|
+        CallableJob.perform_later("Check::Refresh", check)
+      end
     end
 
     private
