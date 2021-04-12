@@ -2,7 +2,8 @@
 
 class TargetsController < ApplicationController
   def update
-    current_user.targets.unreached_goal.each do |target|
+    unreached_goal_targets = current_user.targets.unreached_goal
+    unreached_goal_targets.preload(check: :latest_count).each do |target|
       Check::Target::Refresh.call(target, force: true)
     end
 
