@@ -38,10 +38,30 @@ RSpec.describe Check::Target::Refresh do
       .to change_record(target, :value).to(48)
   end
 
-  it "updates the value when next_refresh_at is in future and force is true" do
-    target = create_target(value: 2, delta: 1)
+  it "does not decrement target until check is active" do
+    target = create_target(:refreshable, value: 5, delta: 1)
+    count = create_count(check: target.check, value: 3)
+    target.check.update!(latest_count: count)
 
-    expect { described_class.call(target, force: true) }
-      .to change_record(target, :value).from(2).to(1)
+    expect { described_class.call(target) }
+      .to change_record(target, :value).from(5).to(4)
+  end
+
+  context "when force is true" do
+    it "updates the value when next_refresh_at is in future" do
+      target = create_target(value: 2, delta: 1)
+
+      expect { described_class.call(target, force: true) }
+        .to change_record(target, :value).from(2).to(1)
+    end
+
+    it "decrements target until check is active" do
+      target = create_target(value: 5, delta: 1)
+      count = create_count(check: target.check, value: 3)
+      target.check.update!(latest_count: count)
+
+      expect { described_class.call(target, force: true) }
+        .to change_record(target, :value).from(5).to(2)
+    end
   end
 end

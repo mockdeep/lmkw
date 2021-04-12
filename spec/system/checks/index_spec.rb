@@ -61,7 +61,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "displays a button to refresh targets when no active checks" do
-    check = create_check(counts: [{ value: 3 }], target: { value: 5, delta: 5 })
+    check = create_check(counts: [{ value: 3 }], target: { value: 5, delta: 1 })
     sign_in(check.user)
 
     expect(page).to have_inactive_check(check.name)
