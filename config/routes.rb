@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   resource :account, only: [:new, :create, :show, :update, :destroy]
   resource :session, only: [:new, :create, :destroy]
-  resource :targets, only: [:update]
+
+  namespace :target do
+    resources :refreshes, only: [:create]
+  end
 
   resources :checks, only: [:index, :new, :edit, :update, :destroy] do
     resources :counts, only: [:new, :create], controller: "check_counts"

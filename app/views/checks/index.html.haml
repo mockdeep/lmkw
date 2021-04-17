@@ -16,9 +16,8 @@
 
     - if unreached_goal_targets.any?
       = button_to("Refresh All Targets",
-        targets_path,
+        target_refreshes_path,
         remote: false,
-        method: :patch,
         class: "btn-primary")
 
 .inactive
