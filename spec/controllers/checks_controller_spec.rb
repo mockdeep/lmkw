@@ -13,22 +13,31 @@ RSpec.describe ChecksController, type: :controller do
     end
   end
 
-  it "displays Refresh All Targets when targets have unreached goal" do
-    target = create(:target, value: 5, delta: 5, check_value: 3)
-    login_as(target.user)
+  it "displays Refresh X Targets when multiple targets have unreached goal" do
+    create_list(:check, 2, value: 3, target_value: 5, target_delta: 5)
+    login_as(default_user)
 
     get(:index)
 
-    expect(rendered).to have_button("Refresh All Targets")
+    expect(rendered).to have_button("Refresh All 2 Targets")
   end
 
-  it "does not display Refresh All Targets when all targets match goal" do
+  it "displays Refresh 1 Target when targets have unreached goal" do
+    check = create(:check, value: 3, target_value: 5, target_delta: 5)
+    login_as(check.user)
+
+    get(:index)
+
+    expect(rendered).to have_button("Refresh 1 Target")
+  end
+
+  it "does not display Refresh 1 Targets when all targets match goal" do
     check = create(:check, value: 0)
     login_as(check.user)
 
     get(:index)
 
-    expect(rendered).to have_no_button("Refresh All Targets")
+    expect(rendered).to have_no_button("Refresh 1 Targets")
   end
 
   describe "#edit" do

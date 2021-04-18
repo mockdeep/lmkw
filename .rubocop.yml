@@ -18,6 +18,9 @@ AllCops:
 
 # https://github.com/rubocop-hq/rubocop/issues/7841
 Style/TrailingCommaInBlockArgs: { Enabled: false }
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - 'spec/**/*_spec.rb'
 Layout/LineLength:
   Max: 80
   Exclude:

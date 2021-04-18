@@ -15,10 +15,17 @@
     %h3 Congrats you have no active checks!
 
     - if unreached_goal_targets.any?
-      = button_to("Refresh All Targets",
-        target_refreshes_path,
+      There are checks with unreached goals.
+      = button_to("Refresh 1 Target",
+        target_refreshes_path(checks: "one"),
         remote: false,
         class: "btn-primary")
+
+      - if unreached_goal_targets.many?
+        = button_to("Refresh All #{unreached_goal_targets.count} Targets",
+          target_refreshes_path(checks: "all"),
+          remote: false,
+          class: "btn-primary")
 
 .inactive
   %hr
