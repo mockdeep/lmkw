@@ -11,15 +11,6 @@ module Factories
       target_attributes: target,
     )
   end
-
-  TARGET_TRAITS = {
-    refreshable: -> { { next_refresh_at: 1.day.ago } },
-  }.freeze
-
-  def create_target(*traits, **attributes)
-    traits.each { |trait| attributes.merge!(TARGET_TRAITS.fetch(trait).call) }
-    create(:check, target_attributes: attributes).target
-  end
 end
 
 RSpec.configure do |config|

@@ -22,16 +22,16 @@ RSpec.describe Check::Target, type: :model do
 
   describe ".unreached_goal" do
     it "returns targets where goal_value != value" do
-      target1 = create_target(value: 5, goal_value: 0)
-      target2 = create_target(value: 0, goal_value: 5)
+      target1 = create(:target, value: 5, goal_value: 0)
+      target2 = create(:target, value: 0, goal_value: 5)
       expected_targets = [target1, target2]
 
       expect(described_class.unreached_goal).to match_array(expected_targets)
     end
 
     it "does not return targets where goal_value == value" do
-      create_target(value: 5, goal_value: 5)
-      create_target(value: 0, goal_value: 0)
+      create(:target, value: 5, goal_value: 5)
+      create(:target, value: 0, goal_value: 0)
 
       expect(described_class.unreached_goal).to be_empty
     end

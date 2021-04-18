@@ -22,7 +22,7 @@ RSpec.describe Check::Destroy do
   end
 
   it "deletes associated target" do
-    target = create_target
+    target = create(:target)
 
     expect { described_class.call(target.check) }.to delete_record(target)
   end
@@ -34,7 +34,7 @@ RSpec.describe Check::Destroy do
   end
 
   it "does not delete other targets" do
-    target = create_target
+    target = create(:target)
 
     expect { described_class.call(create(:check)) }.not_to delete_record(target)
   end

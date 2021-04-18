@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Target::RefreshesController do
   describe "#create" do
     it "refreshes unreached goal targets" do
-      target = create_target(value: 5, delta: 5)
+      target = create(:target, value: 5, delta: 5)
       login_as(target.user)
 
       expect { post(target_refreshes_path) }
@@ -13,7 +13,7 @@ RSpec.describe Target::RefreshesController do
     end
 
     it "does not refresh targets that match their goal" do
-      target = create_target(value: 5, goal_value: 5, delta: 5)
+      target = create(:target, value: 5, goal_value: 5, delta: 5)
       login_as(target.user)
 
       expect { post(target_refreshes_path) }
