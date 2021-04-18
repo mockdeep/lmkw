@@ -26,7 +26,7 @@ RSpec.describe "checks/edit", type: :system, js: true do
   end
 
   it "allows editing a check" do
-    check = create(:check, count_values: [5])
+    check = create(:check, count_value: 5)
     sign_in(check.user)
     expect(page).to have_active_check(check.name)
 
@@ -36,7 +36,7 @@ RSpec.describe "checks/edit", type: :system, js: true do
   end
 
   it "allows setting a moving target on a check" do
-    check = create(:check, count_values: [5])
+    check = create(:check, count_value: 5)
     sign_in(check.user)
 
     Test::Check.next_values << 5 << 5
