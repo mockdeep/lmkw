@@ -16,7 +16,7 @@ RSpec.describe Check::Destroy do
   end
 
   it "deletes associated counts" do
-    count = create_count
+    count = create(:count)
 
     expect { described_class.call(count.check) }.to delete_record(count)
   end
@@ -28,7 +28,7 @@ RSpec.describe Check::Destroy do
   end
 
   it "does not delete other counts" do
-    count = create_count
+    count = create(:count)
 
     expect { described_class.call(create(:check)) }.not_to delete_record(count)
   end
