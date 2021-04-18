@@ -40,7 +40,7 @@ RSpec.describe Check::Target::Refresh do
 
   it "does not decrement target until check is active" do
     target = create_target(:refreshable, value: 5, delta: 1)
-    count = create_count(check: target.check, value: 3)
+    count = create(:count, check: target.check, value: 3)
     target.check.update!(latest_count: count)
 
     expect { described_class.call(target) }
@@ -57,7 +57,7 @@ RSpec.describe Check::Target::Refresh do
 
     it "decrements target until check is active" do
       target = create_target(value: 5, delta: 1)
-      count = create_count(check: target.check, value: 3)
+      count = create(:count, check: target.check, value: 3)
       target.check.update!(latest_count: count)
 
       expect { described_class.call(target, force: true) }

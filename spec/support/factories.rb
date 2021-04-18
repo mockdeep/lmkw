@@ -19,14 +19,10 @@ module Factories
   def create_counts(check, counts)
     created_counts =
       counts.map do |count_params|
-        create_count(**count_params.merge(check: check))
+        create(:count, check: check, **count_params)
       end
     check.update!(latest_count: created_counts.last)
     created_counts
-  end
-
-  def create_count(check: create(:check), **params)
-    check.counts.create!({ value: 0 }.merge(params))
   end
 
   TARGET_TRAITS = {
