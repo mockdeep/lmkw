@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe ManualChecksController, type: :request do
   describe "#new" do
     it "renders the new check page" do
-      integration = create_manual_integration
+      integration = create(:manual_integration)
       login_as(integration.user)
 
       get(new_manual_integration_check_path(integration))
@@ -16,7 +16,7 @@ RSpec.describe ManualChecksController, type: :request do
 
   describe "#create" do
     it "creates a new check" do
-      integration = create_manual_integration
+      integration = create(:manual_integration)
       login_as(integration.user)
 
       path = manual_integration_checks_path(integration)
@@ -25,7 +25,7 @@ RSpec.describe ManualChecksController, type: :request do
     end
 
     it "refreshes the check" do
-      integration = create_manual_integration
+      integration = create(:manual_integration)
       login_as(integration.user)
 
       params = { check: { name: "a new check" } }
@@ -35,7 +35,7 @@ RSpec.describe ManualChecksController, type: :request do
     end
 
     it "redirects to checks/index" do
-      integration = create_manual_integration
+      integration = create(:manual_integration)
       login_as(integration.user)
 
       params = { check: { name: "a new check" } }

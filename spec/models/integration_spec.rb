@@ -7,13 +7,13 @@ RSpec.describe Integration, type: :model do
 
   describe ".github" do
     it "returns GitHub integrations" do
-      integration = create_github_integration
+      integration = create(:github_integration)
 
       expect(described_class.github).to eq([integration])
     end
 
     it "does not return other integrations" do
-      create_trello_integration
+      create(:trello_integration)
 
       expect(described_class.github).to eq([])
     end
@@ -21,13 +21,13 @@ RSpec.describe Integration, type: :model do
 
   describe ".trello" do
     it "returns Trello integrations" do
-      integration = create_trello_integration
+      integration = create(:trello_integration)
 
       expect(described_class.trello).to eq([integration])
     end
 
     it "does not return other integrations" do
-      create_github_integration
+      create(:github_integration)
 
       expect(described_class.trello).to eq([])
     end
@@ -35,13 +35,13 @@ RSpec.describe Integration, type: :model do
 
   describe ".manual" do
     it "returns manual integrations" do
-      integration = create_manual_integration
+      integration = create(:manual_integration)
 
       expect(described_class.manual).to eq([integration])
     end
 
     it "does not return other integrations" do
-      create_github_integration
+      create(:github_integration)
 
       expect(described_class.manual).to eq([])
     end
