@@ -54,23 +54,23 @@ module Factories
     create_check(target: attributes).target
   end
 
-  def create_integration(type = :test, user: create_user)
+  def create_integration(type = :test, user: create(:user))
     method("create_#{type}_integration").call(user: user)
   end
 
-  def create_github_integration(user: create_user)
+  def create_github_integration(user: create(:user))
     Integration::Github.create!(user: user, access_token: "foo")
   end
 
-  def create_trello_integration(user: create_user)
+  def create_trello_integration(user: create(:user))
     Integration::Trello.create!(user: user, member_token: "foo")
   end
 
-  def create_manual_integration(user: create_user)
+  def create_manual_integration(user: create(:user))
     Integration::Manual.create!(user: user)
   end
 
-  def create_test_integration(user: create_user)
+  def create_test_integration(user: create(:user))
     Test::Integration.create!(user: user)
   end
 
@@ -85,10 +85,6 @@ module Factories
       password: "super-secure",
       password_confirmation: "super-secure",
     }
-  end
-
-  def create_user(**params)
-    User.create!(user_params.merge(params))
   end
 end
 

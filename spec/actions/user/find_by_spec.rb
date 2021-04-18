@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe User::FindBy do
   it "returns the matching user" do
-    user = create_user
+    user = create(:user)
 
     expect(described_class.call(email: user.email)).to eq(user)
   end

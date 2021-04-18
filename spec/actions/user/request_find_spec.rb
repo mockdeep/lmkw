@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe User::RequestFind do
   it "finds the user by session when user_id is present" do
-    user = create_user
+    user = create(:user)
     request = make_request(session: { user_id: user.id })
 
     expect(described_class.call(request)).to eq(user)
