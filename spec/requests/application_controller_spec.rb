@@ -15,7 +15,7 @@ RSpec.describe ApplicationController, type: :request do
 
     it "finds the user by API key" do
       check = create(:check)
-      headers = api_key_headers(create_api_key(user: check.user))
+      headers = api_key_headers(create(:api_key))
       post_options = { params: { check_count: { value: 5 } }, headers: headers }
 
       expect { post(check_counts_path(check), **post_options) }

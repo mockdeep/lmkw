@@ -12,7 +12,6 @@ require "rspec/rails"
 require "sidekiq/testing"
 
 require_relative "support/capybara"
-require_relative "support/factories"
 require_relative "support/factory_bot"
 require_relative "support/fake_apis_rails"
 require_relative "support/helpers/controller"
