@@ -23,15 +23,16 @@ RSpec.describe Check, type: :model do
 
   describe ".last_counted_before" do
     it "returns checks with counts prior to timestamp" do
-      check = create_check(counts: [{ created_at: 1.day.ago }])
+      count = create(:count, created_at: 1.day.ago)
+      check = count.check
 
       expect(described_class.last_counted_before(1.minute.ago)).to eq([check])
     end
 
     it "does not return checks with counts after the timestamp" do
-      create_check(
-        counts: [{ created_at: 5.minutes.ago }, { created_at: 3.days.ago }],
-      )
+      check = create(:check)
+      create(:count, check: check, created_at: 5.minutes.ago)
+      create(:count, check: check, created_at: 3.days.ago)
 
       expect(described_class.last_counted_before(1.hour.ago)).to eq([])
     end
@@ -51,13 +52,13 @@ RSpec.describe Check, type: :model do
 
   describe "#active?" do
     it "returns true when latest count > 0" do
-      check = create_check(counts: [{ value: 1 }])
+      check = create(:check, count_values: [1])
 
       expect(check.active?).to be(true)
     end
 
     it "returns false when latest count == 0" do
-      check = create_check(counts: [{ value: 0 }])
+      check = create(:check, count_values: [0])
 
       expect(check.active?).to be(false)
     end
