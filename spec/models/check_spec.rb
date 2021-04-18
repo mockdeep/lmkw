@@ -70,19 +70,19 @@ RSpec.describe Check, type: :model do
     end
 
     it "returns false when latest count < target value" do
-      check = create_check(counts: [{ value: 1 }], target: { value: 2 })
+      check = create(:check, count_values: [1], target_value: 2)
 
       expect(check.active?).to be(false)
     end
 
     it "returns false when latest count == target value" do
-      check = create_check(counts: [{ value: 1 }], target: { value: 1 })
+      check = create(:check, count_values: [1], target_value: 1)
 
       expect(check.active?).to be(false)
     end
 
     it "returns true when latest count > target value" do
-      check = create_check(counts: [{ value: 2 }], target: { value: 1 })
+      check = create(:check, count_values: [2], target_value: 1)
 
       expect(check.active?).to be(true)
     end
