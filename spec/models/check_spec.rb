@@ -52,13 +52,13 @@ RSpec.describe Check, type: :model do
 
   describe "#active?" do
     it "returns true when latest count > 0" do
-      check = create(:check, count_value: 1)
+      check = create(:check, value: 1)
 
       expect(check.active?).to be(true)
     end
 
     it "returns false when latest count == 0" do
-      check = create(:check, count_value: 0)
+      check = create(:check, value: 0)
 
       expect(check.active?).to be(false)
     end
@@ -70,19 +70,19 @@ RSpec.describe Check, type: :model do
     end
 
     it "returns false when latest count < target value" do
-      check = create(:check, count_value: 1, target_value: 2)
+      check = create(:check, value: 1, target_value: 2)
 
       expect(check.active?).to be(false)
     end
 
     it "returns false when latest count == target value" do
-      check = create(:check, count_value: 1, target_value: 1)
+      check = create(:check, value: 1, target_value: 1)
 
       expect(check.active?).to be(false)
     end
 
     it "returns true when latest count > target value" do
-      check = create(:check, count_value: 2, target_value: 1)
+      check = create(:check, value: 2, target_value: 1)
 
       expect(check.active?).to be(true)
     end

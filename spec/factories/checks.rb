@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory(:check, class: "Test::Check") do
     transient do
-      count_value { nil }
+      value { nil }
       target_delta { 0 }
       target_value { 0 }
     end
@@ -17,8 +17,8 @@ FactoryBot.define do
       # https://github.com/rails/rails/issues/41827
       check.instance_variable_set(:@strict_loading, false)
 
-      if evaluator.count_value
-        count = create(:count, check: check, value: evaluator.count_value)
+      if evaluator.value
+        count = create(:count, check: check, value: evaluator.value)
         check.update!(latest_count: count)
       end
     end

@@ -18,7 +18,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "displays active checks in active section" do
-    check = create(:check, count_value: 5)
+    check = create(:check, value: 5)
     sign_in(check.user)
 
     expect(page).to have_active_check(check.name)
@@ -34,7 +34,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "displays checks that are below target in inactive section" do
-    check = create(:check, count_value: 5, target_value: 6)
+    check = create(:check, value: 5, target_value: 6)
     sign_in(check.user)
 
     expect(page).to have_inactive_check(check.name)
@@ -61,7 +61,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "displays a button to refresh targets when no active checks" do
-    check = create(:check, count_value: 3, target_value: 5, target_delta: 1)
+    check = create(:check, value: 3, target_value: 5, target_delta: 1)
     sign_in(check.user)
 
     expect(page).to have_inactive_check(check.name)
