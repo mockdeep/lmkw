@@ -37,7 +37,7 @@ RSpec.describe Check, type: :model do
     end
 
     it "returns checks with no counts" do
-      check = create_check
+      check = create(:check)
 
       expect(described_class.last_counted_before(Time.zone.now)).to eq([check])
     end
@@ -63,7 +63,7 @@ RSpec.describe Check, type: :model do
     end
 
     it "returns false when no latest count exist" do
-      check = create_check
+      check = create(:check)
 
       expect(check.active?).to be(false)
     end
@@ -89,27 +89,27 @@ RSpec.describe Check, type: :model do
 
   describe "#refresh=" do
     it "calls #refresh when given the string 'true'" do
-      check = create_check
+      check = create(:check)
 
       expect { check.refresh = "true" }
         .to invoke(:call).on(Check::Refresh).with(check)
     end
 
     it "calls #refresh when given true" do
-      check = create_check
+      check = create(:check)
 
       expect { check.refresh = true }
         .to invoke(:call).on(Check::Refresh).with(check)
     end
 
     it "does not call #refresh when given false" do
-      check = create_check
+      check = create(:check)
 
       expect { check.refresh = false }.not_to invoke(:call).on(Check::Refresh)
     end
 
     it "does not call #refresh when given something truthy" do
-      check = create_check
+      check = create(:check)
 
       expect { check.refresh = "troof" }.not_to invoke(:call).on(Check::Refresh)
     end

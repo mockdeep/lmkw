@@ -4,30 +4,14 @@ require_relative "factories/api_keys"
 require_relative "factories/requests"
 
 module Factories
-  def create_check(counts: [], target: {})
-    integration = default_integration
-    check = Test::Check.create!(
-      name: "some check #{next_id}",
-      integration: integration,
-      user: integration.user,
-      target_attributes: target,
-    )
-    # https://github.com/rails/rails/issues/41827
-    check.instance_variable_set(:@strict_loading, false)
+  def create_check(counts:, target: {})
+    check = create(:check, target_attributes: target)
     create_counts(check, counts)
     check
   end
 
   def create_manual_check(counts: [], target: {})
-    integration = create(:manual_integration)
-    check = Check::Manual::AnyCount.create!(
-      name: "some check",
-      integration: integration,
-      user: integration.user,
-      target_attributes: target,
-    )
-    # https://github.com/rails/rails/issues/41827
-    check.instance_variable_set(:@strict_loading, false)
+    check = create(:manual_check, target_attributes: target)
     create_counts(check, counts)
     check
   end
@@ -41,7 +25,7 @@ module Factories
     created_counts
   end
 
-  def create_count(check: create_check, **params)
+  def create_count(check: create(:check), **params)
     check.counts.create!({ value: 0 }.merge(params))
   end
 
@@ -51,7 +35,7 @@ module Factories
 
   def create_target(*traits, **attributes)
     traits.each { |trait| attributes.merge!(TARGET_TRAITS.fetch(trait).call) }
-    create_check(target: attributes).target
+    create(:check, target_attributes: attributes).target
   end
 
   def next_id

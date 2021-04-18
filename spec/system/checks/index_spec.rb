@@ -8,7 +8,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "allows deleting checks" do
-    check = create_check
+    check = create(:check)
     sign_in(check.user)
 
     accept_confirm { find_check(check).delete_icon.click }
@@ -26,7 +26,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "displays inactive checks in inactive section" do
-    check = create_check
+    check = create(:check)
     sign_in(check.user)
 
     expect(page).to have_inactive_check(check.name)
@@ -42,7 +42,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "links to the edit checks page" do
-    check = create_check
+    check = create(:check)
     sign_in(check.user)
 
     find_check(check).edit_icon.click
@@ -52,7 +52,7 @@ RSpec.describe "checks/index", type: :system, js: true do
 
   it "allows refreshing checks" do
     Test::Check.next_values << 52
-    check = create_check
+    check = create(:check)
     sign_in(check.user)
 
     find_check(check).refresh_icon.click

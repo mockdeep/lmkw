@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe CheckCountsController, type: :request do
   describe "#new" do
     it "renders the new count form" do
-      check = create_check
+      check = create(:check)
       login_as(check.user)
 
       get(new_check_count_path(check), params: { check_id: check.id })
@@ -17,7 +17,7 @@ RSpec.describe CheckCountsController, type: :request do
   describe "#create" do
     context "when params are valid" do
       it "creates a new count" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
         params = { check_count: { value: 5 } }
 
@@ -26,7 +26,7 @@ RSpec.describe CheckCountsController, type: :request do
       end
 
       it "flashes a success message" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
         params = { check_count: { value: 5 } }
 
@@ -36,7 +36,7 @@ RSpec.describe CheckCountsController, type: :request do
       end
 
       it "redirects to checks/index" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
         params = { check_count: { value: 5 } }
 
@@ -48,7 +48,7 @@ RSpec.describe CheckCountsController, type: :request do
 
     context "when params are invalid" do
       it "flashes an error message" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
         params = { check_count: { value: nil } }
 
@@ -58,7 +58,7 @@ RSpec.describe CheckCountsController, type: :request do
       end
 
       it "renders the new count form" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
         params = { check_count: { value: nil } }
 

@@ -9,9 +9,14 @@ module FactoryCache
     @test_integration ||= FactoryBot.create(:integration)
   end
 
+  def self.manual_integration
+    @manual_integration ||= FactoryBot.create(:manual_integration)
+  end
+
   def self.reset
     @user = nil
     @test_integration = nil
+    @manual_integration = nil
   end
 end
 
@@ -33,6 +38,10 @@ module FactoryBot
 
       def default_integration
         FactoryCache.test_integration
+      end
+
+      def default_manual_integration
+        FactoryCache.manual_integration
       end
     end
   end
