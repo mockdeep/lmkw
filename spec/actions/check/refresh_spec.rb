@@ -21,7 +21,7 @@ RSpec.describe Check::Refresh do
   end
 
   it "does not try to create a count for manual checks" do
-    check = create_manual_check
+    check = create(:manual_check)
 
     expect { described_class.call(check) }
       .not_to change(check, :last_value).from(nil)

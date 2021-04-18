@@ -18,7 +18,7 @@ RSpec.describe "checks/index", type: :system, js: true do
   end
 
   it "displays active checks in active section" do
-    check = create_check(counts: [{ value: 5 }])
+    check = create(:check, count_values: [5])
     sign_in(check.user)
 
     expect(page).to have_active_check(check.name)

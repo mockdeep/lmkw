@@ -11,18 +11,8 @@ RSpec.describe "check_counts/new", type: :system, js: true do
     click_button("Update Count")
   end
 
-  def create_check
-    integration = create(:manual_integration)
-    Check::Manual::AnyCount.create!(
-      name: "Dishes in sink",
-      integration: integration,
-      user: integration.user,
-      target_attributes: {},
-    )
-  end
-
   it "allows creating new check counts" do
-    check = create_check
+    check = create(:manual_check)
     sign_in(check.user)
     expect(page).to have_inactive_check(check.name)
 

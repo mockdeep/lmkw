@@ -35,7 +35,7 @@ RSpec.describe Check::Manual::AnyCount, type: :model do
 
   describe "#url" do
     it "returns new_check_count_path" do
-      check = create_manual_check
+      check = create(:manual_check)
 
       expect(check.url).to eq(new_check_count_path(check))
     end

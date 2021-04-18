@@ -10,7 +10,8 @@ RSpec.describe Check::RunAllOutdated do
   end
 
   it "runs checks that have not been updated in the last five minutes" do
-    check = create_check(counts: [{ created_at: 6.minutes.ago }])
+    count = create(:count, created_at: 6.minutes.ago)
+    check = count.check
     Test::Check.next_values << 5
 
     expect { described_class.call }
@@ -18,7 +19,8 @@ RSpec.describe Check::RunAllOutdated do
   end
 
   it "does not run checks that have been updated in the last five minutes" do
-    check = create_check(counts: [{ created_at: 4.minutes.ago }])
+    count = create(:count, created_at: 4.minutes.ago)
+    check = count.check
 
     expect { described_class.call }
       .not_to change(check.counts, :count)

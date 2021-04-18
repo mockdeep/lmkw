@@ -23,7 +23,7 @@ RSpec.describe ChecksController, type: :controller do
   end
 
   it "does not display Refresh All Targets when all targets match goal" do
-    check = create_check(counts: [{ value: 0 }])
+    check = create(:check, count_values: [0])
     login_as(check.user)
 
     get(:index)
@@ -108,7 +108,7 @@ RSpec.describe ChecksController, type: :controller do
     end
 
     it "deletes associated records" do
-      check = create_check(counts: [{ value: 5 }])
+      check = create(:check, count_values: [5])
       login_as(check.user)
 
       delete(:destroy, params: { id: check.id })
