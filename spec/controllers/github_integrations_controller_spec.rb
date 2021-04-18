@@ -25,7 +25,7 @@ RSpec.describe GithubIntegrationsController do
 
   describe "#create" do
     it "raises an error when :state parameter does not match" do
-      session[:user_id] = User.create!(user_params).id
+      session[:user_id] = create(:user).id
       session[:github_state] = "baa"
 
       expect { get(:create, params: { state: "boo" }) }
