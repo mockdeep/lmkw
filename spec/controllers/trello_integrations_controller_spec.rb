@@ -15,7 +15,7 @@ RSpec.describe TrelloIntegrationsController do
     end
 
     it "renders the new page when integration does not exist" do
-      login_as(create_user)
+      login_as(create(:user))
 
       get(:new)
 

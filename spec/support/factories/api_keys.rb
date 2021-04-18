@@ -5,7 +5,7 @@ module Factories
     build_api_key(**params).tap(&:save!)
   end
 
-  def build_api_key(user: create_user, name: "Test App", **params)
+  def build_api_key(user: create(:user), name: "Test App", **params)
     ApiKey.create!(user: user, name: name, **params)
   end
 

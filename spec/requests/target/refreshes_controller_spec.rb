@@ -21,7 +21,7 @@ RSpec.describe Target::RefreshesController do
     end
 
     it "redirects to checks/index" do
-      login_as(create_user)
+      login_as(create(:user))
 
       post(target_refreshes_path)
 

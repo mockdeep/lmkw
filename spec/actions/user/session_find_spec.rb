@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe User::SessionFind do
   it "returns the user when found" do
-    user = create_user
+    user = create(:user)
 
     expect(described_class.call(user_id: user.id)).to eq(user)
   end

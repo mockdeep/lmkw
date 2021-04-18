@@ -20,7 +20,7 @@ RSpec.describe User::ApiKeyFind do
 
   it "raises an error when given a different user" do
     api_key = create_api_key
-    headers = api_key_headers(api_key, user_id: create_user.id)
+    headers = api_key_headers(api_key, user_id: create(:user).id)
 
     expect { described_class.call(headers) }
       .to raise_error(ActiveRecord::RecordNotFound)

@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe AdminConstraint do
   describe "#matches?" do
     it "returns true when user is admin" do
-      user = create_user(admin: true)
+      user = create(:user, admin: true)
       request = make_request(session: { user_id: user.id })
 
       expect(described_class.new.matches?(request)).to be(true)
@@ -18,7 +18,7 @@ RSpec.describe AdminConstraint do
     end
 
     it "returns false when user is not admin" do
-      user = create_user(admin: false)
+      user = create(:user, admin: false)
       request = make_request(session: { user_id: user.id })
 
       expect(described_class.new.matches?(request)).to be(false)

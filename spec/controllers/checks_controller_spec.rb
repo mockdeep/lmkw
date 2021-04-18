@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe ChecksController, type: :controller do
   describe "#index" do
     it "renders the checks page" do
-      login_as(create_user)
+      login_as(create(:user))
 
       get(:index)
 
@@ -136,7 +136,7 @@ RSpec.describe ChecksController, type: :controller do
 
     it "raises an error when user cannot access check" do
       check = create_check
-      login_as(create_user)
+      login_as(create(:user))
 
       expect { delete(:destroy, params: { id: check.id }) }
         .to raise_error(ActiveRecord::RecordNotFound)

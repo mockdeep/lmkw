@@ -31,6 +31,7 @@ gem "webpacker"
 group :development, :test do
   gem "bundler-audit"
   gem "byebug"
+  gem "factory_bot_rails"
   gem "pry-byebug"
   gem "rspec-rails"
 end

@@ -19,7 +19,7 @@ RSpec.describe "manual integration", type: :system, js: true do
   end
 
   it "allows a user to configure a manual integration" do
-    sign_in(create_user)
+    sign_in(create(:user))
     start_new_check
     create_manual_check(name: "Dishes in sink")
 
