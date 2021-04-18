@@ -16,6 +16,7 @@ require_relative "support/factories"
 require_relative "support/factory_bot"
 require_relative "support/fake_apis_rails"
 require_relative "support/helpers/controller"
+require_relative "support/helpers/general"
 require_relative "support/helpers/request"
 require_relative "support/helpers/system"
 require_relative "support/shoulda_matchers"
@@ -40,6 +41,7 @@ RSpec.configure do |config|
   config.render_views
 
   config.include(ActiveSupport::Testing::TimeHelpers)
+  config.include(Helpers::General)
   config.include(Helpers::Controller, type: :controller)
   config.include(Helpers::Request, type: :request)
   config.include(Helpers::System, type: :system)
