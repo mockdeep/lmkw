@@ -14,8 +14,8 @@ RSpec.describe ChecksController, type: :controller do
   end
 
   it "displays Refresh All Targets when targets have unreached goal" do
-    check = create_check(counts: [{ value: 3 }], target: { value: 5, delta: 5 })
-    login_as(check.user)
+    target = create(:target, value: 5, delta: 5, count_values: [3])
+    login_as(target.user)
 
     get(:index)
 
