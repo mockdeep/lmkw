@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe ApplicationController, type: :request do
   describe "#authenticate_user" do
     it "finds the user by session" do
-      check = create_check
+      check = create(:check)
       login_as(check.user)
       params = { check_count: { value: 5 } }
 
@@ -14,7 +14,7 @@ RSpec.describe ApplicationController, type: :request do
     end
 
     it "finds the user by API key" do
-      check = create_check
+      check = create(:check)
       headers = api_key_headers(create_api_key(user: check.user))
       post_options = { params: { check_count: { value: 5 } }, headers: headers }
 
@@ -24,7 +24,7 @@ RSpec.describe ApplicationController, type: :request do
 
     context "when user is not found" do
       it "does not reach the controller action" do
-        check = create_check
+        check = create(:check)
         params = { check_count: { value: 5 } }
 
         expect { post(check_counts_path(check), params: params) }
@@ -32,7 +32,7 @@ RSpec.describe ApplicationController, type: :request do
       end
 
       it "redirects to new_session_path" do
-        check = create_check
+        check = create(:check)
         params = { check_count: { value: 5 } }
 
         post(check_counts_path(check), params: params)

@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Check::Refresh do
   it "creates the next count" do
-    check = create_check
+    check = create(:check)
     Test::Check.next_values << 21
 
     described_class.call(check)
@@ -13,7 +13,7 @@ RSpec.describe Check::Refresh do
   end
 
   it "refreshes its target" do
-    check = create_check
+    check = create(:check)
     Test::Check.next_values << 21
 
     expect { described_class.call(check) }

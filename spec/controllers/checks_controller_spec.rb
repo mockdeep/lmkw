@@ -33,7 +33,7 @@ RSpec.describe ChecksController, type: :controller do
 
   describe "#edit" do
     it "renders the edit page for a check" do
-      check = create_check
+      check = create(:check)
       login_as(check.user)
 
       get(:edit, params: { id: check.id })
@@ -45,7 +45,7 @@ RSpec.describe ChecksController, type: :controller do
   describe "#update" do
     context "when params are valid" do
       it "updates the check" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
 
         check_params = { target_attributes: { value: 5 } }
@@ -54,7 +54,7 @@ RSpec.describe ChecksController, type: :controller do
       end
 
       it "redirects to checks/index" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
 
         check_params = { target_attributes: { value: 5 } }
@@ -64,7 +64,7 @@ RSpec.describe ChecksController, type: :controller do
       end
 
       it "flashes a success message" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
 
         check_params = { target_attributes: { value: 5 } }
@@ -76,7 +76,7 @@ RSpec.describe ChecksController, type: :controller do
 
     context "when params are invalid" do
       it "flashes an error message" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
 
         check_params = { target_attributes: { value: "" } }
@@ -86,7 +86,7 @@ RSpec.describe ChecksController, type: :controller do
       end
 
       it "renders the edit view" do
-        check = create_check
+        check = create(:check)
         login_as(check.user)
 
         check_params = { target_attributes: { value: "" } }
@@ -99,7 +99,7 @@ RSpec.describe ChecksController, type: :controller do
 
   describe "#destroy" do
     it "deletes the check" do
-      check = create_check
+      check = create(:check)
       login_as(check.user)
 
       delete(:destroy, params: { id: check.id })
@@ -117,7 +117,7 @@ RSpec.describe ChecksController, type: :controller do
     end
 
     it "flashes a success message" do
-      check = create_check
+      check = create(:check)
       login_as(check.user)
 
       delete(:destroy, params: { id: check.id })
@@ -126,7 +126,7 @@ RSpec.describe ChecksController, type: :controller do
     end
 
     it "redirects to checks/index" do
-      check = create_check
+      check = create(:check)
       login_as(check.user)
 
       delete(:destroy, params: { id: check.id })
@@ -135,7 +135,7 @@ RSpec.describe ChecksController, type: :controller do
     end
 
     it "raises an error when user cannot access check" do
-      check = create_check
+      check = create(:check)
       login_as(create(:user))
 
       expect { delete(:destroy, params: { id: check.id }) }

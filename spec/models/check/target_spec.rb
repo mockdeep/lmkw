@@ -15,7 +15,7 @@ RSpec.describe Check::Target, type: :model do
   it { is_expected.to delegate_method(:name).to(:check).with_prefix(true) }
 
   it do
-    create_check
+    create(:check)
 
     expect(described_class.new).to validate_uniqueness_of(:check_id)
   end

@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Check::Destroy do
   it "deletes the check" do
-    check = create_check
+    check = create(:check)
 
     expect { described_class.call(check) }.to delete_record(check)
   end
@@ -30,12 +30,12 @@ RSpec.describe Check::Destroy do
   it "does not delete other counts" do
     count = create_count
 
-    expect { described_class.call(create_check) }.not_to delete_record(count)
+    expect { described_class.call(create(:check)) }.not_to delete_record(count)
   end
 
   it "does not delete other targets" do
     target = create_target
 
-    expect { described_class.call(create_check) }.not_to delete_record(target)
+    expect { described_class.call(create(:check)) }.not_to delete_record(target)
   end
 end
