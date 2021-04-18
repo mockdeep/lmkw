@@ -13,7 +13,7 @@ RSpec.describe ManualIntegrationsController, type: :request do
     end
 
     it "does not create a manual integration when the user already has one" do
-      integration = create_manual_integration
+      integration = create(:manual_integration)
       user = integration.user
       login_as(user)
 
@@ -22,7 +22,7 @@ RSpec.describe ManualIntegrationsController, type: :request do
     end
 
     it "redirects to the new check page for the integration" do
-      integration = create_manual_integration
+      integration = create(:manual_integration)
       login_as(integration.user)
 
       get(new_manual_integration_path)

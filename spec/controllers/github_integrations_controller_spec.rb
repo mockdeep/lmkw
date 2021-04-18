@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe GithubIntegrationsController do
   describe "#new" do
     it "redirects to the new check page when integration already exists" do
-      integration = create_integration(:github)
+      integration = create(:github_integration)
       login_as(integration.user)
 
       get(:new)

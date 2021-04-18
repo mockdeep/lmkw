@@ -15,7 +15,7 @@ RSpec.describe Check::Trello::ListHasCards do
   describe "#next_count" do
     it "returns the count of cards" do
       fake_implementation do
-        integration = create_integration(:trello)
+        integration = create(:trello_integration)
         check = described_class.new(integration: integration, list_id: "inbox")
 
         expect(check.next_count).to eq(3)

@@ -12,7 +12,7 @@ RSpec.describe "check_counts/new", type: :system, js: true do
   end
 
   def create_check
-    integration = create_integration(:manual)
+    integration = create(:manual_integration)
     Check::Manual::AnyCount.create!(
       name: "Dishes in sink",
       integration: integration,

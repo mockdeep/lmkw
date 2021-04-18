@@ -5,9 +5,9 @@ require_relative "factories/requests"
 
 module Factories
   def create_check(counts: [], target: {})
-    integration = create_integration
+    integration = default_integration
     check = Test::Check.create!(
-      name: "some check",
+      name: "some check #{next_id}",
       integration: integration,
       user: integration.user,
       target_attributes: target,
@@ -19,7 +19,7 @@ module Factories
   end
 
   def create_manual_check(counts: [], target: {})
-    integration = create_manual_integration
+    integration = create(:manual_integration)
     check = Check::Manual::AnyCount.create!(
       name: "some check",
       integration: integration,
@@ -52,26 +52,6 @@ module Factories
   def create_target(*traits, **attributes)
     traits.each { |trait| attributes.merge!(TARGET_TRAITS.fetch(trait).call) }
     create_check(target: attributes).target
-  end
-
-  def create_integration(type = :test, user: create(:user))
-    method("create_#{type}_integration").call(user: user)
-  end
-
-  def create_github_integration(user: create(:user))
-    Integration::Github.create!(user: user, access_token: "foo")
-  end
-
-  def create_trello_integration(user: create(:user))
-    Integration::Trello.create!(user: user, member_token: "foo")
-  end
-
-  def create_manual_integration(user: create(:user))
-    Integration::Manual.create!(user: user)
-  end
-
-  def create_test_integration(user: create(:user))
-    Test::Integration.create!(user: user)
   end
 
   def next_id
