@@ -10,7 +10,7 @@ RSpec.describe Check::Destroy do
   end
 
   it "deletes the check when latest_count is set" do
-    check = create(:check, count_values: [6])
+    check = create(:check, count_value: 6)
 
     expect { described_class.call(check) }.to delete_record(check)
   end
