@@ -78,14 +78,6 @@ module Factories
     @next_id ||= 0
     @next_id += 1
   end
-
-  def user_params
-    {
-      email: "demo#{next_id}@lmkw.io",
-      password: "super-secure",
-      password_confirmation: "super-secure",
-    }
-  end
 end
 
 RSpec.configure do |config|

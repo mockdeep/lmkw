@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe "user sessions", type: :system do
   it "allows a user to log into their account" do
-    user = User.create!(user_params)
+    user = create(:user)
 
     sign_in(user)
 
@@ -14,7 +14,7 @@ RSpec.describe "user sessions", type: :system do
   end
 
   it "does not allow a user to log in with an invalid email" do
-    user = User.create!(user_params)
+    user = create(:user)
 
     sign_in_with(email: "wrong@email", password: user.password)
 
@@ -24,7 +24,7 @@ RSpec.describe "user sessions", type: :system do
   end
 
   it "does not allow a user to log in with an invalid password" do
-    user = User.create!(user_params)
+    user = create(:user)
 
     sign_in_with(email: user.email, password: "wrong password")
 
@@ -34,7 +34,7 @@ RSpec.describe "user sessions", type: :system do
   end
 
   it "allows a user to log out" do
-    user = User.create!(user_params)
+    user = create(:user)
 
     sign_in(user)
 

@@ -22,7 +22,7 @@ RSpec.describe SessionsController, type: :controller do
   describe "#create" do
     context "when user authenticates" do
       it "sets the user id in the session" do
-        user = User.create!(user_params)
+        user = create(:user)
 
         post(:create, params: valid_create_params(user))
 
@@ -30,7 +30,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "redirects to the home page" do
-        user = User.create!(user_params)
+        user = create(:user)
 
         post(:create, params: valid_create_params(user))
 
@@ -40,7 +40,7 @@ RSpec.describe SessionsController, type: :controller do
 
     context "when user does not authenticate" do
       it "flashes an error" do
-        User.create!(user_params)
+        create(:user)
 
         post(:create, params: invalid_create_params)
 
@@ -48,7 +48,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it "renders the new template" do
-        User.create!(user_params)
+        create(:user)
 
         post(:create, params: invalid_create_params)
 
@@ -75,7 +75,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "signs out the user" do
-      session[:user_id] = User.create!(user_params).id
+      session[:user_id] = create(:user).id
 
       delete(:destroy)
 
@@ -83,7 +83,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "clears the session" do
-      session[:user_id] = User.create!(user_params).id
+      session[:user_id] = create(:user).id
       session[:blah] = "boo"
 
       delete(:destroy)
@@ -92,7 +92,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     it "redirects to the home page" do
-      user = User.create!(user_params)
+      user = create(:user)
       session[:user_id] = user.id
 
       delete(:destroy)
