@@ -44,56 +44,20 @@ RSpec/MessageExpectation:
 Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
   IgnoredMethods:
-    - accepts_nested_attributes_for
     - and
-    - attr_accessor
-    - attr_reader
-    - attr_writer
-    - attribute
-    - belongs_to
-    - cattr_accessor
-    - cattr_reader
-    - cattr_writer
-    - context
-    - default
-    - delegate
     - describe
     - exec
     - exit
-    - fit
-    - gem
-    - has_many
-    - has_one
-    - has_secure_token
-    - helper_method
-    - include
-    - it
-    - layout
     - load
     - not_to
     - p
     - puts
-    - rails_require
     - raise
-    - require
     - require_relative
-    - ruby
-    - scope
-    - source
-    - store_accessor
     - to
-    - validates
     - warn
-  IgnoreMacros: false
   Exclude:
-    - bin/**/*
-    - 'config.ru'
-    - 'config/boot.rb'
-    - 'config/puma.rb'
-    - 'config/routes.rb'
     - db/**/*.rb
-    - Guardfile
-    - Gemfile
 Style/MixinUsage: { Exclude: ['bin/**/*'] }
 Style/StringLiterals: { EnforcedStyle: double_quotes }
 Style/StringLiteralsInInterpolation: { EnforcedStyle: double_quotes }
