@@ -6,7 +6,7 @@ RSpec.describe ApplicationController, type: :request do
   describe "#authenticate_user" do
     it "finds the user by session" do
       check = create(:check)
-      login_as(check.user)
+      login_as(default_user)
       params = { check_count: { value: 5 } }
 
       expect { post(check_counts_path(check), params: params) }

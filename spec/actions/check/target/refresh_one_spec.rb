@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe Check::Target::RefreshOne do
   it "refreshes a single target for the given user" do
-    targets = create_list(:target, 2, :unreached_goal)
+    targets = create_pair(:target, :unreached_goal)
 
     expect { described_class.call(default_user) }
       .to change_record(targets.first, :value).from(5).to(4)

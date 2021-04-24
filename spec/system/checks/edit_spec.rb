@@ -27,7 +27,7 @@ RSpec.describe "checks/edit", type: :system, js: true do
 
   it "allows editing a check" do
     check = create(:check, value: 5)
-    sign_in(check.user)
+    sign_in(default_user)
     expect(page).to have_active_check(check.name)
 
     update_check(check, Target: 5)
@@ -37,7 +37,7 @@ RSpec.describe "checks/edit", type: :system, js: true do
 
   it "allows setting a moving target on a check" do
     check = create(:check, value: 5)
-    sign_in(check.user)
+    sign_in(default_user)
 
     Test::Check.next_values << 5 << 5
     update_check(check, Target: 5, Delta: 1, "Goal Target": 4)

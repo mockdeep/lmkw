@@ -59,7 +59,7 @@ RSpec.describe "Trello integration", type: :system, js: true do
   end
 
   it "allows a user to configure a Trello integration" do
-    sign_in(create(:user))
+    sign_in(default_user)
     start_new_check
 
     authenticate_with_trello
