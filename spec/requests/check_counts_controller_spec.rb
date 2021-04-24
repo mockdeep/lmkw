@@ -6,7 +6,7 @@ RSpec.describe CheckCountsController, type: :request do
   describe "#new" do
     it "renders the new count form" do
       check = create(:check)
-      login_as(check.user)
+      login_as(default_user)
 
       get(new_check_count_path(check), params: { check_id: check.id })
 
@@ -18,7 +18,7 @@ RSpec.describe CheckCountsController, type: :request do
     context "when params are valid" do
       it "creates a new count" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
         params = { check_count: { value: 5 } }
 
         expect { post(check_counts_path(check), params: params) }
@@ -27,7 +27,7 @@ RSpec.describe CheckCountsController, type: :request do
 
       it "flashes a success message" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
         params = { check_count: { value: 5 } }
 
         post(check_counts_path(check), params: params)
@@ -37,7 +37,7 @@ RSpec.describe CheckCountsController, type: :request do
 
       it "redirects to checks/index" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
         params = { check_count: { value: 5 } }
 
         post(check_counts_path(check), params: params)
@@ -49,7 +49,7 @@ RSpec.describe CheckCountsController, type: :request do
     context "when params are invalid" do
       it "flashes an error message" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
         params = { check_count: { value: nil } }
 
         post(check_counts_path(check), params: params)
@@ -59,7 +59,7 @@ RSpec.describe CheckCountsController, type: :request do
 
       it "renders the new count form" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
         params = { check_count: { value: nil } }
 
         post(check_counts_path(check), params: params)

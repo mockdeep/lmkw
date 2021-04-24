@@ -14,7 +14,7 @@ RSpec.describe ChecksController, type: :controller do
   end
 
   it "displays Refresh X Targets when multiple targets have unreached goal" do
-    create_list(:check, 2, value: 3, target_value: 5, target_delta: 5)
+    create_pair(:check, value: 3, target_value: 5, target_delta: 5)
     login_as(default_user)
 
     get(:index)
@@ -23,8 +23,8 @@ RSpec.describe ChecksController, type: :controller do
   end
 
   it "displays Refresh 1 Target when targets have unreached goal" do
-    check = create(:check, value: 3, target_value: 5, target_delta: 5)
-    login_as(check.user)
+    create(:check, value: 3, target_value: 5, target_delta: 5)
+    login_as(default_user)
 
     get(:index)
 
@@ -32,8 +32,8 @@ RSpec.describe ChecksController, type: :controller do
   end
 
   it "does not display Refresh 1 Targets when all targets match goal" do
-    check = create(:check, value: 0)
-    login_as(check.user)
+    create(:check, value: 0)
+    login_as(default_user)
 
     get(:index)
 
@@ -43,7 +43,7 @@ RSpec.describe ChecksController, type: :controller do
   describe "#edit" do
     it "renders the edit page for a check" do
       check = create(:check)
-      login_as(check.user)
+      login_as(default_user)
 
       get(:edit, params: { id: check.id })
 
@@ -55,7 +55,7 @@ RSpec.describe ChecksController, type: :controller do
     context "when params are valid" do
       it "updates the check" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
 
         check_params = { target_attributes: { value: 5 } }
         expect { put(:update, params: { id: check.id, check: check_params }) }
@@ -64,7 +64,7 @@ RSpec.describe ChecksController, type: :controller do
 
       it "redirects to checks/index" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
 
         check_params = { target_attributes: { value: 5 } }
         put(:update, params: { id: check.id, check: check_params })
@@ -74,7 +74,7 @@ RSpec.describe ChecksController, type: :controller do
 
       it "flashes a success message" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
 
         check_params = { target_attributes: { value: 5 } }
         put(:update, params: { id: check.id, check: check_params })
@@ -86,7 +86,7 @@ RSpec.describe ChecksController, type: :controller do
     context "when params are invalid" do
       it "flashes an error message" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
 
         check_params = { target_attributes: { value: "" } }
         put(:update, params: { id: check.id, check: check_params })
@@ -96,7 +96,7 @@ RSpec.describe ChecksController, type: :controller do
 
       it "renders the edit view" do
         check = create(:check)
-        login_as(check.user)
+        login_as(default_user)
 
         check_params = { target_attributes: { value: "" } }
         put(:update, params: { id: check.id, check: check_params })
@@ -109,7 +109,7 @@ RSpec.describe ChecksController, type: :controller do
   describe "#destroy" do
     it "deletes the check" do
       check = create(:check)
-      login_as(check.user)
+      login_as(default_user)
 
       delete(:destroy, params: { id: check.id })
 
@@ -118,7 +118,7 @@ RSpec.describe ChecksController, type: :controller do
 
     it "deletes associated records" do
       check = create(:check, value: 5)
-      login_as(check.user)
+      login_as(default_user)
 
       delete(:destroy, params: { id: check.id })
 
@@ -127,7 +127,7 @@ RSpec.describe ChecksController, type: :controller do
 
     it "flashes a success message" do
       check = create(:check)
-      login_as(check.user)
+      login_as(default_user)
 
       delete(:destroy, params: { id: check.id })
 
@@ -136,7 +136,7 @@ RSpec.describe ChecksController, type: :controller do
 
     it "redirects to checks/index" do
       check = create(:check)
-      login_as(check.user)
+      login_as(default_user)
 
       delete(:destroy, params: { id: check.id })
 

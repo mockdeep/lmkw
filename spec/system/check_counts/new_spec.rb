@@ -13,7 +13,7 @@ RSpec.describe "check_counts/new", type: :system, js: true do
 
   it "allows creating new check counts" do
     check = create(:manual_check)
-    sign_in(check.user)
+    sign_in(default_user)
     expect(page).to have_inactive_check(check.name)
 
     user_creates_check_count
