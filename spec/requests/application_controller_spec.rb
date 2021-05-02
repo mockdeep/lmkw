@@ -7,7 +7,7 @@ RSpec.describe ApplicationController, type: :request do
     it "finds the user by session" do
       check = create(:check)
       login_as(default_user)
-      params = { check_count: { value: 5 } }
+      params = { count: { value: 5 } }
 
       expect { post(check_counts_path(check), params: params) }
         .to change { check.reload.last_value }.from(nil).to(5)
@@ -16,7 +16,7 @@ RSpec.describe ApplicationController, type: :request do
     it "finds the user by API key" do
       check = create(:check)
       headers = api_key_headers(create(:api_key))
-      post_options = { params: { check_count: { value: 5 } }, headers: headers }
+      post_options = { params: { count: { value: 5 } }, headers: headers }
 
       expect { post(check_counts_path(check), **post_options) }
         .to change { check.reload.last_value }.from(nil).to(5)
@@ -25,7 +25,7 @@ RSpec.describe ApplicationController, type: :request do
     context "when user is not found" do
       it "does not reach the controller action" do
         check = create(:check)
-        params = { check_count: { value: 5 } }
+        params = { count: { value: 5 } }
 
         expect { post(check_counts_path(check), params: params) }
           .not_to change { check.reload.last_value }.from(nil)
@@ -33,7 +33,7 @@ RSpec.describe ApplicationController, type: :request do
 
       it "redirects to new_session_path" do
         check = create(:check)
-        params = { check_count: { value: 5 } }
+        params = { count: { value: 5 } }
 
         post(check_counts_path(check), params: params)
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CheckCount < ApplicationRecord
+class Count < ApplicationRecord
   belongs_to :check
   validates :check_id, :value, presence: true
 end

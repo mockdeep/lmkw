@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "check_counts/new", type: :system, js: true do
-  def user_creates_check_count
+  def user_creates_count
     click_link("visit manual")
 
     fill_in(:Value, with: 10)
@@ -16,7 +16,7 @@ RSpec.describe "check_counts/new", type: :system, js: true do
     sign_in(default_user)
     expect(page).to have_inactive_check(check.name)
 
-    user_creates_check_count
+    user_creates_count
 
     expect(page).to have_active_check(check.name)
   end

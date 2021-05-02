@@ -122,7 +122,7 @@ RSpec.describe ChecksController, type: :controller do
 
       delete(:destroy, params: { id: check.id })
 
-      expect(CheckCount.where(check_id: check.id)).to be_empty
+      expect(Count.where(check_id: check.id)).to be_empty
     end
 
     it "flashes a success message" do
