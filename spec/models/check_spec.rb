@@ -8,7 +8,7 @@ RSpec.describe Check, type: :model do
 
   it {
     is_expected
-      .to have_one(:target).class_name("Check::Target").dependent(:delete)
+      .to have_one(:target).dependent(:delete)
   }
 
   it {

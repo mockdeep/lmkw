@@ -17,7 +17,7 @@ RSpec.describe Check::Refresh do
     Test::Check.next_values << 21
 
     expect { described_class.call(check) }
-      .to invoke(:call).on(Check::Target::Refresh).with(check.target)
+      .to invoke(:call).on(Target::Refresh).with(check.target)
   end
 
   it "does not try to create a count for manual checks" do

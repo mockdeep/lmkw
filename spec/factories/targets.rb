@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory(:target, class: "Check::Target") do
+  factory(:target) do
     transient do
       check_value { nil }
     end

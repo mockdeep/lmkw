@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_221132) do
+ActiveRecord::Schema.define(version: 2021_05_02_194321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,17 +31,6 @@ ActiveRecord::Schema.define(version: 2021_04_04_221132) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["check_id"], name: "index_check_counts_on_check_id"
-  end
-
-  create_table "check_targets", force: :cascade do |t|
-    t.bigint "value", null: false
-    t.bigint "check_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "delta", null: false
-    t.bigint "goal_value", null: false
-    t.datetime "next_refresh_at", null: false
-    t.index ["check_id"], name: "index_check_targets_on_check_id", unique: true
   end
 
   create_table "checks", force: :cascade do |t|
@@ -70,6 +59,17 @@ ActiveRecord::Schema.define(version: 2021_04_04_221132) do
     t.index ["user_id"], name: "index_integrations_on_user_id"
   end
 
+  create_table "targets", force: :cascade do |t|
+    t.bigint "value", null: false
+    t.bigint "check_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "delta", null: false
+    t.bigint "goal_value", null: false
+    t.datetime "next_refresh_at", null: false
+    t.index ["check_id"], name: "index_targets_on_check_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 2021_04_04_221132) do
 
   add_foreign_key "api_keys", "users"
   add_foreign_key "check_counts", "checks"
-  add_foreign_key "check_targets", "checks"
   add_foreign_key "checks", "check_counts", column: "latest_count_id"
   add_foreign_key "checks", "integrations"
   add_foreign_key "checks", "users"
   add_foreign_key "integrations", "users"
+  add_foreign_key "targets", "checks"
 end
