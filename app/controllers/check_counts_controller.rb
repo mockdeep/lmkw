@@ -4,7 +4,7 @@ class CheckCountsController < ApplicationController
   def new
     check = current_user.checks.preload(:counts).find(params[:check_id])
 
-    render(locals: { check: check, count: CheckCount.new })
+    render(locals: { check: check, count: Count.new })
   end
 
   def create
@@ -27,6 +27,6 @@ class CheckCountsController < ApplicationController
   end
 
   def count_params
-    params.require(:check_count).permit(:value)
+    params.require(:count).permit(:value)
   end
 end

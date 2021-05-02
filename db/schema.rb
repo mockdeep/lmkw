@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_194321) do
+ActiveRecord::Schema.define(version: 2021_05_02_195742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(version: 2021_05_02_194321) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_api_keys_on_user_id"
     t.index ["value"], name: "index_api_keys_on_value", unique: true
-  end
-
-  create_table "check_counts", force: :cascade do |t|
-    t.bigint "check_id", null: false
-    t.bigint "value", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["check_id"], name: "index_check_counts_on_check_id"
   end
 
   create_table "checks", force: :cascade do |t|
@@ -46,6 +38,14 @@ ActiveRecord::Schema.define(version: 2021_05_02_194321) do
     t.index ["latest_count_id"], name: "index_checks_on_latest_count_id"
     t.index ["user_id", "name"], name: "index_checks_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_checks_on_user_id"
+  end
+
+  create_table "counts", force: :cascade do |t|
+    t.bigint "check_id", null: false
+    t.bigint "value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["check_id"], name: "index_counts_on_check_id"
   end
 
   create_table "integrations", force: :cascade do |t|
@@ -80,10 +80,10 @@ ActiveRecord::Schema.define(version: 2021_05_02_194321) do
   end
 
   add_foreign_key "api_keys", "users"
-  add_foreign_key "check_counts", "checks"
-  add_foreign_key "checks", "check_counts", column: "latest_count_id"
+  add_foreign_key "checks", "counts", column: "latest_count_id"
   add_foreign_key "checks", "integrations"
   add_foreign_key "checks", "users"
+  add_foreign_key "counts", "checks"
   add_foreign_key "integrations", "users"
   add_foreign_key "targets", "checks"
 end

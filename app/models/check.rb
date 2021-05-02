@@ -3,9 +3,9 @@
 class Check < ApplicationRecord
   belongs_to :user
   belongs_to :integration
-  belongs_to :latest_count, class_name: "CheckCount"
+  belongs_to :latest_count, class_name: "Count"
   has_one :target, dependent: :delete
-  has_many :counts, class_name: "CheckCount", dependent: :delete_all
+  has_many :counts, dependent: :delete_all
 
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :integration_id, :user_id, :target, presence: true
@@ -17,7 +17,7 @@ class Check < ApplicationRecord
     lambda { |timestamp|
       left_joins(:counts)
           .having(
-            "MAX(check_counts.created_at) < ? OR COUNT(check_counts) = 0",
+            "MAX(counts.created_at) < ? OR COUNT(counts) = 0",
             timestamp,
           )
           .group("checks.id")

@@ -19,7 +19,7 @@ RSpec.describe CheckCountsController, type: :request do
       it "creates a new count" do
         check = create(:check)
         login_as(default_user)
-        params = { check_count: { value: 5 } }
+        params = { count: { value: 5 } }
 
         expect { post(check_counts_path(check), params: params) }
           .to change { check.reload.last_value }.from(nil).to(5)
@@ -28,7 +28,7 @@ RSpec.describe CheckCountsController, type: :request do
       it "flashes a success message" do
         check = create(:check)
         login_as(default_user)
-        params = { check_count: { value: 5 } }
+        params = { count: { value: 5 } }
 
         post(check_counts_path(check), params: params)
 
@@ -38,7 +38,7 @@ RSpec.describe CheckCountsController, type: :request do
       it "redirects to checks/index" do
         check = create(:check)
         login_as(default_user)
-        params = { check_count: { value: 5 } }
+        params = { count: { value: 5 } }
 
         post(check_counts_path(check), params: params)
 
@@ -50,7 +50,7 @@ RSpec.describe CheckCountsController, type: :request do
       it "flashes an error message" do
         check = create(:check)
         login_as(default_user)
-        params = { check_count: { value: nil } }
+        params = { count: { value: nil } }
 
         post(check_counts_path(check), params: params)
 
@@ -60,7 +60,7 @@ RSpec.describe CheckCountsController, type: :request do
       it "renders the new count form" do
         check = create(:check)
         login_as(default_user)
-        params = { check_count: { value: nil } }
+        params = { count: { value: nil } }
 
         post(check_counts_path(check), params: params)
 
