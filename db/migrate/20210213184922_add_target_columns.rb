@@ -20,7 +20,7 @@ class AddTargetColumns < ActiveRecord::Migration[6.1]
   end
 
   def update_targets
-    Check::Target.find_each do |target|
+    Target.find_each do |target|
       target.delta ||= 0
       target.goal_value ||= target.value
       target.next_refresh_at ||= 1.day.from_now.beginning_of_day

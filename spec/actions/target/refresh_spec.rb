@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Check::Target::Refresh do
+RSpec.describe Target::Refresh do
   it "does nothing when next_refresh_at is in future" do
     target = create(:target, value: 2, delta: 1)
 

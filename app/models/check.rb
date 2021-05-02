@@ -4,7 +4,7 @@ class Check < ApplicationRecord
   belongs_to :user
   belongs_to :integration
   belongs_to :latest_count, class_name: "CheckCount"
-  has_one :target, class_name: "Check::Target", dependent: :delete
+  has_one :target, dependent: :delete
   has_many :counts, class_name: "CheckCount", dependent: :delete_all
 
   validates :name, presence: true, uniqueness: { scope: :user_id }

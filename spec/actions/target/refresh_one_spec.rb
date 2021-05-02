@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Check::Target::RefreshOne do
+RSpec.describe Target::RefreshOne do
   it "refreshes a single target for the given user" do
     targets = create_pair(:target, :unreached_goal)
 

@@ -9,7 +9,7 @@ class Check < ApplicationRecord
         count = check.counts.create!(value: check.next_count)
         check.update!(latest_count: count)
       end
-      Check::Target::Refresh.call(check.target)
+      Target::Refresh.call(check.target)
     end
   end
 end

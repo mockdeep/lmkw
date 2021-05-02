@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Check::Target::RefreshAll do
+RSpec.describe Target::RefreshAll do
   it "refreshes all targets for the given user" do
     targets = create_pair(:target, check_value: 3, value: 5, delta: 5)
 
