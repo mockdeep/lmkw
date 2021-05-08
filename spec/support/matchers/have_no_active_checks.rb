@@ -2,10 +2,8 @@
 
 require_relative "./have_no_checks"
 
-module Matchers
-  class HaveNoActiveChecks < HaveNoChecks
-    def matches?(page)
-      super(page.find(".active"))
-    end
+class Matchers::HaveNoActiveChecks < Matchers::HaveNoChecks
+  def matches?(page)
+    super(page.find(".active"))
   end
 end

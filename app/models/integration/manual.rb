@@ -1,6 +1,4 @@
 # frozen_string_literal: true
 
-class Integration < ApplicationRecord
-  class Manual < Integration
-  end
+class Integration::Manual < Integration
 end
