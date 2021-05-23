@@ -27,6 +27,7 @@ class Target < ApplicationRecord
       return next_target_value unless last_check_value
       return next_target_value if next_target_value < last_check_value
       return next_target_value if next_target_value == target.goal_value
+      return last_check_value if last_check_value == target.goal_value
 
       last_check_value - 1
     end
