@@ -63,5 +63,14 @@ RSpec.describe Target::Refresh do
       expect { described_class.call(target, force: true) }
         .to change_record(target, :value).from(5).to(2)
     end
+
+    it "does not decrement past goal value" do
+      target = create(:target, value: 5, delta: 1)
+      count = create(:count, check: target.check, value: 0)
+      target.check.update!(latest_count: count)
+
+      expect { described_class.call(target, force: true) }
+        .to change_record(target, :value).from(5).to(0)
+    end
   end
 end
