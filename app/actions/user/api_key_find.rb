@@ -1,27 +1,25 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
-  class ApiKeyFind
-    include JunkDrawer::Callable
+class User::ApiKeyFind
+  include JunkDrawer::Callable
 
-    def call(headers)
-      user = User.preload(:api_keys).find(headers["X-User-ID"])
+  def call(headers)
+    user = User.preload(:api_keys).find(headers["X-User-ID"])
 
-      validate_api_key(user, headers["X-API-Key"])
+    validate_api_key(user, headers["X-API-Key"])
 
-      user
-    end
+    user
+  end
 
-    private
+  private
 
-    def validate_api_key(user, api_key_string)
-      return if api_key_matches?(user, api_key_string)
+  def validate_api_key(user, api_key_string)
+    return if api_key_matches?(user, api_key_string)
 
-      raise ActiveRecord::RecordNotFound
-    end
+    raise ActiveRecord::RecordNotFound
+  end
 
-    def api_key_matches?(user, api_key_string)
-      user.api_keys.any? { |api_key| api_key == api_key_string }
-    end
+  def api_key_matches?(user, api_key_string)
+    user.api_keys.any? { |api_key| api_key == api_key_string }
   end
 end

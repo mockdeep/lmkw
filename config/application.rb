@@ -9,23 +9,24 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 
 module LetMeKnowWhen
-  class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults(6.0)
+end
 
-    config.active_job.queue_adapter = :sidekiq
+class LetMeKnowWhen::Application < Rails::Application
+  # Initialize configuration defaults for originally generated Rails version.
+  config.load_defaults(6.0)
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+  config.active_job.queue_adapter = :sidekiq
 
-    config.active_record.belongs_to_required_by_default = false
-    config.action_view.form_with_generates_remote_forms = false
+  # Settings in config/environments/* take precedence over those specified here.
+  # Application configuration can go into files in config/initializers
+  # -- all .rb files in that directory are automatically loaded after loading
+  # the framework and any gems in your application.
 
-    config.autoload_paths << Rails.root.join("app/models/nulls")
-    config.autoload_paths << Rails.root.join("lib/route_constraints")
+  config.active_record.belongs_to_required_by_default = false
+  config.action_view.form_with_generates_remote_forms = false
 
-    config.action_mailer.deliver_later_queue_name = :default
-  end
+  config.autoload_paths << Rails.root.join("app/models/nulls")
+  config.autoload_paths << Rails.root.join("lib/route_constraints")
+
+  config.action_mailer.deliver_later_queue_name = :default
 end

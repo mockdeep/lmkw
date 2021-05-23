@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+module Matchers
+end
+
 Dir[File.join(__dir__, "./matchers/*.rb")].each { |path| require path }
 
 def have_check(expected_name)

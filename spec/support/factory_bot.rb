@@ -29,20 +29,16 @@ RSpec.configure do |config|
   end
 end
 
-module FactoryBot
-  module Syntax
-    module Methods
-      def default_user
-        FactoryCache.user
-      end
+module FactoryBot::Syntax::Methods
+  def default_user
+    FactoryCache.user
+  end
 
-      def default_integration
-        FactoryCache.test_integration
-      end
+  def default_integration
+    FactoryCache.test_integration
+  end
 
-      def default_manual_integration
-        FactoryCache.manual_integration
-      end
-    end
+  def default_manual_integration
+    FactoryCache.manual_integration
   end
 end

@@ -41,6 +41,8 @@ RSpec/MultipleExpectations:
 RSpec/MessageExpectation:
   EnforcedStyle: expect
   Exclude: [spec/support/matchers/invoke_matcher.rb]
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
 Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
   IgnoredMethods:

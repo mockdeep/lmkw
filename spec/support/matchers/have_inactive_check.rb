@@ -2,10 +2,8 @@
 
 require_relative "./have_check"
 
-module Matchers
-  class HaveInactiveCheck < HaveCheck
-    def matches?(page)
-      super(page.find(".inactive"))
-    end
+class Matchers::HaveInactiveCheck < Matchers::HaveCheck
+  def matches?(page)
+    super(page.find(".inactive"))
   end
 end
