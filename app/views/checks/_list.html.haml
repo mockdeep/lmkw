@@ -2,10 +2,10 @@
   - checks.each do |check|
     .card
       .card-main
-        .check_values
-          %span.check_value= check.last_value
+        .check-values
+          %span.check-value= check.last_value
           = icon("fas", "arrow-right", class: "fa-2x")
-          %span.check_value.target_value= check.target_value
+          %span.check-value.target-value= check.target_value
         %h3
           = icon(*check.icon, class: "fa-lg")
           = check.name

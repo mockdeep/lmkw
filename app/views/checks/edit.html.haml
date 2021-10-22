@@ -4,7 +4,7 @@
 
 = form_with(model: check) do |form|
   - if check.errors.any?
-    .error_explanation
+    .error-explanation
       %h2 #{pluralize(check.errors.count, "error")} problems with your signup:
       %ul
         - check.errors.full_messages.each do |message|
