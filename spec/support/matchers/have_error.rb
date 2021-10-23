@@ -3,7 +3,7 @@
 class Matchers::HaveError
   attr_reader :actual, :expected_message
 
-  ERROR_SELECTOR = ".error_explanation li"
+  ERROR_SELECTOR = ".error-explanation li"
 
   def initialize(expected_message)
     @expected_message = expected_message

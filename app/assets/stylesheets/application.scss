@@ -17,7 +17,7 @@
 // purple/pink: bc2fbf -- rgb(188, 47, 191)
 // blue: 4778ba -- rgba(71, 120, 186)
 
-@import 'reset';
+@import "reset";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -73,13 +73,7 @@ div.actions {
   color: red;
 }
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
-.error_explanation {
+.error-explanation {
   width: 450px;
   border: 2px solid red;
   padding: 7px 7px 0;
@@ -87,7 +81,7 @@ div.actions {
   background-color: #f0f0f0;
 }
 
-.error_explanation h2 {
+.error-explanation h2 {
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
@@ -97,7 +91,7 @@ div.actions {
   color: #fff;
 }
 
-.error_explanation ul li {
+.error-explanation ul li {
   font-size: 12px;
   list-style: square;
 }
@@ -145,13 +139,13 @@ hr {
   text-align: center;
   color: #fff;
   cursor: pointer;
-  background-color: rgba(71, 120, 186, 1);
+  background-color: rgba(71, 120, 186, 100%);
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.2s linear;
 
   &:hover {
-    background-color: rgba(71, 120, 186, 0.8);
+    background-color: rgba(71, 120, 186, 80%);
   }
 }
 
@@ -215,7 +209,7 @@ h3 {
     margin-right: 5px;
   }
 
-  background-color: rgba(71, 120, 186, 0.4);
+  background-color: rgba(71, 120, 186, 40%);
   padding: 20px;
   border-radius: 15px;
 }
@@ -233,14 +227,14 @@ h3 {
   font-size: 1.25em;
 }
 
-.check_values {
+.check-values {
   display: flex;
   flex-basis: 70px;
   align-items: baseline;
   justify-content: space-evenly;
 }
 
-.check_value {
+.check-value {
   font-weight: bold;
   border-radius: 50%;
   padding: 10px;
@@ -253,6 +247,6 @@ h3 {
   min-width: 30px;
 }
 
-.target_value {
+.target-value {
   background: #ddd;
 }
