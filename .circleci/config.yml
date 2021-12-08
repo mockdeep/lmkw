@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   browser-tools: circleci/browser-tools@1.2.3
+  node: circleci/node@4.7.0
 
 jobs:
   build:
@@ -25,6 +26,9 @@ jobs:
 
     steps:
       - checkout
+      - node/install:
+          node-version: 14.18.2
+          install-yarn: true
       - browser-tools/install-browser-tools
 
       - run:
