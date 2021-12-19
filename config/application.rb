@@ -40,6 +40,4 @@ class LetMeKnowWhen::Application < Rails::Application
   ]
   config.autoload_paths += extra_paths
   config.eager_load_paths += extra_paths
-
-  config.action_mailer.deliver_later_queue_name = :default
 end
