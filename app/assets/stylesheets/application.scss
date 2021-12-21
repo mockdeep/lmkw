@@ -139,13 +139,13 @@ hr {
   text-align: center;
   color: #fff;
   cursor: pointer;
-  background-color: rgba(71, 120, 186, 100%);
+  background-color: rgba(71, 120, 186, 1);
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.2s linear;
 
   &:hover {
-    background-color: rgba(71, 120, 186, 80%);
+    background-color: rgba(71, 120, 186, 0.8);
   }
 }
 
@@ -209,7 +209,7 @@ h3 {
     margin-right: 5px;
   }
 
-  background-color: rgba(71, 120, 186, 40%);
+  background-color: rgba(71, 120, 186, 0.4);
   padding: 20px;
   border-radius: 15px;
 }
