@@ -30,6 +30,7 @@ Layout/TrailingEmptyLines: { Enabled: false }
 Metrics/BlockLength:
   IgnoredMethods:
     - describe
+    - configure
   Exclude:
     - Guardfile
 Rails/Delegate: { Exclude: [spec/support/matchers/**/*.rb] }
