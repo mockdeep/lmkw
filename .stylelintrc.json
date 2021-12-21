@@ -5,6 +5,7 @@
     "  if it doesn't cause a build error in the future, should be safe to change"
   ],
   "rules": {
+    "alpha-value-notation": "number",
     "color-function-notation": "legacy"
   }
 }
