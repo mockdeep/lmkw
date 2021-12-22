@@ -33,7 +33,6 @@ class LetMeKnowWhen::Application < Rails::Application
   config.active_job.queue_adapter = :sidekiq
 
   config.active_record.belongs_to_required_by_default = false
-  config.action_view.form_with_generates_remote_forms = false
 
   config.autoload_paths << Rails.root.join("app/models/nulls")
   config.autoload_paths << Rails.root.join("lib/route_constraints")
