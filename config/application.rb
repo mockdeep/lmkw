@@ -20,7 +20,7 @@ end
 # config.eager_load_paths << Rails.root.join("extras")
 class LetMeKnowWhen::Application < Rails::Application
   # Initialize configuration defaults for originally generated Rails version.
-  config.load_defaults(6.0)
+  config.load_defaults(6.1)
 
   # Configuration for the application, engines, and railties goes here.
   #
@@ -34,8 +34,12 @@ class LetMeKnowWhen::Application < Rails::Application
 
   config.active_record.belongs_to_required_by_default = false
 
-  config.autoload_paths << Rails.root.join("app/models/nulls")
-  config.autoload_paths << Rails.root.join("lib/route_constraints")
+  extra_paths = [
+    Rails.root.join("app/models/nulls"),
+    Rails.root.join("lib/route_constraints"),
+  ]
+  config.autoload_paths += extra_paths
+  config.eager_load_paths += extra_paths
 
   config.action_mailer.deliver_later_queue_name = :default
 end
