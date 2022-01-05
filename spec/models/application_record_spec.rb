@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/models/application_record"
+require "rails_helper"
 
 RSpec.describe ApplicationRecord do
   it "exists" do

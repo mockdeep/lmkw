@@ -27,12 +27,3 @@ Style/ClassMethodsDefinitions:
 Style/OpenStructUse:
   Exclude:
     - 'spec/support/fake_api/github/implementation.rb'
-
-# Offense count: 16
-Style/TopLevelMethodDefinition:
-  Exclude:
-    - 'bin/setup'
-    - 'bin/update'
-    - 'spec/spec_helper.rb'
-    - 'spec/support/fake_apis.rb'
-    - 'spec/support/matchers.rb'

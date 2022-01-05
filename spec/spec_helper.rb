@@ -11,10 +11,6 @@ require "pry-byebug"
 require_relative "support/matchers"
 require_relative "support/fake_apis"
 
-def rails_require(path)
-  require_relative "../#{path}"
-end
-
 RSpec.configure do |config|
   config.expect_with(:rspec) do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`

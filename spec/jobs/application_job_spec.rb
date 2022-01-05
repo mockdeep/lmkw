@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/jobs/application_job"
+require "rails_helper"
 
 RSpec.describe ApplicationJob do
   it "exists" do

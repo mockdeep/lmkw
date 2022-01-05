@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/controllers/application_controller"
+require "rails_helper"
 
 RSpec.describe ApplicationController do
   it "exists" do

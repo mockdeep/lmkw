@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if fake_apis?
+if FakeApis.enabled?
   require "capybara_discoball"
   require_relative "fake_api/modules"
   require_relative "fake_api/github/implementation"
