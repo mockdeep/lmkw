@@ -16,6 +16,7 @@ AllCops:
 #
 ################################################################################
 
+Bundler/GemVersion: { EnforcedStyle: forbidden, AllowedGems: [rails] }
 # https://github.com/rubocop-hq/rubocop/issues/7841
 Style/TrailingCommaInBlockArgs: { Enabled: false }
 Layout/MultilineMethodCallIndentation:
