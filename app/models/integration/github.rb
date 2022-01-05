@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Integration::Github < Integration
-  CLIENT_ID = ENV.fetch("GITHUB_CLIENT_ID")
-  CLIENT_SECRET = ENV.fetch("GITHUB_CLIENT_SECRET")
+  CLIENT_ID = Rails.configuration.x.github.client_id
+  CLIENT_SECRET = Rails.configuration.x.github.client_secret
 
   class << self
     def implementation=(implementation)
