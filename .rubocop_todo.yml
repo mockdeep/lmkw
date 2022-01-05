@@ -34,18 +34,6 @@ Rails/RedundantPresenceValidationOnBelongsTo:
     - 'app/models/check.rb'
     - 'app/models/count.rb'
 
-# Offense count: 8
-Rails/SchemaComment:
-  Exclude:
-    - 'db/migrate/20190913200312_create_users.rb'
-    - 'db/migrate/20191004201245_create_integrations.rb'
-    - 'db/migrate/20191004222631_create_checks.rb'
-    - 'db/migrate/20200412213655_create_check_counts.rb'
-    - 'db/migrate/20210206031210_add_target_to_checks.rb'
-    - 'db/migrate/20210212195209_create_check_targets.rb'
-    - 'db/migrate/20210219183719_create_api_keys.rb'
-    - 'db/migrate/20210225214921_add_admin_to_users.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
