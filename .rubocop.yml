@@ -57,6 +57,7 @@ Style/MethodCallWithArgsParentheses:
     - p
     - puts
     - raise
+    - require
     - require_relative
     - to
     - warn

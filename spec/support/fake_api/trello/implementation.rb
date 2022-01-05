@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "../modules"
+
 class FakeApi::Trello::Implementation
   class << self
     attr_writer :endpoint_url

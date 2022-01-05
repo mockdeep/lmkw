@@ -4,6 +4,8 @@ require "rails_helper"
 
 RSpec.describe Check::Trello::ListHasCards do
   def fake_implementation
+    require Rails.root.join("spec/support/fake_api/trello/implementation")
+
     existing_implementation = Integration::Trello.implementation
     Integration::Trello.implementation = FakeApi::Trello::Implementation
 

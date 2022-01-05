@@ -1,15 +1,8 @@
 # frozen_string_literal: true
 
 if fake_apis?
-  module FakeApi
-    module Github
-    end
-
-    module Trello
-    end
-  end
-
   require "capybara_discoball"
+  require_relative "fake_api/modules"
   require_relative "fake_api/github/implementation"
   require_relative "fake_api/github/server"
   require_relative "fake_api/trello/implementation"
