@@ -22,19 +22,6 @@ Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
-# Offense count: 17
-# Cop supports --auto-correct.
-Layout/SingleLineBlockChain:
-  Exclude:
-    - 'spec/actions/check/destroy_spec.rb'
-    - 'spec/actions/check/run_all_outdated_spec.rb'
-    - 'spec/actions/target/refresh_spec.rb'
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/models/check_spec.rb'
-    - 'spec/requests/application_controller_spec.rb'
-    - 'spec/requests/check_counts_controller_spec.rb'
-    - 'spec/requests/manual_checks_controller_spec.rb'
-
 # Offense count: 515
 # Configuration parameters: Only, Ignore.
 Lint/ConstantResolution:
