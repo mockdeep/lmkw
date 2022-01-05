@@ -64,6 +64,7 @@ Style/MethodCallWithArgsParentheses:
   Exclude:
     - db/**/*.rb
 Style/MixinUsage: { Exclude: ['bin/**/*'] }
+Style/RedundantFetchBlock: { SafeForConstants: true }
 Style/StringLiterals: { EnforcedStyle: double_quotes }
 Style/StringLiteralsInInterpolation: { EnforcedStyle: double_quotes }
 Style/SymbolArray: { EnforcedStyle: brackets }

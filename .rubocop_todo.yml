@@ -43,13 +43,6 @@ Style/OpenStructUse:
   Exclude:
     - 'spec/support/fake_api/github/implementation.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: SafeForConstants.
-Style/RedundantFetchBlock:
-  Exclude:
-    - 'config/puma.rb'
-
 # Offense count: 16
 Style/TopLevelMethodDefinition:
   Exclude:
