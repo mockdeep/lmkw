@@ -77,6 +77,7 @@ Style/WordArray: { EnforcedStyle: brackets }
 ################################################################################
 
 Bundler/GemComment: { Enabled: false }
+Layout/SingleLineBlockChain: { Enabled: false }
 RSpec/AlignLeftLetBrace: { Enabled: false }
 RSpec/AlignRightLetBrace: { Enabled: false }
 Style/ConstantVisibility: { Enabled: false }
