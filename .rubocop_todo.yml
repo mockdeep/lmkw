@@ -22,8 +22,3 @@ Style/ClassMethodsDefinitions:
     - 'app/models/integration/trello.rb'
     - 'spec/support/fake_api/github/implementation.rb'
     - 'spec/support/fake_api/trello/implementation.rb'
-
-# Offense count: 1
-Style/OpenStructUse:
-  Exclude:
-    - 'spec/support/fake_api/github/implementation.rb'
