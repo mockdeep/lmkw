@@ -19,13 +19,6 @@ Bundler/OrderedGems:
 Lint/ConstantResolution:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Rails/RedundantPresenceValidationOnBelongsTo:
-  Exclude:
-    - 'app/models/check.rb'
-    - 'app/models/count.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

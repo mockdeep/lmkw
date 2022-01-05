@@ -80,6 +80,7 @@ Style/WordArray: { EnforcedStyle: brackets }
 
 Bundler/GemComment: { Enabled: false }
 Layout/SingleLineBlockChain: { Enabled: false }
+Rails/RedundantPresenceValidationOnBelongsTo: { Enabled: false }
 Rails/SchemaComment: { Enabled: false }
 RSpec/AlignLeftLetBrace: { Enabled: false }
 RSpec/AlignRightLetBrace: { Enabled: false }
