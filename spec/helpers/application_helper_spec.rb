@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/helpers/application_helper"
+require "rails_helper"
 
 RSpec.describe ApplicationHelper do
   it "exists" do

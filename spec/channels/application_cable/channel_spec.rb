@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/channels/application_cable/channel"
+require "rails_helper"
 
 RSpec.describe ApplicationCable::Channel do
   it "exists" do

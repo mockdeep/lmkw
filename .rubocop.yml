@@ -21,11 +21,11 @@ Bundler/GemVersion: { EnforcedStyle: forbidden, AllowedGems: [rails] }
 Style/TrailingCommaInBlockArgs: { Enabled: false }
 Layout/MultilineMethodCallIndentation:
   Exclude:
-    - 'spec/**/*_spec.rb'
+    - "spec/**/*_spec.rb"
 Layout/LineLength:
   Max: 80
   Exclude:
-    - 'config/**/*'
+    - "config/**/*"
   AutoCorrect: true
 Layout/TrailingEmptyLines: { Enabled: false }
 Metrics/BlockLength:
@@ -68,6 +68,7 @@ Style/RedundantFetchBlock: { SafeForConstants: true }
 Style/StringLiterals: { EnforcedStyle: double_quotes }
 Style/StringLiteralsInInterpolation: { EnforcedStyle: double_quotes }
 Style/SymbolArray: { EnforcedStyle: brackets }
+Style/TopLevelMethodDefinition: { Exclude: ["bin/**/*"] }
 Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInHashLiteral: { EnforcedStyleForMultiline: comma }

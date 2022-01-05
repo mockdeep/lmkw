@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/models/nulls/null_user"
+require "rails_helper"
 
 RSpec.describe NullUser do
   describe "#authenticate" do

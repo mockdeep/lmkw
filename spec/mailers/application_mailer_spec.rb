@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/mailers/application_mailer"
+require "rails_helper"
 
 RSpec.describe ApplicationMailer do
   it "exists" do

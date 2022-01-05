@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-rails_require "app/jobs/callable_job"
+require "rails_helper"
 
 RSpec.describe CallableJob do
   describe "#perform" do
