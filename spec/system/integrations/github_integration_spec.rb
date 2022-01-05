@@ -3,8 +3,12 @@
 require "rails_helper"
 
 RSpec.describe "GitHub integration", type: :system, js: true do
-  def github_params
-    { email: ENV.fetch("GITHUB_EMAIL"), password: ENV.fetch("GITHUB_PASSWORD") }
+  def github_email
+    Rails.configuration.x.github.email
+  end
+
+  def github_password
+    Rails.configuration.x.github.password
   end
 
   def start_new_check
@@ -20,8 +24,8 @@ RSpec.describe "GitHub integration", type: :system, js: true do
     expect(page).to have_text("First time GitHub integration")
 
     click_link("Authenticate with GitHub")
-    fill_in("Username or email", with: github_params[:email])
-    fill_in("Password", with: github_params[:password])
+    fill_in("Username or email", with: github_email)
+    fill_in("Password", with: github_password)
     click_button("Sign in")
   end
 

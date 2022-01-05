@@ -24,7 +24,7 @@ class Integration::Trello < Integration
     end
 
     def developer_public_key
-      ENV.fetch("LMKW_TRELLO_DEVELOPER_PUBLIC_KEY")
+      Rails.configuration.x.trello.developer_public_key
     end
   end # class << self
 

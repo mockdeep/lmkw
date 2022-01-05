@@ -3,11 +3,12 @@
 require "rails_helper"
 
 RSpec.describe "Trello integration", type: :system, js: true do
-  def trello_params
-    {
-      email: ENV.fetch("LMKW_DEV_TRELLO_EMAIL"),
-      password: ENV.fetch("LMKW_DEV_TRELLO_PASSWORD"),
-    }
+  def trello_email
+    Rails.configuration.x.trello.email
+  end
+
+  def trello_password
+    Rails.configuration.x.trello.password
   end
 
   def start_new_check
@@ -24,9 +25,9 @@ RSpec.describe "Trello integration", type: :system, js: true do
 
     click_link("Authenticate with Trello")
     click_link("Log in")
-    fill_in("user", with: trello_params[:email])
+    fill_in("user", with: trello_email)
     click_button("Log in with Atlassian")
-    fill_in("password", with: trello_params[:password])
+    fill_in("password", with: trello_password)
     click_button("Log in")
     click_button("Allow")
   end

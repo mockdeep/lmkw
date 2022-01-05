@@ -19,14 +19,6 @@ Bundler/OrderedGems:
 Lint/ConstantResolution:
   Enabled: false
 
-# Offense count: 3
-# Configuration parameters: Include, AllowReads, AllowWrites.
-# Include: app/**/*.rb, lib/**/*.rb
-Rails/EnvironmentVariableAccess:
-  Exclude:
-    - 'app/models/integration/github.rb'
-    - 'app/models/integration/trello.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Rails/RedundantPresenceValidationOnBelongsTo:
