@@ -39,12 +39,6 @@ Style/ClassMethodsDefinitions:
     - 'spec/support/fake_api/trello/implementation.rb'
 
 # Offense count: 1
-# Cop supports --auto-correct.
-Style/GlobalStdStream:
-  Exclude:
-    - 'config/environments/production.rb'
-
-# Offense count: 1
 Style/OpenStructUse:
   Exclude:
     - 'spec/support/fake_api/github/implementation.rb'
