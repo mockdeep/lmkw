@@ -56,8 +56,8 @@ end
 
 group :test do
   gem "capybara", require: false
-  gem "capybara-screenshot", require: false
   gem "capybara_discoball", require: false
+  gem "capybara-screenshot", require: false
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov", require: false
