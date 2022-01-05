@@ -19,6 +19,12 @@ class FakeApi::Github::Implementation
     end
   end
 
+  class TokenWrapper
+    def access_token
+      "some-auth-token"
+    end
+  end
+
   class Client
     def initialize(client_id:, client_secret:, access_token: nil); end
 
@@ -32,7 +38,7 @@ class FakeApi::Github::Implementation
     end
 
     def exchange_code_for_token(_code)
-      OpenStruct.new(access_token: "some-auth-token")
+      TokenWrapper.new
     end
 
     def issues
