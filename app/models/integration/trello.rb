@@ -5,28 +5,22 @@ class Integration::Trello < Integration
   store_accessor :data, :member_token
   delegate :developer_public_key, :implementation, to: :class
 
-  class << self
-    attr_writer :implementation
+  class_attribute :implementation, default: ::Trello
 
-    def implementation
-      @implementation ||= ::Trello
-    end
+  def self.authorize_url(return_url:)
+    implementation.authorize_url(
+      key: developer_public_key,
+      name: "LetMeKnowWhen",
+      scope: "read",
+      callback_method: "fragment",
+      return_url: return_url,
+      response_type: "fragment",
+    ).to_s
+  end
 
-    def authorize_url(return_url:)
-      implementation.authorize_url(
-        key: developer_public_key,
-        name: "LetMeKnowWhen",
-        scope: "read",
-        callback_method: "fragment",
-        return_url: return_url,
-        response_type: "fragment",
-      ).to_s
-    end
-
-    def developer_public_key
-      Rails.configuration.x.trello.developer_public_key
-    end
-  end # class << self
+  def self.developer_public_key
+    Rails.configuration.x.trello.developer_public_key
+  end
 
   def boards
     implementation::Board.from_response(client.get(open_boards_path))

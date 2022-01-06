@@ -26,11 +26,9 @@ class Check < ApplicationRecord
 
   delegate :value, to: :target, prefix: true
 
-  class << self
-    def model_name
-      ActiveModel::Name.new(base_class)
-    end
-  end # class << self
+  def self.model_name
+    ActiveModel::Name.new(base_class)
+  end
 
   def manual?
     false

@@ -3,12 +3,10 @@
 require_relative "../modules"
 
 class FakeApi::Github::Implementation
-  class << self
-    attr_writer :endpoint_url
+  class_attribute :endpoint_url
 
-    def endpoint_url
-      @endpoint_url || (raise ArgumentError, "missing endpoint_url")
-    end
+  def self.endpoint_url
+    @endpoint_url || (raise ArgumentError, "missing endpoint_url")
   end
 
   class Issue
