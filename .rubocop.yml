@@ -17,34 +17,19 @@ AllCops:
 ################################################################################
 
 Bundler/GemVersion: { EnforcedStyle: forbidden, AllowedGems: [rails] }
-# https://github.com/rubocop-hq/rubocop/issues/7841
-Style/TrailingCommaInBlockArgs: { Enabled: false }
-Layout/MultilineMethodCallIndentation:
-  Exclude:
-    - "spec/**/*_spec.rb"
-Layout/LineLength:
-  Max: 80
-  Exclude:
-    - "config/**/*"
-  AutoCorrect: true
-Layout/TrailingEmptyLines: { Enabled: false }
+Layout/LineLength: { Max: 80, Exclude: ["config/**/*"], AutoCorrect: true }
 Metrics/BlockLength:
   IgnoredMethods:
     - describe
     - configure
   Exclude:
     - Guardfile
-Rails/Delegate: { Exclude: [spec/support/matchers/**/*.rb] }
 Rails/FilePath: { EnforcedStyle: slashes }
 RSpec/ImplicitSubject: { EnforcedStyle: single_statement_only }
-RSpec/MultipleExpectations:
-  Exclude:
-    - spec/system/**/*.rb
 RSpec/MessageExpectation:
   EnforcedStyle: expect
   Exclude: [spec/support/matchers/invoke_matcher.rb]
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
+Style/ClassAndModuleChildren: { EnforcedStyle: compact }
 Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
   IgnoredMethods:
