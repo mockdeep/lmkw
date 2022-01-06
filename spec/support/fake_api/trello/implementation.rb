@@ -3,32 +3,28 @@
 require_relative "../modules"
 
 class FakeApi::Trello::Implementation
-  class << self
-    attr_writer :endpoint_url
+  class_attribute :endpoint_url
 
-    def endpoint_url
-      @endpoint_url || (raise ArgumentError, "missing endpoint_url")
-    end
+  def self.endpoint_url
+    @endpoint_url || (raise ArgumentError, "missing endpoint_url")
+  end
 
-    def authorize_url(return_url:, **_args)
-      "#{endpoint_url}/1/authorize?returnUrl=#{return_url}"
-    end
-  end # class << self
+  def self.authorize_url(return_url:, **_args)
+    "#{endpoint_url}/1/authorize?returnUrl=#{return_url}"
+  end
 
   class Board
-    class << self
-      def from_response(_response)
-        all
-      end
+    def self.from_response(_response)
+      all
+    end
 
-      def all
-        @all ||= [new(id: "dev-board", name: "Dev Board")]
-      end
+    def self.all
+      @all ||= [new(id: "dev-board", name: "Dev Board")]
+    end
 
-      def find(id)
-        all.find { |board| board.id == id }
-      end
-    end # class << self
+    def self.find(id)
+      all.find { |board| board.id == id }
+    end
 
     attr_accessor :id, :name
 
@@ -47,15 +43,13 @@ class FakeApi::Trello::Implementation
   end
 
   class List
-    class << self
-      def all
-        @all ||= [new(id: "inbox", name: "Inbox")]
-      end
+    def self.all
+      @all ||= [new(id: "inbox", name: "Inbox")]
+    end
 
-      def find(id)
-        all.find { |list| list.id == id }
-      end
-    end # class << self
+    def self.find(id)
+      all.find { |list| list.id == id }
+    end
 
     attr_accessor :id, :name
 

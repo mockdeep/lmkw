@@ -4,26 +4,24 @@ class Integration::Github < Integration
   CLIENT_ID = Rails.configuration.x.github.client_id
   CLIENT_SECRET = Rails.configuration.x.github.client_secret
 
-  class << self
-    def implementation=(implementation)
-      @implementation = implementation
-      @client = nil
-    end
+  def self.implementation=(implementation)
+    @implementation = implementation
+    @client = nil
+  end
 
-    def implementation
-      @implementation ||= ::Octokit
-    end
+  def self.implementation
+    @implementation ||= ::Octokit
+  end
 
-    def authorize_url(state:)
-      client.authorize_url(CLIENT_ID, scope: "repo", state: state)
-    end
+  def self.authorize_url(state:)
+    client.authorize_url(CLIENT_ID, scope: "repo", state: state)
+  end
 
-    def client
-      @client ||= implementation::Client.new(
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-      )
-    end
+  def self.client
+    @client ||= implementation::Client.new(
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+    )
   end
 
   validates :access_token, presence: true
