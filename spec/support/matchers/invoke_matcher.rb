@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
+require "active_support/core_ext/module/delegation"
+
 class Matchers::Invoke
   include RSpec::Matchers::Composable
+
+  delegate :failure_message,
+           :failure_message_when_negated,
+           to: :received_matcher
 
   def initialize(expected_method)
     @expected_method = expected_method
@@ -49,14 +55,6 @@ class Matchers::Invoke
 
   def supports_block_expectations?
     true
-  end
-
-  def failure_message
-    received_matcher.failure_message
-  end
-
-  def failure_message_when_negated
-    received_matcher.failure_message_when_negated
   end
 
   private
