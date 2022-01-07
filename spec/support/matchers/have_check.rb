@@ -39,6 +39,8 @@ class Matchers::HaveCheck
     end
   end
 
+  include RSpec::Matchers::Composable
+
   attr_accessor :element, :expected_name
 
   NAME_SELECTOR = ".card h3"
