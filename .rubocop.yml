@@ -18,6 +18,7 @@ AllCops:
 
 Bundler/GemVersion: { EnforcedStyle: forbidden, AllowedGems: [rails] }
 Layout/LineLength: { Max: 80, Exclude: ["config/**/*"], AutoCorrect: true }
+Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
 Metrics/BlockLength:
   IgnoredMethods:
     - describe
