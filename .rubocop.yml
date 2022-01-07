@@ -30,6 +30,7 @@ RSpec/ImplicitSubject: { EnforcedStyle: single_statement_only }
 RSpec/MessageExpectation:
   EnforcedStyle: expect
   Exclude: [spec/support/matchers/invoke_matcher.rb]
+RSpec/MultipleMemoizedHelpers: { AllowSubject: false, Max: 0 }
 Style/ClassAndModuleChildren: { EnforcedStyle: compact }
 Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
