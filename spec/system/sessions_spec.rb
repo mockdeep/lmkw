@@ -7,24 +7,24 @@ RSpec.describe "user sessions", type: :system do
     sign_in(default_user)
 
     expect(page).to have_text(default_user.email)
-    expect(page).to have_link("Account")
-    expect(page).to have_no_link("Log In")
+      .and have_link("Account")
+      .and have_no_link("Log In")
   end
 
   it "does not allow a user to log in with an invalid email" do
     sign_in_with(email: "wrong@email", password: default_user.password)
 
     expect(page).to have_flash(:error, "Invalid email or password")
-    expect(page).to have_text("Log in to LetMeKnowWhen")
-    expect(page).to have_no_text(default_user.email)
+      .and have_text("Log in to LetMeKnowWhen")
+      .and have_no_text(default_user.email)
   end
 
   it "does not allow a user to log in with an invalid password" do
     sign_in_with(email: default_user.email, password: "wrong password")
 
     expect(page).to have_flash(:error, "Invalid email or password")
-    expect(page).to have_text("Log in to LetMeKnowWhen")
-    expect(page).to have_no_text(default_user.email)
+      .and have_text("Log in to LetMeKnowWhen")
+      .and have_no_text(default_user.email)
   end
 
   it "allows a user to log out" do
@@ -32,7 +32,6 @@ RSpec.describe "user sessions", type: :system do
 
     click_link("Log Out")
 
-    expect(page).to have_no_text(default_user.email)
-    expect(page).to have_link("Log In")
+    expect(page).to have_no_text(default_user.email).and have_link("Log In")
   end
 end

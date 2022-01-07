@@ -35,28 +35,28 @@ RSpec.describe "user account", type: :system do
     sign_up_with(email: "demo@lmkw.io")
 
     expect(page).to have_flash(:success, "Account created")
-    expect(page).to have_text("demo@lmkw.io")
+      .and have_text("demo@lmkw.io")
   end
 
   it "does not allow user to sign up with invalid email" do
     sign_up_with(email: "boo#boo")
 
     expect(page).to have_flash(:error, "problem setting up your account")
-    expect(page).to have_error("Email is invalid")
+      .and have_error("Email is invalid")
   end
 
   it "does not allow user to sign up with invalid password" do
     sign_up_with(password: "")
 
     expect(page).to have_flash(:error, "problem setting up your account")
-    expect(page).to have_error("Password can't be blank")
+      .and have_error("Password can't be blank")
   end
 
   it "does not allow user to sign up with invalid password confirmation" do
     sign_up_with(password_confirmation: "not the same")
 
     expect(page).to have_flash(:error, "problem setting up your account")
-    expect(page).to have_error("Password confirmation doesn't match")
+      .and have_error("Password confirmation doesn't match")
   end
 
   it "allows a user to edit their email" do
@@ -72,6 +72,6 @@ RSpec.describe "user account", type: :system do
     delete_account
 
     expect(page).to have_flash(:success, "Account permanently deleted")
-    expect(page).to have_no_text("demo@lmkw.io")
+      .and have_no_text("demo@lmkw.io")
   end
 end

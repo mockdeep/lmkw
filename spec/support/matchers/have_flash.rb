@@ -3,6 +3,8 @@
 class Matchers::HaveFlash
   attr_reader :expected_type, :expected_message, :actual
 
+  include RSpec::Matchers::Composable
+
   def initialize(expected_type, expected_message)
     @expected_type = expected_type
     @expected_message = expected_message
