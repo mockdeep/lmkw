@@ -14,9 +14,6 @@ FactoryBot.define do
     user { integration.user }
 
     after(:create) do |check, evaluator|
-      # https://github.com/rails/rails/issues/41827
-      check.instance_variable_set(:@strict_loading, false)
-
       if evaluator.value
         count = create(:count, check: check, value: evaluator.value)
         check.update!(latest_count: count)
