@@ -3,8 +3,10 @@
 require "rails_helper"
 
 RSpec.describe "check_counts/new", type: :system, js: true do
-  def user_creates_count
-    click_link("visit manual")
+  def user_creates_count(check)
+    # binding.pry
+    click_link(check.name)
+    # click_link("Manual Check 100")
 
     fill_in(:Value, with: 10)
 
@@ -15,6 +17,7 @@ RSpec.describe "check_counts/new", type: :system, js: true do
     check = create(:manual_check)
     sign_in(default_user)
 
-    expect { user_creates_count }.to activate_check(check.name).in(page)
+    expect { user_creates_count(check) }
+      .to activate_check(check.name).in(page)
   end
 end

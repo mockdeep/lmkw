@@ -8,11 +8,9 @@
           %span.check-value.target-value= check.target_value
         %h3
           = icon(*check.icon, class: "fa-lg")
-          = check.name
-        %p
           - options = check.manual? ? {} : { target: :_blank, rel: :noreferrer }
           = link_to(check.url, options) do
-            visit #{check.service}
+            = check.name
             %span.fas.fa-external-link-alt
       .card-actions
         - params = { check: { refresh: true } }
