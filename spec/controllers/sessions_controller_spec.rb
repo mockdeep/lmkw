@@ -79,7 +79,7 @@ RSpec.describe SessionsController, type: :controller do
 
       delete(:destroy)
 
-      expect(session[:user_id]).to be(nil)
+      expect(session[:user_id]).to be_nil
     end
 
     it "clears the session" do
@@ -88,7 +88,7 @@ RSpec.describe SessionsController, type: :controller do
 
       delete(:destroy)
 
-      expect(session[:blah]).to be(nil)
+      expect(session[:blah]).to be_nil
     end
 
     it "redirects to the home page" do
