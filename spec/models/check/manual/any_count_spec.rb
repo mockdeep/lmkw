@@ -11,7 +11,7 @@ RSpec.describe Check::Manual::AnyCount, type: :model do
     end
 
     it "returns nil when 'name' is present" do
-      expect(described_class.new(name: "foo").next_step).to be(nil)
+      expect(described_class.new(name: "foo").next_step).to be_nil
     end
   end
 
