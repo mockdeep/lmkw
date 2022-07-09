@@ -37,3 +37,5 @@ Style/HashSyntax:
 Style/RedundantInitialize:
   Exclude:
     - 'spec/support/fake_api/trello/implementation.rb'
+
+Style/TopLevelMethodDefinition: { Enabled: false }
