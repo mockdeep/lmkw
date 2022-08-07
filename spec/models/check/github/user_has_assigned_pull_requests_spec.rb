@@ -17,7 +17,7 @@ RSpec.describe Check::Github::UserHasAssignedPullRequests do
     it "returns the count of pull requests" do
       fake_implementation do
         integration = create(:github_integration)
-        check = described_class.new(integration: integration)
+        check = described_class.new(integration:)
 
         expect(check.next_count).to eq(2)
       end

@@ -22,8 +22,8 @@ RSpec.describe Check, type: :model do
 
     it "does not return checks with counts after the timestamp" do
       check = create(:check)
-      create(:count, check: check, created_at: 5.minutes.ago)
-      create(:count, check: check, created_at: 3.days.ago)
+      create(:count, check:, created_at: 5.minutes.ago)
+      create(:count, check:, created_at: 3.days.ago)
 
       expect(described_class.last_counted_before(1.hour.ago)).to eq([])
     end

@@ -14,7 +14,7 @@ class Integration::Github < Integration
   end
 
   def self.authorize_url(state:)
-    client.authorize_url(CLIENT_ID, scope: "repo", state: state)
+    client.authorize_url(CLIENT_ID, scope: "repo", state:)
   end
 
   def self.client
@@ -44,7 +44,7 @@ class Integration::Github < Integration
     @client ||= implementation::Client.new(
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
-      access_token: access_token,
+      access_token:,
     )
   end
 end

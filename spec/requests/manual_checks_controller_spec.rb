@@ -31,7 +31,7 @@ RSpec.describe ManualChecksController, type: :request do
       params = { check: { name: "a new check" } }
       path = manual_integration_checks_path(integration)
 
-      expect { post(path, params: params) }.to invoke(:call).on(Check::Refresh)
+      expect { post(path, params:) }.to invoke(:call).on(Check::Refresh)
     end
 
     it "redirects to checks/index" do
@@ -39,7 +39,7 @@ RSpec.describe ManualChecksController, type: :request do
       login_as(integration.user)
 
       params = { check: { name: "a new check" } }
-      post(manual_integration_checks_path(integration), params: params)
+      post(manual_integration_checks_path(integration), params:)
 
       expect(response).to redirect_to(checks_path)
     end

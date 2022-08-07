@@ -6,7 +6,7 @@ class TrelloIntegrationsController < ApplicationController
     if integration
       redirect_to(new_trello_integration_check_path(integration))
     else
-      render(locals: { trello_authorize_url: trello_authorize_url })
+      render(locals: { trello_authorize_url: })
     end
   end
 
@@ -27,6 +27,6 @@ class TrelloIntegrationsController < ApplicationController
 
   def trello_authorize_url
     return_url = trello_integrations_create_url
-    Integration::Trello.authorize_url(return_url: return_url)
+    Integration::Trello.authorize_url(return_url:)
   end
 end

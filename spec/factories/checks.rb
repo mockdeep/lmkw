@@ -15,7 +15,7 @@ FactoryBot.define do
 
     after(:create) do |check, evaluator|
       if evaluator.value
-        count = create(:count, check: check, value: evaluator.value)
+        count = create(:count, check:, value: evaluator.value)
         check.update!(latest_count: count)
       end
     end

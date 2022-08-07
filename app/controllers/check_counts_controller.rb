@@ -4,7 +4,7 @@ class CheckCountsController < ApplicationController
   def new
     check = current_user.checks.find(params[:check_id])
 
-    render(locals: { check: check, count: Count.new })
+    render(locals: { check:, count: Count.new })
   end
 
   def create
@@ -16,7 +16,7 @@ class CheckCountsController < ApplicationController
       redirect_to(checks_path)
     else
       flash.now[:error] = "Unable to update count"
-      render(:new, locals: { check: check, count: count })
+      render(:new, locals: { check:, count: })
     end
   end
 

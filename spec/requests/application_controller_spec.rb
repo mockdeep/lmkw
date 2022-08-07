@@ -9,14 +9,14 @@ RSpec.describe ApplicationController, type: :request do
       login_as(default_user)
       params = { count: { value: 5 } }
 
-      expect { post(check_counts_path(check), params: params) }
+      expect { post(check_counts_path(check), params:) }
         .to change { check.reload.last_value }.from(nil).to(5)
     end
 
     it "finds the user by API key" do
       check = create(:check)
       headers = api_key_headers(create(:api_key))
-      post_options = { params: { count: { value: 5 } }, headers: headers }
+      post_options = { params: { count: { value: 5 } }, headers: }
 
       expect { post(check_counts_path(check), **post_options) }
         .to change { check.reload.last_value }.from(nil).to(5)
@@ -27,7 +27,7 @@ RSpec.describe ApplicationController, type: :request do
         check = create(:check)
         params = { count: { value: 5 } }
 
-        expect { post(check_counts_path(check), params: params) }
+        expect { post(check_counts_path(check), params:) }
           .not_to change { check.reload.last_value }.from(nil)
       end
 
@@ -35,7 +35,7 @@ RSpec.describe ApplicationController, type: :request do
         check = create(:check)
         params = { count: { value: 5 } }
 
-        post(check_counts_path(check), params: params)
+        post(check_counts_path(check), params:)
 
         expect(response).to redirect_to(new_session_path)
       end

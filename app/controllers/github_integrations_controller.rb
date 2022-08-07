@@ -6,7 +6,7 @@ class GithubIntegrationsController < ApplicationController
     if integration
       redirect_to(new_github_integration_check_path(integration))
     else
-      render(locals: { github_authorize_url: github_authorize_url })
+      render(locals: { github_authorize_url: })
     end
   end
 

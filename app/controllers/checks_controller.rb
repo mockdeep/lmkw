@@ -5,7 +5,7 @@ class ChecksController < ApplicationController
     checks = current_user.checks.preload(:latest_count, :target, :integration)
     targets = current_user.targets.unreached_goal
 
-    render(locals: { checks: checks, unreached_goal_targets: targets })
+    render(locals: { checks:, unreached_goal_targets: targets })
   end
 
   def new; end
@@ -21,7 +21,7 @@ class ChecksController < ApplicationController
       redirect_to(checks_path)
     else
       flash.now[:error] = "Unable to update check"
-      render(:edit, locals: { check: check })
+      render(:edit, locals: { check: })
     end
   end
 
@@ -39,9 +39,7 @@ class ChecksController < ApplicationController
   end
 
   def check_params
-    params
-      .require(:check)
-      .permit(:name, :refresh, target_attributes: target_attributes)
+    params.require(:check).permit(:name, :refresh, target_attributes:)
   end
 
   def find_check(id)
