@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     end
 
     namespace :github do
-      get "/login/oauth/authorize", to: "sessions#authorize", as: :authorize
-      post "/session", to: "sessions#create_session"
+      resources :sessions, only: [:new, :create]
     end
   end
 end
