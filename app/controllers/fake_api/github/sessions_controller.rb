@@ -2,7 +2,7 @@
 
 module FakeApi; end
 
-class FakeApi::GithubController < ApplicationController
+class FakeApi::Github::SessionsController < ApplicationController
   skip_before_action :authenticate_user
 
   def authorize

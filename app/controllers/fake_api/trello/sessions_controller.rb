@@ -2,7 +2,7 @@
 
 module FakeApi; end
 
-class FakeApi::TrelloController < ApplicationController
+class FakeApi::Trello::SessionsController < ApplicationController
   skip_before_action :authenticate_user
 
   def authorize
@@ -14,7 +14,7 @@ class FakeApi::TrelloController < ApplicationController
   def create_login
     return unless params.key?("password")
 
-    redirect_to(authorize_trello_path(requestKey: "boo"))
+    redirect_to(trello_authorize_path(requestKey: "boo"))
   end
 
   def create_token

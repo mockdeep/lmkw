@@ -2,14 +2,16 @@
 
 Rails.application.routes.draw do
   scope module: :fake_api do
-    # Trello
-    get "/1/authorize", to: "trello#authorize", as: :authorize_trello
-    get "/login", to: "trello#login"
-    post "/login", to: "trello#create_login"
-    post "/1/token/approve", to: "trello#create_token", as: :token
+    namespace :trello do
+      get "/1/authorize", to: "sessions#authorize", as: :authorize
+      get "/login", to: "sessions#login"
+      post "/login", to: "sessions#create_login"
+      post "/1/token/approve", to: "sessions#create_token", as: :token
+    end
 
-    # Github
-    get "/login/oauth/authorize", to: "github#authorize", as: :authorize_github
-    post "/github_session", to: "github#create_session"
+    namespace :github do
+      get "/login/oauth/authorize", to: "sessions#authorize", as: :authorize
+      post "/session", to: "sessions#create_session"
+    end
   end
 end
