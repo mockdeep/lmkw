@@ -10,7 +10,7 @@ Capybara.register_driver(:chrome, &Capybara.drivers[:selenium_chrome])
 Capybara.register_driver(:firefox, &Capybara.drivers[:selenium])
 Capybara.save_path = ENV.fetch("CIRCLE_ARTIFACTS", Capybara.save_path)
 
-driver = ENV.fetch("DRIVER").to_sym if ENV.key?("DRIVER")
+driver = ENV.key?("DRIVER") ? ENV.fetch("DRIVER").to_sym : :selenium
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
@@ -18,7 +18,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    driven_by(driver || :selenium_headless)
+    driven_by(driver)
   end
 
   config.before(:each, type: :controller) do
