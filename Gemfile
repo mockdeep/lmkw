@@ -57,8 +57,6 @@ group :test do
   gem "selenium-webdriver"
   gem "shoulda-matchers"
   gem "simplecov", require: false
-  gem "sinatra", require: false
   gem "webdrivers"
   gem "webmock", require: false
-  gem "webrick", require: false # needed by capybara_discoball
 end
