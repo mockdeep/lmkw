@@ -3,6 +3,7 @@
 if ENV["COVERAGE"]
   require "simplecov"
   SimpleCov.start("rails")
+  SimpleCov.enable_coverage(:branch)
   SimpleCov.minimum_coverage(100)
 end
 
