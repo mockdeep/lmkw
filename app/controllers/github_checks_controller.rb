@@ -2,7 +2,7 @@
 
 class GithubChecksController < ApplicationController
   def new
-    render(locals: { check: check, integration: integration })
+    render(locals: { check:, integration: })
   end
 
   def create
@@ -26,7 +26,7 @@ class GithubChecksController < ApplicationController
   def base_params
     {
       user: current_user,
-      integration: integration,
+      integration:,
       target_attributes: {},
     }
   end

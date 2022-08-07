@@ -21,7 +21,7 @@ RSpec.describe CheckCountsController, type: :request do
         login_as(default_user)
         params = { count: { value: 5 } }
 
-        expect { post(check_counts_path(check), params: params) }
+        expect { post(check_counts_path(check), params:) }
           .to change { check.reload.last_value }.from(nil).to(5)
       end
 
@@ -30,7 +30,7 @@ RSpec.describe CheckCountsController, type: :request do
         login_as(default_user)
         params = { count: { value: 5 } }
 
-        post(check_counts_path(check), params: params)
+        post(check_counts_path(check), params:)
 
         expect(flash[:success]).to eq("Count updated")
       end
@@ -40,7 +40,7 @@ RSpec.describe CheckCountsController, type: :request do
         login_as(default_user)
         params = { count: { value: 5 } }
 
-        post(check_counts_path(check), params: params)
+        post(check_counts_path(check), params:)
 
         expect(response).to redirect_to(checks_path)
       end
@@ -52,7 +52,7 @@ RSpec.describe CheckCountsController, type: :request do
         login_as(default_user)
         params = { count: { value: nil } }
 
-        post(check_counts_path(check), params: params)
+        post(check_counts_path(check), params:)
 
         expect(rendered).to have_content("Unable to update count")
       end
@@ -62,7 +62,7 @@ RSpec.describe CheckCountsController, type: :request do
         login_as(default_user)
         params = { count: { value: nil } }
 
-        post(check_counts_path(check), params: params)
+        post(check_counts_path(check), params:)
 
         expect(rendered).to have_content("Editing Count for Check:")
       end

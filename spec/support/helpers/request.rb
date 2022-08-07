@@ -3,7 +3,7 @@
 module Helpers::Request
   def login_as(user)
     params = { session: { email: user.email, password: user.password } }
-    post(session_path, params: params)
+    post(session_path, params:)
   end
 
   def rendered

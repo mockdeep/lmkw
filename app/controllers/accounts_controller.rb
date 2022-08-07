@@ -17,7 +17,7 @@ class AccountsController < ApplicationController
       redirect_to(checks_path)
     else
       flash.now[:error] = "There was a problem setting up your account"
-      render(:new, locals: { user: user })
+      render(:new, locals: { user: })
     end
   end
 

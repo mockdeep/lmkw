@@ -13,7 +13,7 @@ RSpec.describe User::RequestFind do
   it "finds the user by api key when present" do
     api_key = create(:api_key)
     headers = api_key_headers(api_key)
-    request = make_request(headers: headers)
+    request = make_request(headers:)
 
     expect(described_class.call(request)).to eq(api_key.user)
   end

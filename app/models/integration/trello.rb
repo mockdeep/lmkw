@@ -13,7 +13,7 @@ class Integration::Trello < Integration
       name: "LetMeKnowWhen",
       scope: "read",
       callback_method: "fragment",
-      return_url: return_url,
+      return_url:,
       response_type: "fragment",
     ).to_s
   end
@@ -38,8 +38,8 @@ class Integration::Trello < Integration
 
   def client
     @client ||= implementation::Client.new(
-      member_token: member_token,
-      developer_public_key: developer_public_key,
+      member_token:,
+      developer_public_key:,
     )
   end
 

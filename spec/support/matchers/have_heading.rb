@@ -8,7 +8,7 @@ class Matchers::HaveHeading
   end
 
   def matches?(page)
-    page.has_selector?("h2", text: text)
+    page.has_selector?("h2", text:)
   end
 
   def failure_message

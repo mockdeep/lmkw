@@ -2,7 +2,7 @@
 
 class TrelloChecksController < ApplicationController
   def new
-    render(locals: { check: check, trello_integration: trello_integration })
+    render(locals: { check:, trello_integration: })
   end
 
   def create
