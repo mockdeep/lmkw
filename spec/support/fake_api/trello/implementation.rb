@@ -70,7 +70,12 @@ class FakeApi::Trello::Implementation
   end
 
   class Client
-    def initialize(member_token:, developer_public_key:); end
+    attr_accessor :member_token, :developer_public_key
+
+    def initialize(member_token:, developer_public_key:)
+      self.member_token = member_token
+      self.developer_public_key = developer_public_key
+    end
 
     def get(url); end
 
