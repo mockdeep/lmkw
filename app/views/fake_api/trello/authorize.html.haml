@@ -1,0 +1,5 @@
+- if params.key?("requestKey")
+  = form_with(url: token_path, method: :post) do |form|
+    = form.submit("Allow")
+- else
+  = link_to("Log in", login_path)

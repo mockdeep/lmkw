@@ -3,14 +3,8 @@
 require_relative "../modules"
 
 class FakeApi::Trello::Implementation
-  class_attribute :endpoint_url
-
-  def self.endpoint_url
-    @endpoint_url || (raise ArgumentError, "missing endpoint_url")
-  end
-
   def self.authorize_url(return_url:, **_args)
-    "#{endpoint_url}/1/authorize?returnUrl=#{return_url}"
+    "/1/authorize?returnUrl=#{return_url}"
   end
 
   class Board

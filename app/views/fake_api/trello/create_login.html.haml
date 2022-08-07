@@ -1,0 +1,4 @@
+= form_with(method: :post, url: login_path) do |form|
+  = form.label(:password)
+  = form.password_field(:password)
+  = form.submit("Log in")
