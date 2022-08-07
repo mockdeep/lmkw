@@ -1,0 +1,8 @@
+= form_with(url: github_session_path, method: :post) do |form|
+  = form.label(:login_field, "Username or email address")
+  = form.text_field(:login_field)
+
+  = form.label(:password)
+  = form.password_field(:password)
+
+  = form.submit("Sign in")
