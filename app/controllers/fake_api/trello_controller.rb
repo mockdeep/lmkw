@@ -12,7 +12,9 @@ class FakeApi::TrelloController < ApplicationController
   def login; end
 
   def create_login
-    redirect_to(authorize_path(requestKey: "boo")) if params.key?("password")
+    return unless params.key?("password")
+
+    redirect_to(authorize_trello_path(requestKey: "boo"))
   end
 
   def create_token
