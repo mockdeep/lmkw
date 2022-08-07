@@ -6,11 +6,6 @@ if FakeApis.enabled?
   require_relative "fake_api/github/implementation"
   require_relative "fake_api/github/server"
   require_relative "fake_api/trello/implementation"
-  require_relative "fake_api/trello/server"
-
-  Capybara::Discoball.spin(FakeApi::Trello::Server) do |server|
-    FakeApi::Trello::Implementation.endpoint_url = server.url
-  end
 
   Capybara::Discoball.spin(FakeApi::Github::Server) do |server|
     FakeApi::Github::Implementation.endpoint_url = server.url
