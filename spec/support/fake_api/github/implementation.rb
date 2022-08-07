@@ -28,7 +28,7 @@ class FakeApi::Github::Implementation
 
     # https://github.com/login/oauth/authorize?client_id=b196fb782d84648a9ff2&scope=repo
     def authorize_url(_client_id, state:, **)
-      "/login/oauth/authorize?state=#{state}"
+      "/github/login/oauth/authorize?state=#{state}"
     end
 
     def implementation
