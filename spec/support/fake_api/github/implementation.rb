@@ -24,11 +24,16 @@ class FakeApi::Github::Implementation
   end
 
   class Client
-    def initialize(client_id:, client_secret:, access_token: nil); end
+    attr_accessor :client_id, :client_secret, :access_token
 
-    # https://github.com/login/oauth/authorize?client_id=b196fb782d84648a9ff2&scope=repo
+    def initialize(client_id:, client_secret:, access_token: nil)
+      self.client_id = client_id
+      self.client_secret = client_secret
+      self.access_token = access_token
+    end
+
     def authorize_url(_client_id, state:, **)
-      "/github/login/oauth/authorize?state=#{state}"
+      "/github/sessions/new?state=#{state}"
     end
 
     def implementation
