@@ -1,0 +1,5 @@
+- if params.key?("requestKey")
+  = form_with(url: trello_tokens_path, method: :post) do |form|
+    = form.submit("Allow")
+- else
+  = link_to("Log in", new_trello_session_path)

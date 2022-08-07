@@ -5,19 +5,11 @@ module FakeApi; end
 class FakeApi::Trello::SessionsController < ApplicationController
   skip_before_action :authenticate_user
 
-  def authorize
-    session["return_url"] = params["returnUrl"] if params["returnUrl"]
-  end
+  def new; end
 
-  def login; end
-
-  def create_login
+  def create
     return unless params.key?("password")
 
-    redirect_to(trello_authorize_path(requestKey: "boo"))
-  end
-
-  def create_token
-    redirect_to("#{session["return_url"]}#token=fake-trello-token")
+    redirect_to(new_trello_token_path(requestKey: "boo"))
   end
 end
