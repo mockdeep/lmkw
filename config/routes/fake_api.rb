@@ -3,10 +3,8 @@
 Rails.application.routes.draw do
   scope module: :fake_api do
     namespace :trello do
-      get "/1/authorize", to: "sessions#authorize", as: :authorize
-      get "/login", to: "sessions#login"
-      post "/login", to: "sessions#create_login"
-      post "/1/token/approve", to: "sessions#create_token", as: :token
+      resources :sessions, only: [:new, :create]
+      resources :tokens, only: [:new, :create]
     end
 
     namespace :github do

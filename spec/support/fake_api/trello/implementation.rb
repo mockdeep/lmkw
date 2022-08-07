@@ -4,7 +4,7 @@ require_relative "../modules"
 
 class FakeApi::Trello::Implementation
   def self.authorize_url(return_url:, **_args)
-    "/trello/1/authorize?returnUrl=#{return_url}"
+    "/trello/tokens/new?returnUrl=#{return_url}"
   end
 
   class Board
