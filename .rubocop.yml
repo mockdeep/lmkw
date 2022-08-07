@@ -20,7 +20,7 @@ Bundler/GemVersion: { EnforcedStyle: forbidden, AllowedGems: [rails] }
 Layout/LineLength: { Max: 80, Exclude: ["config/**/*"], AutoCorrect: true }
 Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
 Metrics/BlockLength:
-  IgnoredMethods:
+  AllowedMethods:
     - describe
     - configure
   Exclude:
@@ -34,7 +34,7 @@ RSpec/MultipleMemoizedHelpers: { AllowSubject: false, Max: 0 }
 Style/ClassAndModuleChildren: { EnforcedStyle: compact }
 Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
-  IgnoredMethods:
+  AllowedMethods:
     - and
     - describe
     - exec
