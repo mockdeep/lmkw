@@ -12,6 +12,7 @@ gem "rails", "~> 7.0.0"
 
 gem "bcrypt"
 gem "bootsnap", require: false
+gem "faraday-retry", require: false # wanted by octokit
 gem "font-awesome-sass"
 gem "haml-rails"
 gem "junk_drawer"

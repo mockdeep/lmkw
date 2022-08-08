@@ -118,6 +118,8 @@ GEM
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (2.1.0)
+    faraday-retry (2.0.0)
+      faraday (~> 2.0)
     ffi (1.15.5)
     font-awesome-sass (6.1.2)
       sassc (~> 2.0)
@@ -431,6 +433,7 @@ DEPENDENCIES
   capybara-screenshot
   dotenv-rails
   factory_bot_rails
+  faraday-retry
   font-awesome-sass
   guard
   guard-haml_lint
