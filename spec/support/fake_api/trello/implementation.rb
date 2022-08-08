@@ -52,9 +52,13 @@ class FakeApi::Trello::Implementation
       self.name = name
     end
 
-    def cards
-      [1, 2, 3]
-    end
+    # def cards
+    #   [1, 2, 3]
+    # end
+  end
+
+  class Card
+    attr_accessor :id, :name
   end
 
   class Member
@@ -72,6 +76,17 @@ class FakeApi::Trello::Implementation
     end
 
     def get(url); end
+
+    def find_many(klass, _path)
+      case klass.name
+      when "Trello::Card"
+        [Card.new, Card.new, Card.new]
+      when "Trello::List"
+        List.all
+      else
+        raise ArgumentError, "unknown klass \"#{klass}\""
+      end
+    end
 
     def find(entity, id)
       case entity
