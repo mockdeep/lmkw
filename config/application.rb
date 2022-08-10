@@ -36,6 +36,7 @@ class LetMeKnowWhen::Application < Rails::Application
 
   extra_paths = [
     Rails.root.join("app/models/nulls"),
+    Rails.root.join("app/api_wrappers"),
     Rails.root.join("lib/route_constraints"),
   ]
   config.autoload_paths += extra_paths

@@ -27,11 +27,21 @@ class Integration::Trello < Integration
   end
 
   def find_board(board_id)
-    client.find(:board, board_id)
+    board = client.find(:board, board_id)
+
+    NTrello::Board.new(id: board.id, url: board.url)
   end
 
-  def find_list(list_id)
-    client.find(:list, list_id)
+  def find_lists(board_id)
+    lists = client.find_many(::Trello::List, "/boards/#{board_id}/lists")
+
+    lists.map { |list| NTrello::List.new(id: list.id, name: list.name) }
+  end
+
+  def find_cards(list_id)
+    cards = client.find_many(::Trello::Card, "/lists/#{list_id}/cards")
+
+    cards.map { |card| NTrello::Card.new(id: card.id, name: card.name) }
   end
 
   private
