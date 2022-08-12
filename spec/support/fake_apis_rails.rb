@@ -8,7 +8,6 @@ if FakeApis.enabled?
 
   RSpec.configuration.before(js: true) do
     Integration::Github.implementation = FakeApi::Github::Implementation
-    Integration::Trello.implementation = FakeApi::Trello::Implementation
     Integration::Trello.client_class = FakeApi::Trello::Client
   end
 else
