@@ -62,39 +62,4 @@ class FakeApi::Trello::Implementation
       "fake_user"
     end
   end
-
-  class Client
-    attr_accessor :member_token, :developer_public_key
-
-    def initialize(member_token:, developer_public_key:)
-      self.member_token = member_token
-      self.developer_public_key = developer_public_key
-    end
-
-    def get(url); end
-
-    def find_many(klass, _path)
-      case klass.name
-      when "Trello::Card"
-        [Card.new, Card.new, Card.new]
-      when "Trello::List"
-        List.all
-      else
-        raise ArgumentError, "unknown klass \"#{klass}\""
-      end
-    end
-
-    def find(entity, id)
-      case entity
-      when :member
-        Member.new
-      when :board
-        Board.find(id)
-      when :list
-        List.find(id)
-      else
-        raise ArgumentError, "unknown entity \"#{entity}\""
-      end
-    end
-  end
 end

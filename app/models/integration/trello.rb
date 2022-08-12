@@ -3,17 +3,13 @@
 class Integration::Trello < Integration
   validates :member_token, presence: true
   store_accessor :data, :member_token
-  delegate :developer_public_key, :implementation, to: :class
+  delegate :implementation, to: :class
 
   class_attribute :implementation, default: ::Trello
   class_attribute :client_class, default: NTrello::Client
 
   def self.authorize_url(return_url:)
     client_class.authorize_url(return_url:)
-  end
-
-  def self.developer_public_key
-    Rails.configuration.x.trello.developer_public_key
   end
 
   def boards
@@ -41,10 +37,7 @@ class Integration::Trello < Integration
   private
 
   def client
-    @client ||= implementation::Client.new(
-      member_token:,
-      developer_public_key:,
-    )
+    @client ||= client_class.new(member_token:)
   end
 
   def open_boards_path
