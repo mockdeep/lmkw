@@ -13,4 +13,15 @@ RSpec.describe NTrello::Client do
       expect(result).to include(CGI.escape(return_url)).and include(trello_url)
     end
   end
+
+  describe "#find" do
+    it "delegates to the trello client" do
+      fake_trello_client = instance_double(::Trello::Client)
+      client = described_class.new(member_token: "blah")
+
+      expect { client.find("foo", "bar") }
+        .to invoke(:new).on(::Trello::Client).and_return(fake_trello_client)
+        .and invoke(:find).on(fake_trello_client).with("foo", "bar")
+    end
+  end
 end
