@@ -6,16 +6,10 @@ class Integration::Trello < Integration
   delegate :developer_public_key, :implementation, to: :class
 
   class_attribute :implementation, default: ::Trello
+  class_attribute :client_class, default: NTrello::Client
 
   def self.authorize_url(return_url:)
-    implementation.authorize_url(
-      key: developer_public_key,
-      name: "LetMeKnowWhen",
-      scope: "read",
-      callback_method: "fragment",
-      return_url:,
-      response_type: "fragment",
-    ).to_s
+    client_class.authorize_url(return_url:)
   end
 
   def self.developer_public_key
