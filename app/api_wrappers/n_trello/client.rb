@@ -44,12 +44,22 @@ class NTrello::Client
   end
 
   def open_boards_url
-    params = { filter: "open", key: developer_public_key, token: member_token }
+    params = { filter: "open", **auth_params }
 
-    "https://api.trello.com/1/members/#{trello_member.username}/boards?#{params.to_query}"
+    "https://api.trello.com/1/members/#{username}/boards?#{params.to_query}"
   end
 
-  def trello_member
-    trello_client.find(:member, :me)
+  def auth_params
+    { key: developer_public_key, token: member_token }
+  end
+
+  def username
+    response = HTTP.get(trello_member_url)
+    data = JSON.parse(response.body).deep_symbolize_keys
+    data[:username]
+  end
+
+  def trello_member_url
+    "https://api.trello.com/1/members/me?#{auth_params.to_query}"
   end
 end
