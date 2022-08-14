@@ -22,20 +22,18 @@ RSpec.describe NTrello::Client do
     end
 
     it "returns boards" do
-      fake_trello_client = instance_double(::Trello::Client)
-      fake_member = instance_double(::Trello::Member, username: "boo")
       client = described_class.new(member_token: "blah")
       developer_public_key = described_class.developer_public_key
-      params = { filter: "open", key: developer_public_key, token: "blah" }
+      auth_params = { key: developer_public_key, token: "blah" }
+      params = { filter: "open", **auth_params }
 
-      expected_url = "https://api.trello.com/1/members/boo/boards?#{params.to_query}"
+      boards_url = "https://api.trello.com/1/members/boo/boards?#{params.to_query}"
+      member_url = "https://api.trello.com/1/members/me?#{auth_params.to_query}"
       expect { client.boards }
-        .to invoke(:new).on(::Trello::Client).and_return(fake_trello_client)
-        .and invoke(:find).on(fake_trello_client).with(:member, :me)
-        .and_return(fake_member)
-        .and invoke(:get).on(HTTP)
-        .with(expected_url)
-        .and_return(response(uri: expected_url, body: "{}"))
+        .to invoke(:get).on(HTTP).with(member_url)
+        .and_return(response(uri: member_url, body: "{\"username\": \"boo\"}"))
+        .and invoke(:get).on(HTTP).with(boards_url)
+        .and_return(response(uri: boards_url, body: "{}"))
     end
   end
 
