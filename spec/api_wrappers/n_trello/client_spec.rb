@@ -16,18 +16,26 @@ RSpec.describe NTrello::Client do
   end
 
   describe "#boards" do
+    def response(uri:, body:)
+      body = String.new(body)
+      HTTP::Response.new(status: 200, version: "1.1", uri:, body:)
+    end
+
     it "returns boards" do
       fake_trello_client = instance_double(::Trello::Client)
       fake_member = instance_double(::Trello::Member, username: "boo")
       client = described_class.new(member_token: "blah")
+      developer_public_key = described_class.developer_public_key
+      params = { filter: "open", key: developer_public_key, token: "blah" }
 
+      expected_url = "https://api.trello.com/1/members/boo/boards?#{params.to_query}"
       expect { client.boards }
         .to invoke(:new).on(::Trello::Client).and_return(fake_trello_client)
         .and invoke(:find).on(fake_trello_client).with(:member, :me)
         .and_return(fake_member)
-        .and invoke(:get).on(fake_trello_client)
-        .with("/members/boo/boards?filter=open")
-        .and_return(String.new("{}"))
+        .and invoke(:get).on(HTTP)
+        .with(expected_url)
+        .and_return(response(uri: expected_url, body: "{}"))
     end
   end
 
