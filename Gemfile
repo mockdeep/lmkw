@@ -15,6 +15,7 @@ gem "bootsnap", require: false
 gem "faraday-retry", require: false # wanted by octokit
 gem "font-awesome-sass"
 gem "haml-rails"
+gem "http"
 gem "junk_drawer"
 gem "octokit"
 gem "pg"

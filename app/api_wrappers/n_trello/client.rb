@@ -28,7 +28,8 @@ class NTrello::Client
   end
 
   def boards
-    ::Trello::Board.from_response(trello_client.get(open_boards_path))
+    response = HTTP.get(open_boards_url)
+    ::Trello::Board.from_response(response.body.to_s)
   end
 
   private
@@ -42,8 +43,10 @@ class NTrello::Client
       ::Trello::Client.new(member_token:, developer_public_key:)
   end
 
-  def open_boards_path
-    "/members/#{trello_member.username}/boards?filter=open"
+  def open_boards_url
+    params = { filter: "open", key: developer_public_key, token: member_token }
+
+    "https://api.trello.com/1/members/#{trello_member.username}/boards?#{params.to_query}"
   end
 
   def trello_member
