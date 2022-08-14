@@ -15,7 +15,7 @@ RSpec.describe NTrello::Client do
     end
   end
 
-  describe "#boards" do
+  describe "#fetch_boards" do
     def response(uri:, body:)
       body = String.new(body)
       HTTP::Response.new(status: 200, version: "1.1", uri:, body:)
@@ -29,7 +29,7 @@ RSpec.describe NTrello::Client do
 
       boards_url = "https://api.trello.com/1/members/boo/boards?#{params.to_query}"
       member_url = "https://api.trello.com/1/members/me?#{auth_params.to_query}"
-      expect { client.boards }
+      expect { client.fetch_boards }
         .to invoke(:get).on(HTTP).with(member_url)
         .and_return(response(uri: member_url, body: "{\"username\": \"boo\"}"))
         .and invoke(:get).on(HTTP).with(boards_url)

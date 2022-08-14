@@ -3,7 +3,7 @@
 class Check::Trello::ListHasCards < Check
   store_accessor :data, :board_id, :list_id
   validates :board_id, :list_id, presence: true
-  delegate :boards, to: :integration
+  delegate :fetch_boards, to: :integration
   delegate :url, to: :board
 
   STEPS = ["board_id", "list_id", "name"].freeze
@@ -25,14 +25,14 @@ class Check::Trello::ListHasCards < Check
   end
 
   def board
-    integration.find_board(board_id)
+    integration.fetch_board(id: board_id)
   end
 
   def cards
-    integration.find_cards(list_id)
+    integration.fetch_cards(list_id:)
   end
 
   def lists
-    integration.find_lists(board_id)
+    integration.fetch_lists(board_id:)
   end
 end
