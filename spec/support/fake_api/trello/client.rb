@@ -36,7 +36,7 @@ class FakeApi::Trello::Client
     end
   end
 
-  def boards
+  def fetch_boards
     FakeApi::Trello::Implementation::Board.all
   end
 

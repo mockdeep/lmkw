@@ -27,8 +27,9 @@ class NTrello::Client
     self.member_token = member_token
   end
 
-  def boards
+  def fetch_boards
     response = HTTP.get(open_boards_url)
+
     ::Trello::Board.from_response(response.body.to_s)
   end
 
