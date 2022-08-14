@@ -24,6 +24,10 @@ class NTrello::Client
     self.member_token = member_token
   end
 
+  def boards
+    ::Trello::Board.from_response(trello_client.get(open_boards_path))
+  end
+
   private
 
   def developer_public_key
@@ -33,5 +37,13 @@ class NTrello::Client
   def trello_client
     @trello_client ||=
       ::Trello::Client.new(member_token:, developer_public_key:)
+  end
+
+  def open_boards_path
+    "/members/#{trello_member.username}/boards?filter=open"
+  end
+
+  def trello_member
+    trello_client.find(:member, :me)
   end
 end

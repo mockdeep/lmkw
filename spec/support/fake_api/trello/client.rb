@@ -27,13 +27,17 @@ class FakeApi::Trello::Client
   def find_many(klass, _path)
     case klass.name
     when "Trello::Card"
-      card = FakeApi::Trello::Implementation::Card.new
+      card = NTrello::Card.new(id: 1, name: "some card")
       [card, card, card]
     when "Trello::List"
       FakeApi::Trello::Implementation::List.all
     else
       raise ArgumentError, "unknown klass \"#{klass}\""
     end
+  end
+
+  def boards
+    FakeApi::Trello::Implementation::Board.all
   end
 
   def get(url); end

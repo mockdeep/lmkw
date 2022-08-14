@@ -5,17 +5,13 @@ require "rails_helper"
 RSpec.describe Check::Trello::ListHasCards do
   def fake_implementation
     require Rails.root.join("spec/support/fake_api/trello/client")
-    require Rails.root.join("spec/support/fake_api/trello/implementation")
 
     existing_client_class = Integration::Trello.client_class
-    existing_implementation = Integration::Trello.implementation
     Integration::Trello.client_class = FakeApi::Trello::Client
-    Integration::Trello.implementation = FakeApi::Trello::Implementation
 
     yield
 
     Integration::Trello.client_class = existing_client_class
-    Integration::Trello.implementation = existing_implementation
   end
 
   describe "#next_count" do

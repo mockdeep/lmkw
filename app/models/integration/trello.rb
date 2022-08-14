@@ -3,17 +3,12 @@
 class Integration::Trello < Integration
   validates :member_token, presence: true
   store_accessor :data, :member_token
-  delegate :implementation, to: :class
+  delegate :boards, to: :client
 
-  class_attribute :implementation, default: ::Trello
   class_attribute :client_class, default: NTrello::Client
 
   def self.authorize_url(return_url:)
     client_class.authorize_url(return_url:)
-  end
-
-  def boards
-    implementation::Board.from_response(client.get(open_boards_path))
   end
 
   def find_board(board_id)
@@ -38,13 +33,5 @@ class Integration::Trello < Integration
 
   def client
     @client ||= client_class.new(member_token:)
-  end
-
-  def open_boards_path
-    "/members/#{trello_member.username}/boards?filter=open"
-  end
-
-  def trello_member
-    client.find(:member, :me)
   end
 end
