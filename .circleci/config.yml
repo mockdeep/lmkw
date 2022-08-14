@@ -100,7 +100,7 @@ jobs:
       - run:
           name: Run rspec in parallel
           command: |
-            COVERAGE=true bundle exec rspec
+            bundle exec rspec
             # DRIVER=firefox bundle exec rspec spec/system
             # DRIVER=chrome bundle exec rspec spec/system
             # bundle exec rspec --profile 10 \

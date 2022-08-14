@@ -24,6 +24,24 @@ class FakeApi::Trello::Client
     end
   end
 
+  def fetch_board(id:)
+    board = find(:board, id)
+
+    NTrello::Board.new(id: board.id, url: board.url)
+  end
+
+  def fetch_lists(board_id:)
+    lists = find_many(::Trello::List, "/boards/#{board_id}/lists")
+
+    lists.map { |list| NTrello::List.new(id: list.id, name: list.name) }
+  end
+
+  def fetch_cards(list_id:)
+    cards = find_many(::Trello::Card, "/lists/#{list_id}/cards")
+
+    cards.map { |card| NTrello::Card.new(id: card.id, name: card.name) }
+  end
+
   def find_many(klass, _path)
     case klass.name
     when "Trello::Card"
