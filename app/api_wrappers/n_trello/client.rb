@@ -10,14 +10,17 @@ class NTrello::Client
   end
 
   def self.authorize_url(return_url:)
-    ::Trello.authorize_url(
+    params = {
+      callback_method: "fragment",
+      expiration: "never",
       key: developer_public_key,
       name: "LetMeKnowWhen",
-      scope: "read",
-      callback_method: "fragment",
-      return_url:,
       response_type: "fragment",
-    ).to_s
+      return_url:,
+      scope: "read",
+    }
+
+    "https://trello.com/1/authorize?#{params.to_query}"
   end
 
   def initialize(member_token:)

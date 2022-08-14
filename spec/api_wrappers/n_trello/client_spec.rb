@@ -6,11 +6,12 @@ RSpec.describe NTrello::Client do
   describe ".authorize_url" do
     it "returns a URL to authorize Trello access" do
       return_url = "https://foobar.com/baz"
-      trello_url = "trello.com/1/authorize"
+      developer_public_key = described_class.developer_public_key
 
       result = described_class.authorize_url(return_url:)
 
-      expect(result).to include(CGI.escape(return_url)).and include(trello_url)
+      expected = "https://trello.com/1/authorize?callback_method=fragment&expiration=never&key=#{developer_public_key}&name=LetMeKnowWhen&response_type=fragment&return_url=https%3A%2F%2Ffoobar.com%2Fbaz&scope=read"
+      expect(result).to eq(expected)
     end
   end
 
