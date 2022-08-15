@@ -47,4 +47,44 @@ RSpec.describe NTrello::Client do
         .and invoke(:find).on(fake_trello_client).with("foo", "bar")
     end
   end
+
+  describe "#fetch_board" do
+    it "returns the board with the given id" do
+      client = described_class.new(member_token: "blah")
+      board = NTrello::Board.new(id: 3, url: "/bloo")
+      expect(client).to receive(:find).with(:board, 3).and_return(board)
+
+      result = client.fetch_board(id: 3)
+
+      expect(result.url).to eq("/bloo")
+    end
+  end
+
+  describe "#fetch_lists" do
+    it "returns lists with the given board id" do
+      client = described_class.new(member_token: "blah")
+      path = "/boards/3/lists"
+      lists = [NTrello::List.new(id: 4, name: "list 1")]
+      expect(client)
+        .to receive(:find_many).with(::Trello::List, path).and_return(lists)
+
+      result = client.fetch_lists(board_id: 3)
+
+      expect(result.map(&:name)).to eq(["list 1"])
+    end
+  end
+
+  describe "#fetch_cards" do
+    it "returns cards with the given list id" do
+      client = described_class.new(member_token: "blah")
+      path = "/lists/5/cards"
+      cards = [NTrello::Card.new(id: 6, name: "card 6")]
+      expect(client)
+        .to receive(:find_many).with(::Trello::Card, path).and_return(cards)
+
+      result = client.fetch_cards(list_id: 5)
+
+      expect(result.map(&:name)).to eq(["card 6"])
+    end
+  end
 end

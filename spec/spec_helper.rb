@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-if ENV["COVERAGE"]
-  require "simplecov"
-  SimpleCov.start("rails")
-  SimpleCov.enable_coverage(:branch)
-  SimpleCov.minimum_coverage(100)
-end
+require "simplecov"
+SimpleCov.start("rails")
+SimpleCov.enable_coverage(:branch)
+SimpleCov.minimum_coverage(100)
 
 require "pry-byebug"
 
