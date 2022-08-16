@@ -63,10 +63,8 @@ RSpec.describe NTrello::Client do
   describe "#fetch_lists" do
     it "returns lists with the given board id" do
       client = described_class.new(member_token: "blah")
-      path = "/boards/3/lists"
-      lists = [NTrello::List.new(id: 4, name: "list 1")]
-      expect(client)
-        .to receive(:find_many).with(::Trello::List, path).and_return(lists)
+      stub_request(:get, "https://api.trello.com/1/boards/3/lists?key=b151cfc72ed56c15f13296ffbaf96194&token=blah")
+        .to_return(body: [{ id: 4, name: "list 1" }].to_json)
 
       result = client.fetch_lists(board_id: 3)
 
@@ -77,10 +75,8 @@ RSpec.describe NTrello::Client do
   describe "#fetch_cards" do
     it "returns cards with the given list id" do
       client = described_class.new(member_token: "blah")
-      path = "/lists/5/cards"
-      cards = [NTrello::Card.new(id: 6, name: "card 6")]
-      expect(client)
-        .to receive(:find_many).with(::Trello::Card, path).and_return(cards)
+      stub_request(:get, "https://api.trello.com/1/lists/5/cards?key=b151cfc72ed56c15f13296ffbaf96194&token=blah")
+        .to_return(body: [{ id: 6, name: "card 6" }].to_json)
 
       result = client.fetch_cards(list_id: 5)
 
