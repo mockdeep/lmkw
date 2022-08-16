@@ -3,7 +3,7 @@
 class NTrello::Client
   attr_accessor :member_token
 
-  delegate :find, :find_many, :get, to: :trello_client
+  delegate :find, :get, to: :trello_client
 
   def self.developer_public_key
     Rails.configuration.x.trello.developer_public_key
@@ -34,15 +34,21 @@ class NTrello::Client
   end
 
   def fetch_lists(board_id:)
-    lists = find_many(::Trello::List, "/boards/#{board_id}/lists")
+    lists_url =
+      "https://api.trello.com/1/boards/#{board_id}/lists?#{auth_params.to_query}"
+    response = HTTP.get(lists_url)
+    lists = JSON.parse(response.body).map(&:deep_symbolize_keys)
 
-    lists.map { |list| NTrello::List.new(id: list.id, name: list.name) }
+    lists.map { |list| NTrello::List.new(**list.slice(:id, :name)) }
   end
 
   def fetch_cards(list_id:)
-    cards = find_many(::Trello::Card, "/lists/#{list_id}/cards")
+    cards_url =
+      "https://api.trello.com/1/lists/#{list_id}/cards?#{auth_params.to_query}"
+    response = HTTP.get(cards_url)
+    cards = JSON.parse(response.body).map(&:deep_symbolize_keys)
 
-    cards.map { |card| NTrello::Card.new(id: card.id, name: card.name) }
+    cards.map { |card| NTrello::Card.new(**card.slice(:id, :name)) }
   end
 
   def fetch_boards

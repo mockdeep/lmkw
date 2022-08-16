@@ -9,6 +9,7 @@ require "pry-byebug"
 
 require_relative "support/matchers"
 require_relative "support/fake_apis"
+require_relative "support/webmock"
 
 RSpec.configure do |config|
   config.expect_with(:rspec) do |expectations|

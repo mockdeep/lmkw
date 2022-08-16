@@ -6,5 +6,3 @@ module FakeApis
     ENV["FAKE_APIS"] != "false"
   end
 end
-
-require_relative "webmock" if FakeApis.enabled?
