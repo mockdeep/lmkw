@@ -3,8 +3,6 @@
 class NTrello::Client
   attr_accessor :member_token
 
-  delegate :find, :get, to: :trello_client
-
   def self.developer_public_key
     Rails.configuration.x.trello.developer_public_key
   end
@@ -28,9 +26,11 @@ class NTrello::Client
   end
 
   def fetch_board(id:)
-    board = find(:board, id)
+    board_url = "https://api.trello.com/1/boards/#{id}?#{auth_params.to_query}"
+    response = HTTP.get(board_url)
+    board = JSON.parse(response.body).deep_symbolize_keys
 
-    NTrello::Board.new(id: board.id, url: board.url)
+    NTrello::Board.new(**board.slice(:id, :url))
   end
 
   def fetch_lists(board_id:)
@@ -61,11 +61,6 @@ class NTrello::Client
 
   def developer_public_key
     self.class.developer_public_key
-  end
-
-  def trello_client
-    @trello_client ||=
-      ::Trello::Client.new(member_token:, developer_public_key:)
   end
 
   def open_boards_url

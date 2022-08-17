@@ -37,22 +37,11 @@ RSpec.describe NTrello::Client do
     end
   end
 
-  describe "#find" do
-    it "delegates to the trello client" do
-      fake_trello_client = instance_double(::Trello::Client)
-      client = described_class.new(member_token: "blah")
-
-      expect { client.find("foo", "bar") }
-        .to invoke(:new).on(::Trello::Client).and_return(fake_trello_client)
-        .and invoke(:find).on(fake_trello_client).with("foo", "bar")
-    end
-  end
-
   describe "#fetch_board" do
     it "returns the board with the given id" do
       client = described_class.new(member_token: "blah")
-      board = NTrello::Board.new(id: 3, url: "/bloo")
-      expect(client).to receive(:find).with(:board, 3).and_return(board)
+      stub_request(:get, "https://api.trello.com/1/boards/3?key=b151cfc72ed56c15f13296ffbaf96194&token=blah")
+        .to_return(body: { id: 3, url: "/bloo" }.to_json)
 
       result = client.fetch_board(id: 3)
 
