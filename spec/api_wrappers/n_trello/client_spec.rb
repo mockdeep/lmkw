@@ -29,11 +29,11 @@ RSpec.describe NTrello::Client do
 
       boards_url = "https://api.trello.com/1/members/boo/boards?#{params.to_query}"
       member_url = "https://api.trello.com/1/members/me?#{auth_params.to_query}"
-      expect { client.fetch_boards }
-        .to invoke(:get).on(HTTP).with(member_url)
-        .and_return(response(uri: member_url, body: "{\"username\": \"boo\"}"))
-        .and invoke(:get).on(HTTP).with(boards_url)
-        .and_return(response(uri: boards_url, body: "{}"))
+      stub_request(:get, member_url)
+        .to_return(body: { username: "boo" }.to_json)
+      stub_request(:get, boards_url).to_return(body: [].to_json)
+
+      expect(client.fetch_boards).to eq([])
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe NTrello::Client do
     it "returns the board with the given id" do
       client = described_class.new(member_token: "blah")
       stub_request(:get, "https://api.trello.com/1/boards/3?key=b151cfc72ed56c15f13296ffbaf96194&token=blah")
-        .to_return(body: { id: 3, url: "/bloo" }.to_json)
+        .to_return(body: { id: 3, url: "/bloo", name: "bloo board" }.to_json)
 
       result = client.fetch_board(id: 3)
 

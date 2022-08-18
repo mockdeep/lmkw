@@ -30,7 +30,7 @@ class NTrello::Client
     response = HTTP.get(board_url)
     board = JSON.parse(response.body, symbolize_names: true)
 
-    NTrello::Board.new(**board.slice(:id, :url))
+    NTrello::Board.new(**board.slice(:id, :name, :url))
   end
 
   def fetch_lists(board_id:)
@@ -53,8 +53,9 @@ class NTrello::Client
 
   def fetch_boards
     response = HTTP.get(open_boards_url)
+    boards = JSON.parse(response.body, symbolize_names: true)
 
-    ::Trello::Board.from_response(response.body.to_s)
+    boards.map { |board| NTrello::Board.new(**board.slice(:id, :name, :url)) }
   end
 
   private

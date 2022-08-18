@@ -27,7 +27,7 @@ class FakeApi::Trello::Client
   def fetch_board(id:)
     board = find(:board, id)
 
-    NTrello::Board.new(id: board.id, url: board.url)
+    NTrello::Board.new(id: board.id, name: board.name, url: board.url)
   end
 
   def fetch_lists(**)
