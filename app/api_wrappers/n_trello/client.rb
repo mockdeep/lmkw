@@ -28,7 +28,7 @@ class NTrello::Client
   def fetch_board(id:)
     board_url = "https://api.trello.com/1/boards/#{id}?#{auth_params.to_query}"
     response = HTTP.get(board_url)
-    board = JSON.parse(response.body).deep_symbolize_keys
+    board = JSON.parse(response.body, symbolize_names: true)
 
     NTrello::Board.new(**board.slice(:id, :url))
   end
@@ -37,7 +37,7 @@ class NTrello::Client
     lists_url =
       "https://api.trello.com/1/boards/#{board_id}/lists?#{auth_params.to_query}"
     response = HTTP.get(lists_url)
-    lists = JSON.parse(response.body).map(&:deep_symbolize_keys)
+    lists = JSON.parse(response.body, symbolize_names: true)
 
     lists.map { |list| NTrello::List.new(**list.slice(:id, :name)) }
   end
@@ -46,7 +46,7 @@ class NTrello::Client
     cards_url =
       "https://api.trello.com/1/lists/#{list_id}/cards?#{auth_params.to_query}"
     response = HTTP.get(cards_url)
-    cards = JSON.parse(response.body).map(&:deep_symbolize_keys)
+    cards = JSON.parse(response.body, symbolize_names: true)
 
     cards.map { |card| NTrello::Card.new(**card.slice(:id, :name)) }
   end
@@ -75,7 +75,7 @@ class NTrello::Client
 
   def username
     response = HTTP.get(trello_member_url)
-    data = JSON.parse(response.body).deep_symbolize_keys
+    data = JSON.parse(response.body, symbolize_names: true)
     data[:username]
   end
 
