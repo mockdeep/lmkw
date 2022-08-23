@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe NTrello::Client do
+RSpec.describe Trello::Client do
   delegate :developer_public_key, to: :described_class
 
   def auth_params

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NTrello::List
+class Trello::Card
   attr_accessor :id, :name
 
   def initialize(id:, name:)

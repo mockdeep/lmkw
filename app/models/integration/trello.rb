@@ -5,7 +5,7 @@ class Integration::Trello < Integration
   store_accessor :data, :member_token
   delegate :fetch_board, :fetch_boards, :fetch_lists, :fetch_cards, to: :client
 
-  class_attribute :client_class, default: NTrello::Client
+  class_attribute :client_class, default: ::Trello::Client
 
   def self.authorize_url(return_url:)
     client_class.authorize_url(return_url:)
