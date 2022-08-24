@@ -27,17 +27,17 @@ class FakeApi::Trello::Client
   def fetch_board(id:)
     board = find(:board, id)
 
-    NTrello::Board.new(id: board.id, name: board.name, url: board.url)
+    Trello::Board.new(id: board.id, name: board.name, url: board.url)
   end
 
   def fetch_lists(**)
     lists = FakeApi::Trello::Implementation::List.all
 
-    lists.map { |list| NTrello::List.new(id: list.id, name: list.name) }
+    lists.map { |list| Trello::List.new(id: list.id, name: list.name) }
   end
 
   def fetch_cards(**)
-    card = NTrello::Card.new(id: 1, name: "some card")
+    card = Trello::Card.new(id: 1, name: "some card")
 
     [card, card, card]
   end

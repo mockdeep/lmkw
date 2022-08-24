@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NTrello::Client
+class Trello::Client
   attr_accessor :member_token
 
   def self.developer_public_key
@@ -30,7 +30,7 @@ class NTrello::Client
     response = HTTP.get(board_url)
     board = JSON.parse(response.body, symbolize_names: true)
 
-    NTrello::Board.new(**board.slice(:id, :name, :url))
+    Trello::Board.new(**board.slice(:id, :name, :url))
   end
 
   def fetch_lists(board_id:)
@@ -39,7 +39,7 @@ class NTrello::Client
     response = HTTP.get(lists_url)
     lists = JSON.parse(response.body, symbolize_names: true)
 
-    lists.map { |list| NTrello::List.new(**list.slice(:id, :name)) }
+    lists.map { |list| Trello::List.new(**list.slice(:id, :name)) }
   end
 
   def fetch_cards(list_id:)
@@ -48,14 +48,14 @@ class NTrello::Client
     response = HTTP.get(cards_url)
     cards = JSON.parse(response.body, symbolize_names: true)
 
-    cards.map { |card| NTrello::Card.new(**card.slice(:id, :name)) }
+    cards.map { |card| Trello::Card.new(**card.slice(:id, :name)) }
   end
 
   def fetch_boards
     response = HTTP.get(open_boards_url)
     boards = JSON.parse(response.body, symbolize_names: true)
 
-    boards.map { |board| NTrello::Board.new(**board.slice(:id, :name, :url)) }
+    boards.map { |board| Trello::Board.new(**board.slice(:id, :name, :url)) }
   end
 
   private

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NTrello::Board
+class Trello::Board
   attr_accessor :id, :name, :url
 
   def initialize(id:, name:, url:)
