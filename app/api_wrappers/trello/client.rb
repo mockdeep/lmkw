@@ -26,26 +26,21 @@ class Trello::Client
   end
 
   def fetch_board(id:)
-    board_url = "https://api.trello.com/1/boards/#{id}?#{auth_params.to_query}"
-    response = HTTP.get(board_url)
+    response = HTTP.get(board_url(id:))
     board = JSON.parse(response.body, symbolize_names: true)
 
     Trello::Board.new(**board.slice(:id, :name, :url))
   end
 
   def fetch_lists(board_id:)
-    lists_url =
-      "https://api.trello.com/1/boards/#{board_id}/lists?#{auth_params.to_query}"
-    response = HTTP.get(lists_url)
+    response = HTTP.get(lists_url(board_id:))
     lists = JSON.parse(response.body, symbolize_names: true)
 
     lists.map { |list| Trello::List.new(**list.slice(:id, :name)) }
   end
 
   def fetch_cards(list_id:)
-    cards_url =
-      "https://api.trello.com/1/lists/#{list_id}/cards?#{auth_params.to_query}"
-    response = HTTP.get(cards_url)
+    response = HTTP.get(cards_url(list_id:))
     cards = JSON.parse(response.body, symbolize_names: true)
 
     cards.map { |card| Trello::Card.new(**card.slice(:id, :name)) }
@@ -64,10 +59,26 @@ class Trello::Client
     self.class.developer_public_key
   end
 
-  def open_boards_url
-    params = { filter: "open", **auth_params }
+  def board_url(id:)
+    trello_api_url("boards/#{id}")
+  end
 
-    "https://api.trello.com/1/members/#{username}/boards?#{params.to_query}"
+  def lists_url(board_id:)
+    trello_api_url("boards/#{board_id}/lists")
+  end
+
+  def cards_url(list_id:)
+    trello_api_url("lists/#{list_id}/cards")
+  end
+
+  def open_boards_url
+    trello_api_url("members/#{username}/boards", filter: "open")
+  end
+
+  def trello_api_url(path, **params)
+    params.merge!(auth_params)
+
+    "https://api.trello.com/1/#{path}?#{params.to_query}"
   end
 
   def auth_params
@@ -81,6 +92,6 @@ class Trello::Client
   end
 
   def trello_member_url
-    "https://api.trello.com/1/members/me?#{auth_params.to_query}"
+    trello_api_url("members/me")
   end
 end
