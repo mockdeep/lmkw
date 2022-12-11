@@ -26,7 +26,7 @@ RSpec.describe "Trello integration", type: :system, js: true do
     click_link("Authenticate with Trello")
     click_link("Log in")
     fill_in("user", with: trello_email)
-    click_button("Log in with Atlassian")
+    click_button("Continue")
     fill_in("password", with: trello_password)
     click_button("Log in")
     Capybara.using_wait_time(30) { click_button("Allow") }
