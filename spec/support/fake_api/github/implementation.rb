@@ -53,7 +53,7 @@ class FakeApi::Github::Implementation
     end
 
     def web_endpoint
-      "/fake_github_url"
+      "/github"
     end
   end
 end

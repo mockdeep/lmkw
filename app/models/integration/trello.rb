@@ -5,7 +5,14 @@ class Integration::Trello < Integration
   store_accessor :data, :member_token
   delegate :fetch_board, :fetch_boards, :fetch_lists, :fetch_cards, to: :client
 
-  class_attribute :client_class, default: ::Trello::Client
+  def self.client_class=(client_class)
+    @client_class = client_class
+    @client = nil
+  end
+
+  def self.client_class
+    @client_class ||= ::Trello::Client
+  end
 
   def self.authorize_url(return_url:)
     client_class.authorize_url(return_url:)
@@ -14,6 +21,6 @@ class Integration::Trello < Integration
   private
 
   def client
-    @client ||= client_class.new(member_token:)
+    @client ||= self.class.client_class.new(member_token:)
   end
 end

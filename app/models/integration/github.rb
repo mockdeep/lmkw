@@ -14,7 +14,8 @@ class Integration::Github < Integration
   end
 
   def self.authorize_url(state:)
-    client.authorize_url(CLIENT_ID, scope: "repo", state:)
+    params = { client_id: CLIENT_ID, state: }
+    "#{client.web_endpoint}/login/oauth/authorize?#{params.to_query}"
   end
 
   def self.client
