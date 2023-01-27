@@ -18,7 +18,7 @@ Bundler/GemVersion:
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: have_no, not_to
-RSpec/Capybara/NegationMatcher:
+Capybara/NegationMatcher:
   Exclude:
     - 'spec/controllers/checks_controller_spec.rb'
 
