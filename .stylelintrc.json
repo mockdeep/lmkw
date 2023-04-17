@@ -6,6 +6,7 @@
   ],
   "rules": {
     "alpha-value-notation": "number",
-    "color-function-notation": "legacy"
+    "color-function-notation": "legacy",
+    "media-feature-range-notation": "prefix"
   }
 }
