@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "./have_no_checks"
+require_relative "have_no_checks"
 
 class Matchers::HaveNoActiveChecks < Matchers::HaveNoChecks
   def matches?(page)
