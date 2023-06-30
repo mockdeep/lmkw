@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "./have_check"
+require_relative "have_check"
 
 class Matchers::HaveActiveCheck < Matchers::HaveCheck
   def matches?(page)
