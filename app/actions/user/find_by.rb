@@ -3,7 +3,7 @@
 class User::FindBy
   include JunkDrawer::Callable
 
-  def call(**params)
-    User.find_by(**params) || NullUser.new
+  def call(**)
+    User.find_by(**) || NullUser.new
   end
 end
