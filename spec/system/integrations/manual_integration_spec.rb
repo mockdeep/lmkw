@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "manual integration", type: :system, js: true do
+RSpec.describe "manual integration", :js, type: :system do
   def start_new_check
     expect(page).to have_heading("Checks")
     click_link("+ New Check")
