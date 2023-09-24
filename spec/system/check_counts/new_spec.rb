@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "check_counts/new", type: :system, js: true do
+RSpec.describe "check_counts/new", :js, type: :system do
   def user_creates_count
     click_link("visit manual")
 
