@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# We need vendor and app in the node path so that esbuild can pick up various
+# javascript files when building and bundling our typescript
+export NODE_PATH="$NODE_PATH:vendor/assets/javascripts:app/"
+
+# See https://esbuild.github.io/api/ for the full list of options.
+#
+# --bundle: Bundle imported javascript into a single file containing all the js
+# --format: Use iife (Immediately Invoked Function Expression)
+# --loader: Handle png files we import in some react code
+# --minify: Minify the resulting
+# --outdir: Where to write the resulting compiled js
+# --sourcemap: Include sourcemaps in the build
+# --target: Which javascript version to target
+# --tree-shaking: Remove unreachable code from the resulting bundle
+# $@: pass through any additional arguments (useful for adding `--watch`)
+
+yarn esbuild app/javascript/packs/*.* \
+  --bundle \
+  --sourcemap \
+  --format=esm \
+  --outdir=app/assets/builds \
+  --public-path=/assets \
+  --tree-shaking=true \
+  "$@"

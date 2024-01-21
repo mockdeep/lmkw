@@ -17,6 +17,8 @@
 /storage/*
 !/storage/.keep
 
+/app/assets/builds/*
+!/app/assets/builds/.keep
 /public/assets
 .byebug_history
 
