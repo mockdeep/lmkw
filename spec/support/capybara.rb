@@ -10,8 +10,7 @@ Capybara.register_driver(:chrome, &Capybara.drivers[:selenium_chrome])
 Capybara.register_driver(:firefox, &Capybara.drivers[:selenium])
 Capybara.save_path = ENV.fetch("CIRCLE_ARTIFACTS", Capybara.save_path)
 
-default_driver = FakeApis.enabled? ? :selenium_headless : :selenium
-driver = ENV.key?("DRIVER") ? ENV.fetch("DRIVER").to_sym : default_driver
+driver = ENV.fetch("DRIVER", :firefox).to_sym
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
