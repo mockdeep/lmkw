@@ -21,6 +21,6 @@ RSpec.describe User::RequestFind do
   it "returns a NullUser when no session[:user_id]" do
     request = make_request
 
-    expect(described_class.call(request)).to be_kind_of(NullUser)
+    expect(described_class.call(request)).to be_a(NullUser)
   end
 end

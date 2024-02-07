@@ -10,6 +10,6 @@ RSpec.describe User::FindBy do
   end
 
   it "returns a NullUser when no user is found" do
-    expect(described_class.call(email: "not an email")).to be_kind_of(NullUser)
+    expect(described_class.call(email: "not an email")).to be_a(NullUser)
   end
 end
