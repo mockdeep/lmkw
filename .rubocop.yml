@@ -18,7 +18,6 @@ AllCops:
 #
 ################################################################################
 
-Bundler/GemVersion: { EnforcedStyle: forbidden, AllowedGems: [rails] }
 Layout/LineLength: { Max: 80, Exclude: ["config/**/*"], AutoCorrect: true }
 Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
 Metrics/BlockLength:
@@ -72,6 +71,7 @@ Style/WordArray: { EnforcedStyle: brackets }
 ################################################################################
 
 Bundler/GemComment: { Enabled: false }
+Bundler/GemVersion: { Enabled: false }
 Layout/SingleLineBlockChain: { Enabled: false }
 Lint/ConstantResolution: { Enabled: false }
 Rails/RedundantPresenceValidationOnBelongsTo: { Enabled: false }
