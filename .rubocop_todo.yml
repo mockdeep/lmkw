@@ -21,35 +21,6 @@ Capybara/ClickLinkOrButtonStyle:
     - 'spec/system/integrations/trello_integration_spec.rb'
     - 'spec/system/sessions_spec.rb'
 
-# Offense count: 23
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: Inferences.
-RSpec/Rails/InferredSpecType:
-  Exclude:
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/controllers/checks_controller_spec.rb'
-    - 'spec/controllers/sessions_controller_spec.rb'
-    - 'spec/models/api_key_spec.rb'
-    - 'spec/models/check/manual/any_count_spec.rb'
-    - 'spec/models/check/target_spec.rb'
-    - 'spec/models/check_spec.rb'
-    - 'spec/models/count_spec.rb'
-    - 'spec/models/integration_spec.rb'
-    - 'spec/models/user_spec.rb'
-    - 'spec/requests/application_controller_spec.rb'
-    - 'spec/requests/check_counts_controller_spec.rb'
-    - 'spec/requests/manual_checks_controller_spec.rb'
-    - 'spec/requests/manual_integrations_controller_spec.rb'
-    - 'spec/system/account_spec.rb'
-    - 'spec/system/check_counts/new_spec.rb'
-    - 'spec/system/checks/edit_spec.rb'
-    - 'spec/system/checks/index_spec.rb'
-    - 'spec/system/integrations/github_integration_spec.rb'
-    - 'spec/system/integrations/manual_integration_spec.rb'
-    - 'spec/system/integrations/trello_integration_spec.rb'
-    - 'spec/system/sessions_spec.rb'
-    - 'spec/system/welcome_spec.rb'
-
 # Offense count: 11
 Rails/I18nLocaleTexts:
   Exclude:

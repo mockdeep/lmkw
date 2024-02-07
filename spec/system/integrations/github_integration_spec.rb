@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "GitHub integration", :js, type: :system do
+RSpec.describe "GitHub integration", :js do
   def github_email
     Rails.configuration.x.github.email
   end

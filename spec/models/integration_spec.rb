@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Integration, type: :model do
+RSpec.describe Integration do
   it { is_expected.to have_many(:checks).dependent(:delete_all) }
 
   describe ".github" do

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ChecksController, type: :controller do
+RSpec.describe ChecksController do
   describe "#index" do
     it "renders the checks page" do
       login_as(create(:user))

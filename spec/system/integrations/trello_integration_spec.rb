@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Trello integration", :js, type: :system do
+RSpec.describe "Trello integration", :js do
   def trello_email
     Rails.configuration.x.trello.email
   end
