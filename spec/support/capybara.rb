@@ -14,10 +14,6 @@ driver = ENV.fetch("DRIVER", :firefox).to_sym
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
-    driven_by(:rack_test)
-  end
-
-  config.before(:each, :js, type: :system) do
     driven_by(driver)
   end
 
