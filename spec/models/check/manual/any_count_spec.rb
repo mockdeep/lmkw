@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Check::Manual::AnyCount, type: :model do
+RSpec.describe Check::Manual::AnyCount do
   include Rails.application.routes.url_helpers
 
   describe "#next_step" do

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ManualChecksController, type: :request do
+RSpec.describe ManualChecksController do
   describe "#new" do
     it "renders the new check page" do
       integration = create(:manual_integration)

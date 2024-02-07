@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "user sessions", type: :system do
+RSpec.describe "user sessions" do
   it "allows a user to log into their account" do
     sign_in(default_user)
 

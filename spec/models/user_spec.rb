@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   it { is_expected.to have_many(:integrations).dependent(:delete_all) }
   it { is_expected.to have_many(:checks).dependent(:delete_all) }
   it { is_expected.to have_many(:targets).through(:checks) }

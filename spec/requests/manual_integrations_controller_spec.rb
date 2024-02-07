@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ManualIntegrationsController, type: :request do
+RSpec.describe ManualIntegrationsController do
   describe "#new" do
     it "creates a manual integration for the user when not existing" do
       user = create(:user)

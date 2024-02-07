@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Count, type: :model do
+RSpec.describe Count do
   it { is_expected.to validate_presence_of(:check_id) }
   it { is_expected.to validate_presence_of(:value) }
   it { is_expected.to belong_to(:check) }

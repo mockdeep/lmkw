@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe CheckCountsController, type: :request do
+RSpec.describe CheckCountsController do
   describe "#new" do
     it "renders the new count form" do
       check = create(:check)

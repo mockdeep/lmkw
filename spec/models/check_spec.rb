@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Check, type: :model do
+RSpec.describe Check do
   it { is_expected.to belong_to(:integration) }
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_one(:target).dependent(:delete) }

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe SessionsController, type: :controller do
+RSpec.describe SessionsController do
   def valid_create_params(user)
     { session: user.slice(:email, :password) }
   end

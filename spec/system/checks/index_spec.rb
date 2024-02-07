@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "checks/index", :js, type: :system do
+RSpec.describe "checks/index", :js do
   def find_check(check)
     Page::Check.find(page, check)
   end

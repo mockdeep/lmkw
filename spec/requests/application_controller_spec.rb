@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ApplicationController, type: :request do
+RSpec.describe ApplicationController do
   describe "#authenticate_user" do
     it "finds the user by session" do
       check = create(:check)
