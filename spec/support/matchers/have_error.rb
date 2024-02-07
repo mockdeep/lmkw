@@ -12,13 +12,17 @@ class Matchers::HaveError
   def matches?(actual)
     @actual = actual
 
-    actual.has_selector?(ERROR_SELECTOR, text: expected_message)
+    actual_message == expected_message
+  end
+
+  def actual_message
+    actual.native.attribute("validationMessage")
   end
 
   def failure_message
     <<~MESSAGE.squish
       expected to find error with text #{expected_message} but found
-      #{actual.all(ERROR_SELECTOR).map(&:text)}
+      #{actual_message}
     MESSAGE
   end
 end

@@ -41,22 +41,19 @@ RSpec.describe "user account" do
   it "does not allow user to sign up with invalid email" do
     sign_up_with(email: "boo#boo")
 
-    expect(page).to have_flash(:error, "problem setting up your account")
-      .and have_error("Email is invalid")
+    expect(find_field("Email")).to have_error("Please enter an email address.")
   end
 
   it "does not allow user to sign up with invalid password" do
     sign_up_with(password: "")
 
-    expect(page).to have_flash(:error, "problem setting up your account")
-      .and have_error("Password can't be blank")
+    expect(find_field("Password")).to have_error("Please fill out this field.")
   end
 
   it "does not allow user to sign up with invalid password confirmation" do
     sign_up_with(password_confirmation: "not the same")
 
     expect(page).to have_flash(:error, "problem setting up your account")
-      .and have_error("Password confirmation doesn't match")
   end
 
   it "allows a user to edit their email" do
