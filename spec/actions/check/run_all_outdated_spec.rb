@@ -6,7 +6,10 @@ RSpec.describe Check::RunAllOutdated do
   include ActiveJob::TestHelper
 
   around do |example|
+    adapter = ActiveJob::Base.queue_adapter
+    ActiveJob::Base.queue_adapter = :test
     perform_enqueued_jobs { example.run }
+    ActiveJob::Base.queue_adapter = adapter
   end
 
   it "runs checks that have not been updated in the last five minutes" do
