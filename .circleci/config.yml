@@ -31,7 +31,7 @@ jobs:
           install-chromedriver: false
 
       - node/install:
-          node-version: 16.14.0
+          node-version: 22.8.0
           install-yarn: true
 
       - run:
