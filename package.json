@@ -2,7 +2,7 @@
   "name": "LetMeKnowWhen",
   "private": true,
   "engines": {
-    "node": "16.14.0"
+    "node": "22.9.0"
   },
   "version": "0.1.0",
   "dependencies": {
