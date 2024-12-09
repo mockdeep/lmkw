@@ -17,7 +17,7 @@ gem "font-awesome-sass"
 gem "haml-rails"
 gem "http"
 gem "junk_drawer"
-gem "nokogiri", "~> 1.16.0" # for Ruby 3.2
+gem "nokogiri", "~> 1.17.0" # for Ruby 3.2
 gem "octokit"
 gem "pg"
 gem "pry-rails"
