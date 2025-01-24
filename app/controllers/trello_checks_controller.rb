@@ -34,7 +34,7 @@ class TrelloChecksController < ApplicationController
   def check_params
     check_params =
       if params.key?(:check)
-        params.require(:check).permit(:board_id, :list_id, :name)
+        params.expect(check: [:board_id, :list_id, :name])
       else
         {}
       end

@@ -34,7 +34,7 @@ class ManualChecksController < ApplicationController
   def check_params
     check_params =
       if params.key?(:check)
-        params.require(:check).permit(:name)
+        params.expect(check: [:name])
       else
         {}
       end
