@@ -27,6 +27,6 @@ class CheckCountsController < ApplicationController
   end
 
   def count_params
-    params.require(:count).permit(:value)
+    params.expect(count: [:value])
   end
 end

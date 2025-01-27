@@ -39,7 +39,7 @@ class ChecksController < ApplicationController
   end
 
   def check_params
-    params.require(:check).permit(:name, :refresh, target_attributes:)
+    params.expect(check: [:name, :refresh, { target_attributes: }])
   end
 
   def find_check(id)
