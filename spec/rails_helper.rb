@@ -11,6 +11,7 @@ end
 require "rspec/rails"
 require "sidekiq/testing"
 
+require_relative "support/assets"
 require_relative "support/capybara"
 require_relative "support/factory_bot"
 require_relative "support/fake_apis_rails"
