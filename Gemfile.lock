@@ -496,7 +496,7 @@ DEPENDENCIES
   http
   junk_drawer
   listen
-  nokogiri (~> 1.18.0)
+  nokogiri (~> 1.18.9)
   octokit
   pg
   pry-byebug
