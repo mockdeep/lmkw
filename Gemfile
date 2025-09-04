@@ -21,7 +21,7 @@ gem "nokogiri", "~> 1.18.9" # for Ruby 3.2
 gem "octokit"
 gem "pg"
 gem "pry-rails"
-gem "puma", "~> 6.4"
+gem "puma", "~> 7.0"
 gem "recurrence"
 gem "sass-rails"
 gem "sidekiq"
