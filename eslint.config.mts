@@ -46,14 +46,20 @@ export default defineConfig([
     },
     rules: {
       "@stylistic/array-element-newline": ["error", "consistent"],
+      "@stylistic/brace-style": ["error", "1tbs", {allowSingleLine: true}],
       "@stylistic/comma-dangle": ["error", "always-multiline"],
       "@stylistic/function-call-argument-newline": ["error", "consistent"],
       "@stylistic/indent": ["error", 2],
       "@stylistic/object-property-newline": ["error", {allowAllPropertiesOnSameLine: true}],
       "@stylistic/padded-blocks": ["error", "never"],
       "@stylistic/quote-props": ["error", "as-needed", {keywords: true}],
+      "@stylistic/space-before-function-paren": ["error", {anonymous: "always", named: "never"}],
+      "@typescript-eslint/explicit-member-accessibility": "off",
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-magic-numbers": "off",
+      "@typescript-eslint/prefer-readonly-parameter-types": "off",
+      "func-style": ["error", "declaration"],
+      "no-duplicate-imports": ["error", {allowSeparateTypeImports: true}],
       "no-magic-numbers": "off",
       "sort-imports": ["error", {ignoreCase: true, ignoreDeclarationSort: true}],
       "sort-keys": ["error", "asc", {caseSensitive: false, natural: true}],
@@ -75,6 +81,18 @@ export default defineConfig([
     rules: {
       "vitest/no-hooks": "off",
       "vitest/no-standalone-expect": "off",
+    },
+  },
+  {
+    files: ["spec/javascript/support/**/*"],
+    rules: {
+      "vitest/no-hooks": "off",
+    },
+  },
+  {
+    files: ["app/javascript/**/*.ts"],
+    rules: {
+      "vitest/require-hook": "off",
     },
   },
   ...eslintTodo,

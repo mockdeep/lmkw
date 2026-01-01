@@ -16,10 +16,11 @@
             %span.fas.fa-external-link-alt
       .card-actions
         - params = { check: { refresh: true } }
-        = link_to(check_path(check, params), method: :patch) do
+        = button_to(check_path(check, params), method: :patch) do
           = icon("fas", "sync-alt")
         = link_to(edit_check_path(check)) do
           = icon("fas", "pen")
-        - data = { confirm: "delete check? #{check.name}" }
-        = link_to(check_path(check), method: :delete, data:) do
+        - confirm = "delete check? #{check.name}"
+        - form_data = { data: { turbo: true, turbo_confirm: confirm } }
+        = button_to(check_path(check), method: :delete, form: form_data) do
           = icon("far", "trash-alt")

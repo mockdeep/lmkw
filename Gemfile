@@ -20,13 +20,14 @@ gem "junk_drawer"
 gem "nokogiri", "~> 1.19.0" # for Ruby 3.2
 gem "octokit"
 gem "pg"
+gem "phlex-rails"
 gem "propshaft"
 gem "puma", "~> 7.0"
 gem "recurrence"
 gem "sidekiq"
+gem "stimulus-rails"
 gem "strong_migrations"
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem "turbo-rails"
 
 group :development, :test do
   gem "bundler-audit"
