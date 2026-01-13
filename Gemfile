@@ -20,7 +20,6 @@ gem "junk_drawer"
 gem "nokogiri", "~> 1.19.0" # for Ruby 3.2
 gem "octokit"
 gem "pg"
-gem "pry-rails"
 gem "puma", "~> 7.0"
 gem "recurrence"
 gem "sass-rails"
@@ -33,9 +32,7 @@ gem "webpacker"
 
 group :development, :test do
   gem "bundler-audit"
-  gem "byebug"
   gem "factory_bot_rails"
-  gem "pry-byebug"
   gem "rspec-rails"
 end
 

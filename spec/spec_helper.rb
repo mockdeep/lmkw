@@ -5,8 +5,6 @@ SimpleCov.start("rails")
 SimpleCov.enable_coverage(:branch)
 SimpleCov.minimum_coverage(100)
 
-require "pry-byebug"
-
 require_relative "support/matchers"
 require_relative "support/fake_apis"
 require_relative "support/webmock"
