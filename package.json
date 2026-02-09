@@ -2,7 +2,7 @@
   "name": "LetMeKnowWhen",
   "private": true,
   "engines": {
-    "node": ">=16.20.2"
+    "node": "22.22.0"
   },
   "version": "0.1.0",
   "dependencies": {
@@ -15,13 +15,40 @@
     "postcss is a dep of stylelint-config-standard-scss, can probably be removed later"
   ],
   "devDependencies": {
-    "esbuild": "^0.21.0",
-    "postcss": "^8.5.6",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard-scss": "^11.1.0"
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
+    "@stylistic/eslint-plugin": "^5.7.0",
+    "@types/hotwired__turbo": "^8.0.5",
+    "@types/node": "^25.0.3",
+    "@types/rails__actioncable": "^8.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "esbuild": "^0.27.1",
+    "eslint": "^9.39.2",
+    "eslint-find-rules": "^5.0.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "eslint-plugin-vitest": "^0.5.4",
+    "globals": "^17.0.0",
+    "jiti": "^2.6.1",
+    "jsdom": "^28.0.0",
+    "stylelint": "^16.26.1",
+    "stylelint-config-property-sort-order-smacss": "^11.0.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-selector-bem-pattern": "^4.0.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0",
+    "vitest": "^4.0.18"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
-    "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*'"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=iife --outdir=app/assets/builds --public-path=/assets",
+    "eslint": "eslint ./ --cache --max-warnings=0",
+    "eslint_find_unused_rules": "eslint-find-rules --unused --flatConfig --no-core eslint.config.mts",
+    "pretest": "yarn tscheck && yarn eslint",
+    "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*'",
+    "test": "yarn vitest run --coverage",
+    "tscheck": "yarn tsc --noEmit"
   }
 }

@@ -74,6 +74,22 @@ jobs:
           command: bin/rails db:setup --trace
 
       - run:
+          name: Typescript
+          command: yarn tscheck
+
+      - run:
+          name: Find Unused ESLint Rules
+          command: yarn eslint_find_unused_rules
+
+      - run:
+          name: ESLint
+          command: yarn eslint
+
+      - run:
+          name: Vitest
+          command: yarn vitest run --coverage
+
+      - run:
           name: Brakeman
           command: bundle exec brakeman
 
