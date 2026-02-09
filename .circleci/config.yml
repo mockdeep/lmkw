@@ -29,12 +29,28 @@ jobs:
           install-chromedriver: false
 
       - node/install:
+<<<<<<< HEAD
           node-version: 16.14.0
           install-yarn: true
 
       - run:
           name: Which bundler?
           command: bundle -v
+=======
+          node-version: 22.22.0
+
+      - node/install-packages:
+          pkg-manager: pnpm
+
+      - browser-tools/install_firefox
+
+      - run:
+          name: Which versions?
+          command: |
+            bundle -v
+            node --version
+            pnpm --version
+>>>>>>> e21d1af (switch from yarn to pnpm (#1331))
 
       # https://circleci.com/docs/2.0/caching/
       - restore_cache:
@@ -74,12 +90,31 @@ jobs:
           command: bin/rails db:setup --trace
 
       - run:
+<<<<<<< HEAD
+=======
+          name: Typescript
+          command: pnpm tscheck
+
+      - run:
+          name: Find Unused ESLint Rules
+          command: pnpm eslint_find_unused_rules
+
+      - run:
+          name: ESLint
+          command: pnpm eslint
+
+      - run:
+          name: Vitest
+          command: pnpm vitest run --coverage
+
+      - run:
+>>>>>>> e21d1af (switch from yarn to pnpm (#1331))
           name: Brakeman
           command: bundle exec brakeman
 
       - run:
           name: Stylelint
-          command: yarn stylelint
+          command: pnpm stylelint
 
       - run:
           name: Rubocop

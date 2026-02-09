@@ -4,6 +4,10 @@
   "engines": {
     "node": "16.14.0"
   },
+<<<<<<< HEAD
+=======
+  "packageManager": "pnpm@10.5.2",
+>>>>>>> e21d1af (switch from yarn to pnpm (#1331))
   "version": "0.1.0",
   "dependencies": {
     "@rails/actioncable": "^8.1.200",
@@ -22,6 +26,16 @@
     "webpack-dev-server": "^3"
   },
   "scripts": {
+<<<<<<< HEAD
     "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*'"
+=======
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=iife --outdir=app/assets/builds --public-path=/assets",
+    "eslint": "eslint ./ --cache --max-warnings=0",
+    "eslint_find_unused_rules": "eslint-find-rules --unused --flatConfig --no-core eslint.config.mts",
+    "pretest": "pnpm tscheck && pnpm eslint",
+    "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*'",
+    "test": "pnpm vitest run --coverage",
+    "tscheck": "tsc --noEmit"
+>>>>>>> e21d1af (switch from yarn to pnpm (#1331))
   }
 }

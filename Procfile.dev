@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 web: bundle exec rails s -p 3000
 critical_worker: bundle exec sidekiq -C config/sidekiq_critical.yml -q critical
 default_worker: bundle exec sidekiq -C config/sidekiq_default.yml -q critical -q default
@@ -5,3 +6,7 @@ slow_worker: bundle exec sidekiq -C config/sidekiq_slow.yml -q critical -q defau
 mail: mailcatcher -f
 webpack: ./bin/webpack-dev-server
 redis: redis-server
+=======
+web: PORT=3000 bundle exec puma -C config/puma.rb
+js: pnpm build --watch
+>>>>>>> e21d1af (switch from yarn to pnpm (#1331))
