@@ -1,4 +1,4 @@
 ruby     4.0.1
-nodejs   22.22.0
+nodejs   25.5.0
 postgres 13.7
 yarn     1.22.10
