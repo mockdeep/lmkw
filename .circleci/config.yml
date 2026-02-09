@@ -30,11 +30,18 @@ jobs:
 
       - node/install:
           node-version: 25.6.0
-          install-yarn: true
+
+      - node/install-packages:
+          pkg-manager: pnpm
+
+      - browser-tools/install_firefox
 
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: Which versions?
+          command: |
+            bundle -v
+            node --version
+            pnpm --version
 
       # https://circleci.com/docs/2.0/caching/
       - restore_cache:
@@ -51,20 +58,6 @@ jobs:
           paths:
             - vendor/bundle
 
-      - restore_cache:
-          keys:
-            - yarn-{{ checksum "yarn.lock" }}
-            - yarn-
-
-      - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
-
-      - save_cache:
-          key: yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -75,11 +68,19 @@ jobs:
 
       - run:
           name: Typescript
-          command: yarn tscheck
+          command: pnpm tscheck
 
       - run:
-          name: Jest
-          command: yarn jest --ci
+          name: Find Unused ESLint Rules
+          command: pnpm eslint_find_unused_rules
+
+      - run:
+          name: ESLint
+          command: pnpm eslint
+
+      - run:
+          name: Vitest
+          command: pnpm vitest run --coverage
 
       - run:
           name: Brakeman
@@ -87,7 +88,7 @@ jobs:
 
       - run:
           name: Stylelint
-          command: yarn stylelint
+          command: pnpm stylelint
 
       - run:
           name: Rubocop

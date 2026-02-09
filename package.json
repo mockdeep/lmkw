@@ -4,6 +4,7 @@
   "engines": {
     "node": ">=25.6.0"
   },
+  "packageManager": "pnpm@10.5.2",
   "version": "0.1.0",
   "dependencies": {
     "@rails/actioncable": "^8.1.200",
@@ -32,11 +33,12 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
-    "jest": "./node_modules/jest/bin/jest.js --coverage --config config/jest.json",
-    "pretest": "yarn tscheck",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=iife --outdir=app/assets/builds --public-path=/assets",
+    "eslint": "eslint ./ --cache --max-warnings=0",
+    "eslint_find_unused_rules": "eslint-find-rules --unused --flatConfig --no-core eslint.config.mts",
+    "pretest": "pnpm tscheck && pnpm eslint",
     "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*'",
-    "test": "yarn jest",
-    "tscheck": "yarn tsc --noEmit"
+    "test": "pnpm vitest run --coverage",
+    "tscheck": "tsc --noEmit"
   }
 }
