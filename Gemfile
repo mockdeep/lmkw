@@ -16,6 +16,7 @@ gem "faraday-retry", require: false # wanted by octokit
 gem "font-awesome-sass"
 gem "haml-rails"
 gem "http"
+gem "jsbundling-rails"
 gem "junk_drawer"
 gem "nokogiri", "~> 1.19.0" # for Ruby 3.2
 gem "octokit"
@@ -26,7 +27,6 @@ gem "sass-rails"
 gem "sidekiq"
 gem "strong_migrations"
 gem "turbolinks"
-gem "webpacker"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

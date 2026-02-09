@@ -1,5 +1,2 @@
-// Load all the channels within this directory and all subdirectories.
-// Channel files must be named *_channel.js.
-
-const channels = require.context('.', true, /_channel\.js$/)
-channels.keys().forEach(channels)
+// To use channels, create *_channel.js files in this directory
+// and import them in application.js
