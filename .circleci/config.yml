@@ -82,6 +82,14 @@ jobs:
           command: yarn jest --ci
 
       - run:
+          name: Find Unused ESLint Rules
+          command: yarn eslint_find_unused_rules
+
+      - run:
+          name: ESLint
+          command: yarn eslint
+
+      - run:
           name: Brakeman
           command: bundle exec brakeman
 
