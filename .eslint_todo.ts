@@ -24,6 +24,15 @@ const eslintTodo: Linter.Config[] = [
       "@stylistic/quotes": "off",
     },
   },
+  // Offense count: 1
+  {
+    files: [
+      "spec/javascript/application_spec.ts",
+    ],
+    rules: {
+      "vitest/prefer-to-be-truthy": "off",
+    },
+  },
   // Offense count: 8
   {
     files: [
@@ -34,22 +43,13 @@ const eslintTodo: Linter.Config[] = [
       "@stylistic/semi": "off",
     },
   },
-  // Offense count: 1
-  {
-    files: [
-      "spec/javascript/application_spec.ts",
-    ],
-    rules: {
-      "jest/prefer-importing-jest-globals": "off",
-    },
-  },
   // Offense count: 3
   {
     files: [
       "app/javascript/application.ts",
     ],
     rules: {
-      "jest/require-hook": "off",
+      "vitest/require-hook": "off",
     },
   },
 ];
