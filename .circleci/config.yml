@@ -30,7 +30,6 @@ jobs:
 
       - node/install:
           node-version: 25.6.0
-          install-yarn: true
 
       - run:
           name: Which bundler?
@@ -51,19 +50,8 @@ jobs:
           paths:
             - vendor/bundle
 
-      - restore_cache:
-          keys:
-            - yarn-{{ checksum "yarn.lock" }}
-            - yarn-
-
-      - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
-
-      - save_cache:
-          key: yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      - node/install-packages:
+          pkg-manager: pnpm
 
       - run:
           name: Wait for DB
@@ -75,19 +63,19 @@ jobs:
 
       - run:
           name: Typescript
-          command: yarn tscheck
+          command: pnpm tscheck
 
       - run:
           name: Jest
-          command: yarn jest --ci
+          command: pnpm jest --ci
 
       - run:
           name: Find Unused ESLint Rules
-          command: yarn eslint_find_unused_rules
+          command: pnpm eslint_find_unused_rules
 
       - run:
           name: ESLint
-          command: yarn eslint
+          command: pnpm eslint
 
       - run:
           name: Brakeman
@@ -95,7 +83,7 @@ jobs:
 
       - run:
           name: Stylelint
-          command: yarn stylelint
+          command: pnpm stylelint
 
       - run:
           name: Rubocop
