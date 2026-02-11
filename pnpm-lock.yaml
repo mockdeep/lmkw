@@ -31,8 +31,8 @@ importers:
         specifier: ^5.6.1
         version: 5.8.0(eslint@9.39.2(jiti@2.6.1))
       '@types/rails__actioncable':
-        specifier: ^6.1.11
-        version: 6.1.11
+        specifier: ^8.0.3
+        version: 8.0.3
       '@types/rails__activestorage':
         specifier: ^8.0.1
         version: 8.0.1
@@ -751,8 +751,8 @@ packages:
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
-  '@types/rails__actioncable@6.1.11':
-    resolution: {integrity: sha512-L6A3Rg6sGsv2cqalOgdOmyFvL1Pw69Mg0WuG6NtY9chzabhtkiSFY5fczo72mqRGezrMvl0Jy80v+N719CW+Tg==}
+  '@types/rails__actioncable@8.0.3':
+    resolution: {integrity: sha512-y46MOTYorVQVwlHUyaZYbrh3nIkXsRYNuPna32lb3RngLVBlndNbIPvAUywFfhivftNhYg+vW5sZKWYCVIX2lA==}
 
   '@types/rails__activestorage@8.0.1':
     resolution: {integrity: sha512-gwUZjLHyllzSEmegCXfkL11PrpZ/3Z+vCXBbYWgIdtX0ChfjtZcKq7HGfXYO5v5UYGLYenjGH3u8U+PpnA3dhg==}
@@ -3138,7 +3138,7 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
-  '@types/rails__actioncable@6.1.11': {}
+  '@types/rails__actioncable@8.0.3': {}
 
   '@types/rails__activestorage@8.0.1': {}
 

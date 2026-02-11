@@ -19,7 +19,7 @@
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
     "@stylistic/eslint-plugin": "^5.6.1",
-    "@types/rails__actioncable": "^6.1.11",
+    "@types/rails__actioncable": "^8.0.3",
     "@types/rails__activestorage": "^8.0.1",
     "@types/rails__ujs": "^6.0.4",
     "@types/turbolinks": "^5.2.2",
