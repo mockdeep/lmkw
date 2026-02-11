@@ -108,7 +108,7 @@ main {
   display: grid;
   margin-top: 50px;
   grid-template-columns: repeat(auto-fill, 350px);
-  grid-gap: 25px;
+  gap: 25px;
 }
 
 hr {
@@ -138,7 +138,7 @@ hr {
   text-align: center;
   color: #fff;
   cursor: pointer;
-  background-color: rgba(71, 120, 186, 1);
+  background-color: rgb(71, 120, 186);
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.2s linear;
