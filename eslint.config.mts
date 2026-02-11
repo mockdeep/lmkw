@@ -1,6 +1,6 @@
 import globals from "globals";
 import importPlugin from "eslint-plugin-import";
-import jest from "eslint-plugin-jest";
+import vitest from "eslint-plugin-vitest";
 import js from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
@@ -13,7 +13,7 @@ export default defineConfig([
   js.configs.all,
   tseslint.configs.all,
   importPlugin.flatConfigs.recommended,
-  jest.configs["flat/all"],
+  vitest.configs.all,
   stylistic.configs.all,
   {
     ignores: [
@@ -39,10 +39,10 @@ export default defineConfig([
     },
     plugins: {
       importPlugin,
-      jest,
       js,
       "sort-keys-fix": sortKeysFix,
       stylistic,
+      vitest,
     },
     rules: {
       "@stylistic/array-element-newline": ["error", "consistent"],
@@ -54,13 +54,13 @@ export default defineConfig([
       "@stylistic/quote-props": ["error", "as-needed", {keywords: true}],
       "@typescript-eslint/naming-convention": "off",
       "@typescript-eslint/no-magic-numbers": "off",
-      "jest/consistent-test-it": ["error", {fn: "it", withinDescribe: "it"}],
-      "jest/prefer-expect-assertions": "off",
-      "jest/require-top-level-describe": "off",
       "no-magic-numbers": "off",
       "sort-imports": ["error", {ignoreCase: true, ignoreDeclarationSort: true}],
       "sort-keys": ["error", "asc", {caseSensitive: false, natural: true}],
       "sort-keys-fix/sort-keys-fix": ["error", "asc", {caseSensitive: false, natural: true}],
+      "vitest/consistent-test-it": ["error", {fn: "it", withinDescribe: "it"}],
+      "vitest/prefer-expect-assertions": "off",
+      "vitest/require-top-level-describe": "off",
     },
     settings: {
       "import/resolver": {
@@ -73,8 +73,8 @@ export default defineConfig([
   {
     files: ["spec/javascript/test_helper.ts"],
     rules: {
-      "jest/no-hooks": "off",
-      "jest/no-standalone-expect": "off",
+      "vitest/no-hooks": "off",
+      "vitest/no-standalone-expect": "off",
     },
   },
   ...eslintTodo,
