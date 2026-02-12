@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="1" failures="0" errors="0" time="0.004950348">
-    <testsuite name="spec/javascript/application_spec.ts" timestamp="2026-02-11T04:55:30.261Z" hostname="fletch-ThinkPad-P15-Gen-2i" tests="1" failures="0" errors="0" skipped="0" time="0.004950348">
-        <testcase classname="spec/javascript/application_spec.ts" name="works" time="0.002661459">
-        </testcase>
-    </testsuite>
-</testsuites>
