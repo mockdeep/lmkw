@@ -66,10 +66,6 @@ jobs:
           command: pnpm tscheck
 
       - run:
-          name: Vitest
-          command: pnpm vitest
-
-      - run:
           name: Find Unused ESLint Rules
           command: pnpm eslint_find_unused_rules
 
@@ -78,12 +74,24 @@ jobs:
           command: pnpm eslint
 
       - run:
+          name: Verify ESLint Autogen
+          command: bundle exec exe/eslint_autogen
+
+      - run:
+          name: Vitest
+          command: pnpm vitest run --coverage
+
+      - run:
           name: Brakeman
           command: bundle exec brakeman
 
       - run:
           name: Stylelint
           command: pnpm stylelint
+
+      - run:
+          name: Verify Stylelint Autogen
+          command: bundle exec exe/stylelint_autogen
 
       - run:
           name: Rubocop

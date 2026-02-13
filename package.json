@@ -48,8 +48,8 @@
     "eslint_find_unused_rules": "eslint-find-rules --unused --flatConfig --no-core eslint.config.mts",
     "pretest": "pnpm tscheck && pnpm eslint",
     "stylelint": "./node_modules/stylelint/bin/stylelint.mjs 'app/assets/stylesheets/**/*'",
-    "test": "pnpm vitest",
-    "vitest": "vitest run --coverage",
+    "test": "pnpm vitest run --coverage",
+    "vitest": "vitest",
     "tscheck": "tsc --noEmit"
   }
 }

@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "active_support/all"
-require "pry"
+require "stringio"
 
 TODO_FILE_PATH = "./.eslint_todo.ts"
 HEADING = <<~COMMENTS.freeze
