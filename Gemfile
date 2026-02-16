@@ -26,7 +26,6 @@ gem "recurrence"
 gem "sass-rails"
 gem "sidekiq"
 gem "strong_migrations"
-gem "turbolinks"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
