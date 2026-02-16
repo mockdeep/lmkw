@@ -30,9 +30,15 @@ by_rule =
 output = StringIO.new
 output.puts(HEADING)
 output.puts
+<<<<<<< HEAD
 output.puts('import type {Linter} from "eslint";')
 output.puts
 output.puts("const eslintTodo: Linter.Config[] = [")
+=======
+output.puts("import type {Linter} from \"eslint\";")
+output.puts
+output.puts("const config: Linter.Config[] = [")
+>>>>>>> 1bbe39d (fix eslint_autogen script (#1341))
 
 by_rule.sort.each do |rule, file_paths|
   output.puts("  // Offense count: #{file_paths.length}")
@@ -53,6 +59,10 @@ end
 
 output.puts("];")
 output.puts
+<<<<<<< HEAD
 output.puts("export default eslintTodo;")
+=======
+output.puts("export default config;")
+>>>>>>> 1bbe39d (fix eslint_autogen script (#1341))
 
 File.write(TODO_FILE_PATH, output.string)
