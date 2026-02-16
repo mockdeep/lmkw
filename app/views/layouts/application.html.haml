@@ -15,7 +15,8 @@
     - colors = ["black", "blue", "purple", "orange"]
     = favicon_link_tag("fat-dot-#{colors.sample}.ico")
 
-  %body
+  - action = "keydown@document->hotkeys#handleKeydown"
+  %body{ data: { controller: "hotkeys", action: action } }
     .logo
       = image_tag("LMKW-logo-black.png", height: 100)
       %br
