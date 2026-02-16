@@ -13,7 +13,9 @@
   .actions
     = form.submit("Update Account")
 
+- confirm = "Are you sure? This cannot be undone."
+- form_data = { data: { turbo: true, turbo_confirm: confirm } }
 = button_to("Delete Account",
             account_path,
             method: :delete,
-            data: { confirm: "Are you sure? This cannot be undone." })
+            form: form_data)

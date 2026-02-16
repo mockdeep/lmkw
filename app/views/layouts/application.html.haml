@@ -6,11 +6,12 @@
     = csp_meta_tag
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }/
 
-    = stylesheet_link_tag("reset", media: "all")
-    - fa = "@fortawesome/fontawesome-free/css/all.min"
-    = stylesheet_link_tag(fa, media: "all")
-    = stylesheet_link_tag("application", media: "all")
-    = javascript_include_tag("application")
+    - stylesheet_options = { media: "all", "data-turbo-track": "reload" }
+    = stylesheet_link_tag("reset", **stylesheet_options)
+    - font_awesome = "@fortawesome/fontawesome-free/css/all.min"
+    = stylesheet_link_tag(font_awesome, **stylesheet_options)
+    = stylesheet_link_tag("application", **stylesheet_options)
+    = javascript_include_tag("application", "data-turbo-track": "reload")
     - colors = ["black", "blue", "purple", "orange"]
     = favicon_link_tag("fat-dot-#{colors.sample}.ico")
 
@@ -25,7 +26,7 @@
         = current_user.email
         %br
         = link_to("Account", account_path)
-        = link_to("Log Out", session_path, method: :delete)
+        = button_to("Log Out", session_path, method: :delete)
       - else
         = link_to("Log In", new_session_path)
         = link_to("Sign Up", new_account_path)

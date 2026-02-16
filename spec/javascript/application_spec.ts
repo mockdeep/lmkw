@@ -1,5 +1,6 @@
 import {expect, it} from "vitest";
+import "javascript/application";
 
-it('works', () => {
-  expect(true).toBe(true);
+it("disables Turbo", () => {
+  expect(Turbo.session.drive).toBeFalsy();
 });

@@ -30,7 +30,7 @@ RSpec.describe "user sessions" do
   it "allows a user to log out" do
     sign_in(default_user)
 
-    click_link("Log Out")
+    click_button("Log Out")
 
     expect(page).to have_no_text(default_user.email).and have_link("Log In")
   end
