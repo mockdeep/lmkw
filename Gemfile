@@ -13,7 +13,6 @@ gem "rails", "~> 8.1.0"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "faraday-retry", require: false # wanted by octokit
-gem "font-awesome-sass"
 gem "haml-rails"
 gem "http"
 gem "jsbundling-rails"
@@ -21,9 +20,9 @@ gem "junk_drawer"
 gem "nokogiri", "~> 1.19.0" # for Ruby 3.2
 gem "octokit"
 gem "pg"
+gem "propshaft"
 gem "puma", "~> 7.0"
 gem "recurrence"
-gem "sass-rails"
 gem "sidekiq"
 gem "strong_migrations"
 # Use Active Storage variant

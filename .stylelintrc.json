@@ -1,9 +1,5 @@
 {
-  "extends": "stylelint-config-standard-scss",
-  "//": [
-    "color-function-notation is 'legacy' because 'modern' causes SassC errors",
-    "color-function-alias-notation is off because SassC doesn't support rgb() with 4 args"
-  ],
+  "extends": "stylelint-config-standard",
   "rules": {
     "alpha-value-notation": "number",
     "color-function-alias-notation": null,
