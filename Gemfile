@@ -12,7 +12,9 @@ gem "rails", "~> 8.1.0"
 
 gem "bcrypt"
 gem "bootsnap", require: false
+gem "cssbundling-rails"
 gem "faraday-retry", require: false # wanted by octokit
+gem "goldiloader"
 gem "haml-rails"
 gem "http"
 gem "jsbundling-rails"
