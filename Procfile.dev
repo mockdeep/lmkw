@@ -1,5 +1,6 @@
 web: bundle exec rails s -p 3000
 js: pnpm build --watch
+css: pnpm build:css --watch
 critical_worker: bundle exec sidekiq -C config/sidekiq_critical.yml -q critical
 default_worker: bundle exec sidekiq -C config/sidekiq_default.yml -q critical -q default
 slow_worker: bundle exec sidekiq -C config/sidekiq_slow.yml -q critical -q default -q slow
