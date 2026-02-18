@@ -20,7 +20,7 @@ export default defineConfig([
       ".eslint_todo.ts",
       "app/assets/builds/**",
       "app/assets/config/manifest.js",
-      "app/javascript/trello_redirect.js",
+      "app/javascript/trello_redirect.ts",
       "babel.config.js",
       "coverage/**",
       "postcss.config.js",
