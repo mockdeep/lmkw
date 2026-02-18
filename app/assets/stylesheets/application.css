@@ -1,9 +1,4 @@
-/*
- * primary colors
- * orange: c57013 -- rgb(197, 112, 19)
- * purple/pink: bc2fbf -- rgb(188, 47, 191)
- * blue: 4778ba -- rgba(71, 120, 186)
- */
+@import url("./custom.css");
 
 body {
   background-color: #fff;

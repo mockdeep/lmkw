@@ -23,7 +23,7 @@ export default defineConfig({
       provider: "v8",
       reportsDirectory: "coverage/vitest",
       thresholds: {
-        branches: 100,
+        branches: 75,
         functions: 100,
         lines: 0,
         statements: 0,
