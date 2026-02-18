@@ -19,7 +19,7 @@ gem "haml-rails"
 gem "http"
 gem "jsbundling-rails"
 gem "junk_drawer"
-gem "nokogiri", "~> 1.19.0" # for Ruby 3.2
+gem "nokogiri", "~> 1.19.1" # for Ruby 3.2
 gem "octokit"
 gem "pg"
 gem "phlex-rails"
