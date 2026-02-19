@@ -1,9 +1,9 @@
-@import url("./custom.css");
+@import "./custom.css";
 
 body {
-  background-color: #fff;
-  color: #333;
   margin: 33px;
+  color: #333;
+  background-color: #fff;
 }
 
 body,
@@ -17,9 +17,9 @@ td {
 }
 
 pre {
-  background-color: #eee;
   padding: 10px;
   font-size: 11px;
+  background-color: #eee;
 }
 
 a {
@@ -54,20 +54,20 @@ div.actions {
 
 .error-explanation {
   width: 450px;
-  border: 2px solid red;
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+  border: 2px solid red;
 }
 
 .error-explanation h2 {
-  text-align: left;
-  font-weight: bold;
   padding: 5px 5px 5px 15px;
-  font-size: 12px;
   margin: -7px -7px 0;
-  background-color: #c00;
+  font-size: 12px;
+  font-weight: bold;
   color: #fff;
+  text-align: left;
+  background-color: #c00;
 }
 
 .error-explanation ul li {
@@ -86,9 +86,9 @@ main {
 
 .card-list {
   display: grid;
-  margin-top: 50px;
   grid-template-columns: repeat(auto-fill, 350px);
   gap: 25px;
+  margin-top: 50px;
 }
 
 hr {
@@ -98,8 +98,8 @@ hr {
 .active h2,
 .inactive h2 {
   margin-top: 50px;
-  font-weight: bold;
   font-size: 30px;
+  font-weight: bold;
 }
 
 .inactive {
@@ -113,65 +113,65 @@ hr {
 .btn-primary {
   padding: 9px 12px;
   font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(71 120 186);
   border: none;
   border-radius: 4px;
-  text-align: center;
-  color: #fff;
-  cursor: pointer;
-  background-color: rgb(71, 120, 186);
-  text-decoration: none;
-  font-weight: bold;
   transition: background-color 0.2s linear;
 }
 
 .btn-primary:hover {
-  background-color: rgba(71, 120, 186, 0.8);
+  background-color: rgb(71 120 186 / 80%);
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   .logo {
-    margin: auto;
     display: inherit;
     width: 217px;
+    margin: auto;
   }
 
   .nav {
-    text-align: center;
-    margin: auto;
     display: inherit;
     width: 217px;
+    margin: auto;
+    text-align: center;
   }
 }
 
 .header {
-  margin: 10px 0;
   padding: 10px 0;
+  margin: 10px 0;
 }
 
 .title {
-  margin-left: 55px;
   margin-top: -37px;
   margin-bottom: 20px;
+  margin-left: 55px;
 }
 
-@media (min-width: 400px) {
+@media (width >= 400px) {
   .nav {
     margin-left: 20px;
   }
 }
 
 h3 {
-  font-size: 1.5em;
-  margin-bottom: 25px;
   margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 1.5em;
 }
 
 .card {
   display: grid;
   grid-template-columns: auto 10px;
   min-height: 100px;
-  background-color: rgba(71, 120, 186, 0.4);
   padding: 20px;
+  background-color: rgb(71 120 186 / 40%);
   border-radius: 15px;
 }
 
@@ -180,8 +180,8 @@ h3 {
 }
 
 .card a {
-  text-decoration: none;
   text-align: center;
+  text-decoration: none;
 }
 
 .card a span {
@@ -213,16 +213,16 @@ h3 {
 }
 
 .check-value {
-  font-weight: bold;
-  border-radius: 50%;
-  padding: 10px;
-  background: #fff;
-  text-align: center;
-  color: #555;
-  font-size: 20px;
-  line-height: 30px;
   display: inline-block;
   min-width: 30px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  color: #555;
+  text-align: center;
+  background: #fff;
+  border-radius: 50%;
 }
 
 .target-value {
