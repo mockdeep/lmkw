@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 ruby     4.0.1
 nodejs   25.8.1
 postgres 13.7
 pnpm     10.5.2
+=======
+ruby 4.0.1
+nodejs 25.8.1
+postgres 16.8
+pnpm 10.5.2
+>>>>>>> c88fda3 (Update Node.js to version 25.8.1 (#1373))
