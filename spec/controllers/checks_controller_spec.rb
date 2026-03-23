@@ -40,6 +40,116 @@ RSpec.describe ChecksController do
     expect(rendered).to have_no_button("Refresh 1 Targets")
   end
 
+  describe "#show" do
+    def trello_check
+      integration = create(:trello_integration)
+      Check::Trello::ListHasCards.create!(
+        integration:,
+        name: "My Check",
+        board_id: "b1",
+        list_id: "l1",
+        user: integration.user,
+        target_attributes: { value: 0, delta: 0 },
+      )
+    end
+
+    it "renders the checklist view for Trello checks" do
+      check = trello_check
+      login_as(check.user)
+      stub_request(:get, /trello\.com.*cards/).to_return(body: [].to_json)
+      get(:show, params: { id: check.id })
+      expect(rendered).to have_content(check.name)
+    end
+
+    context "with a non-Trello check" do
+      before do
+        login_as(default_user)
+        get(:show, params: { id: create(:check).id })
+      end
+
+      it { expect(response).to redirect_to(checks_path) }
+
+      it "shows a Trello-specific alert" do
+        msg = "Details view is only available for Trello checks"
+        expect(flash[:alert]).to eq(msg)
+      end
+    end
+
+    context "when Trello API fails" do
+      before do
+        check = trello_check
+        login_as(check.user)
+        stub_request(:get, /trello\.com.*cards/)
+          .to_return(status: 500, body: "error")
+        get(:show, params: { id: check.id })
+      end
+
+      it { expect(response).to redirect_to(checks_path) }
+      it { expect(flash[:alert]).to include("Could not load Trello cards") }
+    end
+  end
+
+  describe "#update_checklist_item" do
+    def trello_check
+      integration = create(:trello_integration)
+      Check::Trello::ListHasCards.create!(
+        integration:,
+        name: "My Check",
+        board_id: "b1",
+        list_id: "l1",
+        user: integration.user,
+        target_attributes: { value: 0, delta: 0 },
+      )
+    end
+
+    def item_params
+      { cardId: "c1", itemId: "i1", state: "complete" }
+    end
+
+    def update_url_pattern
+      %r{api\.trello\.com.*cards/c1/checkItem/i1}
+    end
+
+    def bad_state_params(check)
+      { id: check.id, cardId: "c1", itemId: "i1", state: "bad" }
+    end
+
+    def stub_put_api_failure
+      stub_request(:put, update_url_pattern)
+        .to_return(status: 500, body: "error")
+    end
+
+    it "returns ok for Trello checks" do
+      check = trello_check
+      login_as(check.user)
+      stub_request(:put, update_url_pattern).to_return(body: {}.to_json)
+      put(:update_checklist_item, params: { id: check.id, **item_params })
+      expect(response).to have_http_status(:ok)
+    end
+
+    it "returns unprocessable_content for non-Trello checks" do
+      check = create(:check)
+      login_as(default_user)
+      put(:update_checklist_item, params: { id: check.id, **item_params })
+      expect(response).to have_http_status(:unprocessable_content)
+    end
+
+    it "returns unprocessable_content for an invalid state" do
+      check = trello_check
+      login_as(check.user)
+      put(:update_checklist_item, params: bad_state_params(check))
+      expect(response).to have_http_status(:unprocessable_content)
+    end
+
+    it "returns service_unavailable when Trello API fails" do
+      check = trello_check
+      login_as(check.user)
+      stub_put_api_failure
+      put(:update_checklist_item, params: { id: check.id, **item_params })
+      expect(response).to have_http_status(:service_unavailable)
+    end
+  end
+
   describe "#edit" do
     it "renders the edit page for a check" do
       check = create(:check)

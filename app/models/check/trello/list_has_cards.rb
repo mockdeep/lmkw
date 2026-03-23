@@ -35,4 +35,8 @@ class Check::Trello::ListHasCards < Check
   def lists
     integration.fetch_lists(board_id:)
   end
+
+  def update_checklist_item(card_id:, item_id:, state:)
+    integration.update_checklist_item(card_id:, item_id:, state:)
+  end
 end

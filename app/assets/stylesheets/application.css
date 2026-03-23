@@ -237,3 +237,82 @@ h3 {
 .target-value {
   background: #ddd;
 }
+
+.check-details {
+  max-width: 800px;
+  padding: 20px;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
+.check-details h1 {
+  margin-bottom: 1em;
+  font-size: 2em;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 2rem 0;
+}
+
+.card-column h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.card-column a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.card-column a:hover {
+  color: rgb(71 120 186);
+  text-decoration: underline;
+  background: none;
+}
+
+.checklist {
+  margin-top: 1rem;
+  margin-bottom: 1em;
+}
+
+.checklist h6 {
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.checklist ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.checklist ul li {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.75rem 0;
+  font-size: 1.125rem;
+}
+
+.checklist li label {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.checklist input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.25rem;
+  cursor: pointer;
+}
+
+.no-items {
+  font-style: italic;
+  color: #666;
+}
