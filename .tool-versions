@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 ruby     4.0.2
 nodejs   25.8.1
 postgres 13.7
 pnpm     10.5.2
 redis    7.2.4
+=======
+ruby 4.0.2
+nodejs 25.8.1
+postgres 16.8
+pnpm 10.5.2
+>>>>>>> 5658f63 (Update Ruby to version 4.0.2 (#1381))
