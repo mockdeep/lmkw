@@ -1,0 +1,25 @@
+.check-details
+  %h1= check.name
+
+  - if cards.empty?
+    %p.no-items No cards found in this list
+
+  .cards-grid
+    - cards.each do |card|
+      .card-column
+        %h2= link_to card.name, card.url, target: "_blank", rel: "noopener"
+
+        - card.checklists.each do |checklist|
+          - incomplete_items = checklist.incomplete_items
+          - if incomplete_items.any?
+            .checklist
+              %h6= checklist.name
+              %ul
+                - incomplete_items.each do |item|
+                  %li
+                    = label_tag "item_#{item.id}" do
+                      = check_box_tag "item_#{item.id}", "1", item.complete?,
+                          data: checklist_item_data(check, card, item)
+                      = linkify_text(item.name)
+
+  = link_to "Back to Checks", checks_path, class: "btn-primary"

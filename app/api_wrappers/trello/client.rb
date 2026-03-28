@@ -15,7 +15,7 @@ class Trello::Client
       name: "LetMeKnowWhen",
       response_type: "fragment",
       return_url:,
-      scope: "read",
+      scope: "read,write",
     }
 
     "https://trello.com/1/authorize?#{params.to_query}"
@@ -26,30 +26,32 @@ class Trello::Client
   end
 
   def fetch_board(id:)
-    response = HTTP.get(board_url(id:))
-    board = JSON.parse(response.body, symbolize_names: true)
-
+    board = request_json(:get, board_url(id:))
     Trello::Board.new(**board.slice(:id, :name, :url))
   end
 
   def fetch_lists(board_id:)
-    response = HTTP.get(lists_url(board_id:))
-    lists = JSON.parse(response.body, symbolize_names: true)
-
+    lists = request_json(:get, lists_url(board_id:))
     lists.map { |list| Trello::List.new(**list.slice(:id, :name)) }
   end
 
   def fetch_cards(list_id:)
-    response = HTTP.get(cards_url(list_id:))
-    cards = JSON.parse(response.body, symbolize_names: true)
+    url = cards_url(list_id:)
+    cards = request_json(:get, url, params: { checklists: "all" })
+    cards.map { |card| build_card(card) }
+  end
 
-    cards.map { |card| Trello::Card.new(**card.slice(:id, :name)) }
+  def update_checklist_item(card_id:, item_id:, state:)
+    request_json(
+      :put,
+      checklist_item_url(card_id:, item_id:),
+      params: { key: developer_public_key, token: member_token, state: },
+    )
   end
 
   def fetch_boards
-    response = HTTP.get(open_boards_url)
-    boards = JSON.parse(response.body, symbolize_names: true)
-
+    url = trello_api_url("members/#{username}/boards", filter: "open")
+    boards = request_json(:get, url)
     boards.map { |board| Trello::Board.new(**board.slice(:id, :name, :url)) }
   end
 
@@ -57,6 +59,28 @@ class Trello::Client
 
   def developer_public_key
     self.class.developer_public_key
+  end
+
+  def build_card(card)
+    Trello::Card.new(
+      id: card[:id],
+      name: card[:name],
+      short_url: card[:shortUrl],
+      checklists: build_checklists(card[:checklists] || []),
+    )
+  end
+
+  def build_checklists(checklists_data)
+    checklists_data.map { |raw| build_checklist(raw) }.sort_by(&:pos)
+  end
+
+  def build_checklist(raw)
+    Trello::Checklist.new(
+      id: raw[:id],
+      name: raw[:name],
+      check_items: raw[:checkItems] || [],
+      pos: raw[:pos],
+    )
   end
 
   def board_url(id:)
@@ -71,10 +95,6 @@ class Trello::Client
     trello_api_url("lists/#{list_id}/cards")
   end
 
-  def open_boards_url
-    trello_api_url("members/#{username}/boards", filter: "open")
-  end
-
   def trello_api_url(path, **params)
     params.merge!(auth_params)
 
@@ -86,12 +106,21 @@ class Trello::Client
   end
 
   def username
-    response = HTTP.get(trello_member_url)
-    data = JSON.parse(response.body, symbolize_names: true)
-    data[:username]
+    request_json(:get, trello_api_url("members/me"))[:username]
   end
 
-  def trello_member_url
-    trello_api_url("members/me")
+  def checklist_item_url(card_id:, item_id:)
+    "https://api.trello.com/1/cards/#{card_id}/checkItem/#{item_id}"
+  end
+
+  def request_json(method, url, **)
+    response = HTTP.timeout(connect: 5, read: 10).public_send(method, url, **)
+    unless response.status.success?
+      raise Trello::ApiError, "Trello API error #{response.status.code}"
+    end
+
+    JSON.parse(response.body, symbolize_names: true)
+  rescue HTTP::Error, JSON::ParserError => e
+    raise Trello::ApiError, "Trello request failed: #{e.message}"
   end
 end

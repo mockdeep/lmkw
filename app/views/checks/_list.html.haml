@@ -20,6 +20,9 @@
           = icon("fas", "sync-alt")
         = link_to(edit_check_path(check)) do
           = icon("fas", "pen")
+        - if check.is_a?(Check::Trello::ListHasCards)
+          = link_to(check_path(check)) do
+            = icon("fas", "tasks")
         - confirm = "delete check? #{check.name}"
         - form_data = { data: { turbo: true, turbo_confirm: confirm } }
         = button_to(check_path(check), method: :delete, form: form_data) do

@@ -6,6 +6,9 @@
 
 import {application} from "./application";
 
+import ChecklistItemController from "./checklist_item_controller";
+application.register("checklist-item", ChecklistItemController);
+
 import DialogController from "./dialog_controller";
 application.register("dialog", DialogController);
 

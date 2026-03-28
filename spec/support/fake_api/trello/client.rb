@@ -37,10 +37,14 @@ class FakeApi::Trello::Client
   end
 
   def fetch_cards(**)
-    card = Trello::Card.new(id: 1, name: "some card")
-
-    [card, card, card]
+    [fake_card("card1", "Test Card 1"), fake_card("card2", "Test Card 2")]
   end
+
+  def fake_card(id, name)
+    Trello::Card.new(id:, name:, short_url: "https://trello.com/c/#{id}")
+  end
+
+  def update_checklist_item(**); end
 
   def fetch_boards
     FakeApi::Trello::Implementation::Board.all

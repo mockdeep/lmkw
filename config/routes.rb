@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-Rails.application.routes.draw do
-  require "sidekiq/web"
+require "sidekiq/web"
 
+Rails.application.routes.draw do
   mount Sidekiq::Web, at: "/sidekiq", constraints: AdminConstraint.new
 
   root to: "welcome#index"
@@ -14,8 +14,9 @@ Rails.application.routes.draw do
     resources :refreshes, only: [:create]
   end
 
-  resources :checks, only: [:index, :new, :edit, :update, :destroy] do
+  resources :checks, only: [:index, :new, :show, :edit, :update, :destroy] do
     resources :counts, only: [:new, :create], controller: "check_counts"
+    put :update_checklist_item, on: :member
   end
 
   resources :trello_integrations, only: [:new] do
