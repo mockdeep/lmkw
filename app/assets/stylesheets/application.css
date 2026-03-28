@@ -250,32 +250,35 @@ h3 {
   font-size: 2em;
 }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+.checklists-grid {
+  columns: 2;
+  column-gap: 2rem;
   margin: 2rem 0;
 }
 
-.card-column h2 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+.checklist-card-name {
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.card-column a {
-  color: #2563eb;
+.checklist-card-name a {
+  color: inherit;
   text-decoration: none;
 }
 
-.card-column a:hover {
-  color: rgb(71 120 186);
+.checklist-card-name a:hover {
+  color: #374151;
   text-decoration: underline;
   background: none;
 }
 
 .checklist {
-  margin-top: 1rem;
-  margin-bottom: 1em;
+  margin-bottom: 2rem;
+  break-inside: avoid;
 }
 
 .checklist h6 {
