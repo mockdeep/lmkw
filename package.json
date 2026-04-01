@@ -1,6 +1,12 @@
 {
   "name": "LetMeKnowWhen",
   "private": true,
+<<<<<<< HEAD
+=======
+  "engines": {
+    "node": "25.8.2"
+  },
+>>>>>>> 2a75e91 (Update Node.js to version 25.8.2 (#1387))
   "packageManager": "pnpm@10.5.2",
   "engines": {
     "node": ">=25.8.2"
