@@ -5,10 +5,11 @@ require "capybara-screenshot/rspec"
 
 require_relative "capybara/rack_test"
 
-Capybara.server = :puma, { Silent: true }
+Capybara.enable_aria_label = true
 Capybara.register_driver(:chrome, &Capybara.drivers[:selenium_chrome])
 Capybara.register_driver(:firefox, &Capybara.drivers[:selenium])
 Capybara.save_path = ENV.fetch("CIRCLE_ARTIFACTS", Capybara.save_path)
+Capybara.server = :puma, { Silent: true }
 
 driver = ENV.fetch("DRIVER", :firefox).to_sym
 
