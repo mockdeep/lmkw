@@ -13,23 +13,23 @@ RSpec.describe "Trello integration", :js do
 
   def start_new_check
     expect(page).to have_heading("Checks")
-    click_link("+ New Check")
+    click_on("+ New Check")
 
     expect(page).to have_text("Pick an integration")
   end
 
   def authenticate_with_trello
-    click_link("Trello")
+    click_on("Trello")
 
     expect(page).to have_text("First time Trello integration")
 
-    click_link("Authenticate with Trello")
-    click_link("Log in")
+    click_on("Authenticate with Trello")
+    click_on("Log in")
     fill_in("user", with: trello_email)
-    click_button("Continue")
+    click_on("Continue")
     fill_in("password", with: trello_password)
-    click_button("Log in")
-    Capybara.using_wait_time(30) { click_button("Allow") }
+    click_on("Log in")
+    Capybara.using_wait_time(30) { click_on("Allow") }
   end
 
   def create_trello_check(board:, list:, name:)
@@ -44,20 +44,20 @@ RSpec.describe "Trello integration", :js do
     expect(page).to have_text("Pick a board")
 
     select(board, from: "Boards")
-    click_button("Next")
+    click_on("Next")
   end
 
   def select_list(list)
     expect(page).to have_text("Pick a list")
 
     select(list, from: "Lists")
-    click_button("Next")
+    click_on("Next")
   end
 
   def input_name(name)
     expect(page).to have_text("Name your check")
     fill_in("Name", with: name)
-    click_button("Done")
+    click_on("Done")
   end
 
   it "allows a user to configure a Trello integration" do

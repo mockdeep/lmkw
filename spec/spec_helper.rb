@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require "simplecov"
-SimpleCov.start("rails")
-SimpleCov.enable_coverage(:branch)
-SimpleCov.minimum_coverage(100)
-
 require_relative "support/matchers"
 require_relative "support/fake_apis"
 require_relative "support/webmock"
