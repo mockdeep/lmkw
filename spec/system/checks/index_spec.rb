@@ -60,7 +60,7 @@ RSpec.describe "checks/index", :js do
     checks = create_pair(:check, value: 5, target_value: 5, target_delta: 1)
     sign_in(default_user)
 
-    click_button("Refresh 1 Target")
+    click_on("Refresh 1 Target")
 
     expect(page).to have_active_check(checks.first.name)
       .and have_inactive_check(checks.second.name)
@@ -70,7 +70,7 @@ RSpec.describe "checks/index", :js do
     checks = create_pair(:check, value: 5, target_value: 5, target_delta: 1)
     sign_in(default_user)
 
-    click_button("Refresh All 2 Targets")
+    click_on("Refresh All 2 Targets")
 
     expect(page).to have_active_check(checks.first.name)
       .and have_active_check(checks.second.name)

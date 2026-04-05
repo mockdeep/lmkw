@@ -19,8 +19,13 @@ AllCops:
 #
 ################################################################################
 
-Layout/LineLength: { Max: 80, Exclude: ["config/**/*"], AutoCorrect: true }
+Style/ModuleFunction: { EnforcedStyle: extend_self }
+Layout/LineLength:
+  Max: 80
+  AutoCorrect: true
+  Exclude: ['config/**/*']
 Layout/MultilineMethodCallIndentation: { EnforcedStyle: indented }
+Layout/MultilineOperationIndentation: { EnforcedStyle: indented }
 Metrics/BlockLength:
   AllowedMethods:
     - describe
@@ -36,7 +41,6 @@ RSpec/MessageSpies: { EnforcedStyle: receive }
 RSpec/MultipleMemoizedHelpers: { AllowSubject: false, Max: 0 }
 Style/ArrayFirstLast: { Exclude: [Guardfile] }
 Style/ClassAndModuleChildren: { EnforcedStyle: compact }
-Style/CommentedKeyword: { Enabled: false }
 Style/MethodCallWithArgsParentheses:
   AllowedMethods:
     - and
@@ -73,6 +77,7 @@ Style/WordArray: { EnforcedStyle: brackets }
 
 Bundler/GemComment: { Enabled: false }
 Bundler/GemVersion: { Enabled: false }
+Capybara/AmbiguousClick: { Enabled: false }
 Layout/SingleLineBlockChain: { Enabled: false }
 Lint/ConstantResolution: { Enabled: false }
 Rails/RedundantPresenceValidationOnBelongsTo: { Enabled: false }
@@ -80,6 +85,7 @@ Rails/SchemaComment: { Enabled: false }
 RSpec/AlignLeftLetBrace: { Enabled: false }
 RSpec/AlignRightLetBrace: { Enabled: false }
 RSpec/StubbedMock: { Enabled: false }
+Style/CommentedKeyword: { Enabled: false }
 Style/ConstantVisibility: { Enabled: false }
 Style/Copyright: { Enabled: false }
 Style/Documentation: { Enabled: false }

@@ -12,7 +12,7 @@ RSpec.describe "checks/edit", :js do
 
     params.each { |field, value| fill_in(field, with: value) }
 
-    click_button("Update Check")
+    click_on("Update Check")
   end
 
   def expect_check_to_activate(check)
