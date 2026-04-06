@@ -1,8 +1,15 @@
+require:
+  - ./linters/rubocop/cop/rspec/no_before_hook
+
 inherit_from: .rubocop_todo.yml
+
+inherit_mode:
+  merge: [Exclude]
 
 plugins:
   - rubocop-capybara
   - rubocop-factory_bot
+  - rubocop-i18n
   - rubocop-rails
   - rubocop-rspec
   - rubocop-rspec_rails
@@ -33,12 +40,20 @@ Metrics/BlockLength:
   Exclude:
     - Guardfile
 Rails/FilePath: { EnforcedStyle: slashes }
+Metrics/MethodLength: { Exclude: [db/migrate/**/*.rb] }
 RSpec/ImplicitSubject: { EnforcedStyle: single_statement_only }
 RSpec/MessageExpectation:
   EnforcedStyle: expect
   Exclude: [spec/support/matchers/invoke_matcher.rb]
 RSpec/MessageSpies: { EnforcedStyle: receive }
-RSpec/MultipleMemoizedHelpers: { Max: 0, AllowSubject: false }
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/system/**/*.rb
+RSpec/MultipleMemoizedHelpers:
+  Max: 0
+  AllowSubject: false
+  Exclude:
+    - spec/linters/rubocop/**/*.rb
 Style/ArrayFirstLast: { Exclude: [Guardfile] }
 Style/ClassAndModuleChildren: { EnforcedStyle: compact }
 Style/MethodCallWithArgsParentheses:
@@ -68,6 +83,13 @@ Style/TrailingCommaInArguments: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInArrayLiteral: { EnforcedStyleForMultiline: comma }
 Style/TrailingCommaInHashLiteral: { EnforcedStyleForMultiline: comma }
 Style/WordArray: { EnforcedStyle: brackets }
+
+I18n/GetText/DecorateString:
+  Exclude:
+    - linters/**/*.rb
+I18n/RailsI18n/DecorateString:
+  Exclude:
+    - linters/**/*.rb
 
 ################################################################################
 #
