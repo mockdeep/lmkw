@@ -1,5 +1,5 @@
 ruby     4.0.2
-nodejs   25.8.2
+nodejs   25.9.0
 postgres 13.7
 pnpm     10.5.2
 redis    7.2.4
