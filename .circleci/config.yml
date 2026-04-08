@@ -30,6 +30,14 @@ jobs:
 
       - node/install:
           node-version: 25.9.0
+<<<<<<< HEAD
+=======
+
+      - node/install-packages:
+          pkg-manager: pnpm
+
+      - browser-tools/install_firefox
+>>>>>>> 5cd5356 (Update Node.js to version 25.9.0 (#1401))
 
       - run:
           name: Which bundler?
