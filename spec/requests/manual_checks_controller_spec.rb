@@ -10,7 +10,7 @@ RSpec.describe ManualChecksController do
 
       get(new_manual_integration_check_path(integration))
 
-      expect(rendered).to have_content("Name your check")
+      expect(rendered).to have_text("Name your check")
     end
   end
 
