@@ -9,7 +9,7 @@ RSpec.describe ChecksController do
 
       get(:index)
 
-      expect(rendered).to have_content("Checks")
+      expect(rendered).to have_text("Checks")
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.describe ChecksController do
       login_as(check.user)
       stub_request(:get, /trello\.com.*cards/).to_return(body: [].to_json)
       get(:show, params: { id: check.id })
-      expect(rendered).to have_content(check.name)
+      expect(rendered).to have_text(check.name)
     end
 
     context "with a non-Trello check" do
@@ -157,7 +157,7 @@ RSpec.describe ChecksController do
 
       get(:edit, params: { id: check.id })
 
-      expect(rendered).to have_content("Editing Check: #{check.name}")
+      expect(rendered).to have_text("Editing Check: #{check.name}")
     end
   end
 
@@ -211,7 +211,7 @@ RSpec.describe ChecksController do
         check_params = { target_attributes: { value: "" } }
         put(:update, params: { id: check.id, check: check_params })
 
-        expect(rendered).to have_content("Editing Check: #{check.name}")
+        expect(rendered).to have_text("Editing Check: #{check.name}")
       end
     end
   end
