@@ -28,10 +28,10 @@ class ChecksController < ApplicationController
   def update
     check = find_check(params[:id])
     if check.update(check_params)
-      flash[:success] = "Check updated"
+      flash[:success] = t(".success")
       redirect_to(checks_path)
     else
-      flash.now[:error] = "Unable to update check"
+      flash.now[:error] = t(".error")
       render(:edit, locals: { check: })
     end
   end
@@ -53,7 +53,7 @@ class ChecksController < ApplicationController
   def destroy
     Check::Destroy.call(find_check(params[:id]))
 
-    flash[:success] = "Check deleted"
+    flash[:success] = t(".success")
     redirect_to(checks_path)
   end
 
@@ -80,13 +80,10 @@ class ChecksController < ApplicationController
   end
 
   def redirect_not_trello
-    redirect_to(
-      checks_path,
-      alert: "Details view is only available for Trello checks",
-    )
+    redirect_to(checks_path, alert: t("checks.show.not_trello"))
   end
 
   def trello_cards_error
-    "Could not load Trello cards. Check your Trello connection and try again."
+    t("checks.show.trello_error")
   end
 end

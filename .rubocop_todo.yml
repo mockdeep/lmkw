@@ -6,35 +6,12 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 11
-# This cop supports safe autocorrection (--autocorrect).
-I18n/GetText/DecorateFunctionMessage:
+# Offense count: 35
+# Configuration parameters: EnforcedStyle, AllowedGems.
+# SupportedStyles: required, forbidden
+Bundler/GemVersion:
   Exclude:
-    - 'app/api_wrappers/trello/client.rb'
-    - 'app/controllers/github_integrations_controller.rb'
-    - 'app/models/check.rb'
-    - 'spec/support/capybara/rack_test.rb'
-    - 'spec/support/fake_api/github/implementation.rb'
-    - 'spec/support/fake_api/trello/client.rb'
-    - 'spec/support/matchers/change_record.rb'
-    - 'spec/support/matchers/have_check.rb'
-    - 'spec/support/matchers/invoke_matcher.rb'
-    - 'spec/support/test_models.rb'
-
-# Offense count: 5
-# This cop supports safe autocorrection (--autocorrect).
-I18n/GetText/DecorateString:
-  Exclude:
-    - 'app/controllers/checks_controller.rb'
-    - 'spec/rails_helper.rb'
-    - 'spec/system/account_spec.rb'
-
-# Offense count: 5
-I18n/RailsI18n/DecorateString:
-  Exclude:
-    - 'app/controllers/checks_controller.rb'
-    - 'spec/rails_helper.rb'
-    - 'spec/system/account_spec.rb'
+    - 'Gemfile'
 
 # Offense count: 5
 # This cop supports safe autocorrection (--autocorrect).
@@ -74,14 +51,6 @@ Rails/EnvironmentVariableAccess:
     - 'config/initializers/backtrace_silencers.rb'
     - 'config/initializers/custom_configuration.rb'
     - 'config/initializers/sidekiq.rb'
-
-# Offense count: 12
-Rails/I18nLocaleTexts:
-  Exclude:
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/check_counts_controller.rb'
-    - 'app/controllers/checks_controller.rb'
-    - 'app/controllers/sessions_controller.rb'
 
 # Offense count: 1
 # This cop supports unsafe autocorrection (--autocorrect-all).

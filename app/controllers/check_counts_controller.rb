@@ -11,16 +11,20 @@ class CheckCountsController < ApplicationController
     count = check.counts.new(count_params)
 
     if count.save
-      check.update!(latest_count: count)
-      flash[:success] = "Count updated"
-      redirect_to(checks_path)
+      handle_save_success(count)
     else
-      flash.now[:error] = "Unable to update count"
+      flash.now[:error] = t(".error")
       render(:new, locals: { check:, count: })
     end
   end
 
   private
+
+  def handle_save_success(count)
+    check.update!(latest_count: count)
+    flash[:success] = t(".success")
+    redirect_to(checks_path)
+  end
 
   def check
     @check ||= current_user.checks.find(params[:check_id])

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       log_in(user)
       redirect_to(checks_path)
     else
-      flash.now[:error] = "Invalid email or password"
+      flash.now[:error] = t(".error")
       render(:new)
     end
   end

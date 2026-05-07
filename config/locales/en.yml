@@ -30,4 +30,28 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  accounts:
+    create:
+      success: "Account created successfully"
+      error: "There was a problem setting up your account"
+    update:
+      success: "Account updated successfully"
+      error: "There was a problem updating your account"
+    destroy:
+      success: "Account permanently deleted"
+  check_counts:
+    create:
+      success: "Count updated"
+      error: "Unable to update count"
+  checks:
+    show:
+      not_trello: "Details view is only available for Trello checks"
+      trello_error: "Could not load Trello cards. Check your Trello connection and try again."
+    update:
+      success: "Check updated"
+      error: "Unable to update check"
+    destroy:
+      success: "Check deleted"
+  sessions:
+    create:
+      error: "Invalid email or password"
