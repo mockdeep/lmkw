@@ -2,7 +2,7 @@
 
 class CheckCountsController < ApplicationController
   def new
-    check = current_user.checks.find(params[:check_id])
+    check = current_user.checks.find(params.expect(:check_id))
 
     render(locals: { check:, count: Count.new })
   end
@@ -27,7 +27,7 @@ class CheckCountsController < ApplicationController
   end
 
   def check
-    @check ||= current_user.checks.find(params[:check_id])
+    @check ||= current_user.checks.find(params.expect(:check_id))
   end
 
   def count_params
