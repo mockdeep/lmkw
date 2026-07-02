@@ -29,7 +29,7 @@ jobs:
           install-chromedriver: false
 
       - node/install:
-          node-version: 26.3.1
+          node-version: 26.4.0
 
       - run:
           name: Which bundler?
