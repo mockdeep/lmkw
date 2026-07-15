@@ -23,7 +23,7 @@
     "@types/babel__core": "^7",
     "@types/babel__preset-env": "^7",
     "@types/hotwired__turbo": "^8.0.12",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.1.1",
     "@types/rails__actioncable": "^8.0.3",
     "@types/rails__activestorage": "^8.0.1",
     "@typescript-eslint/eslint-plugin": "^8.62.1",
