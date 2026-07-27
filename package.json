@@ -7,7 +7,7 @@
   },
   "version": "0.1.0",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.3.0",
+    "@fortawesome/fontawesome-free": "^7.3.1",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo": "^8.0.20",
     "@hotwired/turbo-rails": "^8.0.20",
@@ -39,7 +39,7 @@
     "globals": "^17.7.0",
     "jiti": "^2.7.0",
     "jsdom": "^29.1.1",
-    "stylelint": "^17.14.0",
+    "stylelint": "^17.14.1",
     "stylelint-config-recess-order": "^7.7.0",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-selector-bem-pattern": "^5.0.0",
