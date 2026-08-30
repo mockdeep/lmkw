@@ -7,8 +7,6 @@ class Views::ManualChecks::New < Views::Base
   end
 
   def view_template
-    return unless @check.next_step == "name"
-
     CheckNameForm(
       check: @check,
       url: manual_integration_checks_path(@integration),

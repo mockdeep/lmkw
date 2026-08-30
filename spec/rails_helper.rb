@@ -17,6 +17,7 @@ require_relative "support/factory_bot"
 require_relative "support/fake_apis_rails"
 require_relative "support/helpers"
 require_relative "support/shoulda_matchers"
+require_relative "support/test_mailer"
 require_relative "support/test_models"
 
 ActiveRecord::Migration.maintain_test_schema!
