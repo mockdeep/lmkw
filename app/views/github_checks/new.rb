@@ -7,8 +7,6 @@ class Views::GithubChecks::New < Views::Base
   end
 
   def view_template
-    return unless @check.next_step == "name"
-
     CheckNameForm(
       check: @check,
       url: github_integration_checks_path(@integration),
