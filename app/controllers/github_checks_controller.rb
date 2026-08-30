@@ -2,7 +2,7 @@
 
 class GithubChecksController < ApplicationController
   def new
-    render(locals: { check:, integration: })
+    render(Views::GithubChecks::New.new(check:, integration:))
   end
 
   def create

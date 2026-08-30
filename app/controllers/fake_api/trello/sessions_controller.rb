@@ -5,10 +5,14 @@ module FakeApi; end
 class FakeApi::Trello::SessionsController < ApplicationController
   skip_before_action :authenticate_user
 
-  def new; end
+  def new
+    render(Views::FakeApi::Trello::Sessions::New.new)
+  end
 
   def create
-    return unless params.key?("password")
+    unless params.key?("password")
+      return render(Views::FakeApi::Trello::Sessions::Create.new)
+    end
 
     redirect_to(new_trello_token_path(requestKey: "boo"))
   end

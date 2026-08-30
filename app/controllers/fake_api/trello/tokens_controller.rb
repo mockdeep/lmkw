@@ -7,6 +7,9 @@ class FakeApi::Trello::TokensController < ApplicationController
 
   def new
     session["return_url"] = params["returnUrl"] if params["returnUrl"]
+
+    request_key = params["requestKey"]
+    render(Views::FakeApi::Trello::Tokens::New.new(request_key:))
   end
 
   def create

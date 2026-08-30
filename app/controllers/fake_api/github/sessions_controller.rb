@@ -7,6 +7,8 @@ class FakeApi::Github::SessionsController < ApplicationController
 
   def new
     session[:state] = params[:state]
+
+    render(Views::FakeApi::Github::Sessions::New.new)
   end
 
   def create

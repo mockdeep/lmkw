@@ -7,22 +7,26 @@ class ChecksController < ApplicationController
     checks = current_user.checks.preload(:latest_count, :target, :integration)
     targets = current_user.targets.unreached_goal
 
-    render(locals: { checks:, unreached_goal_targets: targets })
+    render(
+      Views::Checks::Index.new(checks:, unreached_goal_targets: targets),
+    )
   end
 
   def show
     check = find_check(params[:id])
     return redirect_not_trello unless check.is_a?(Check::Trello::ListHasCards)
 
-    render(locals: { check:, cards: check.cards })
+    render(Views::Checks::Show.new(check:, cards: check.cards))
   rescue Trello::ApiError
     redirect_to(checks_path, alert: trello_cards_error)
   end
 
-  def new; end
+  def new
+    render(Views::Checks::New.new)
+  end
 
   def edit
-    render(locals: { check: find_check(params[:id]) })
+    render(Views::Checks::Edit.new(check: find_check(params[:id])))
   end
 
   def update
@@ -32,7 +36,7 @@ class ChecksController < ApplicationController
       redirect_to(checks_path)
     else
       flash.now[:error] = t(".error")
-      render(:edit, locals: { check: })
+      render(Views::Checks::Edit.new(check:))
     end
   end
 

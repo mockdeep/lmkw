@@ -6,7 +6,8 @@ class GithubIntegrationsController < ApplicationController
     if integration
       redirect_to(new_github_integration_check_path(integration))
     else
-      render(locals: { github_authorize_url: })
+      url = github_authorize_url
+      render(Views::GithubIntegrations::New.new(authorize_url: url))
     end
   end
 
