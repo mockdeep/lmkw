@@ -2,7 +2,8 @@
 
 class TrelloChecksController < ApplicationController
   def new
-    render(locals: { check:, trello_integration: })
+    view = Views::TrelloChecks::New.new(check:, integration: trello_integration)
+    render(view)
   end
 
   def create

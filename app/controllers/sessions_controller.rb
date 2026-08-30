@@ -3,7 +3,9 @@
 class SessionsController < ApplicationController
   skip_before_action(:authenticate_user, only: [:new, :create])
 
-  def new; end
+  def new
+    render(Views::Sessions::New.new)
+  end
 
   def create
     user = User::FindBy.call(email: session_params[:email])
@@ -12,7 +14,7 @@ class SessionsController < ApplicationController
       redirect_to(checks_path)
     else
       flash.now[:error] = t(".error")
-      render(:new)
+      render(Views::Sessions::New.new)
     end
   end
 

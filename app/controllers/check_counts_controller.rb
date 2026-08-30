@@ -4,7 +4,7 @@ class CheckCountsController < ApplicationController
   def new
     check = current_user.checks.find(params.expect(:check_id))
 
-    render(locals: { check:, count: Count.new })
+    render(Views::CheckCounts::New.new(check:, count: Count.new))
   end
 
   def create
@@ -14,7 +14,7 @@ class CheckCountsController < ApplicationController
       handle_save_success(count)
     else
       flash.now[:error] = t(".error")
-      render(:new, locals: { check:, count: })
+      render(Views::CheckCounts::New.new(check:, count:))
     end
   end
 

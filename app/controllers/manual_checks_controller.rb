@@ -2,7 +2,7 @@
 
 class ManualChecksController < ApplicationController
   def new
-    render(locals: { check:, integration: })
+    render(Views::ManualChecks::New.new(check:, integration:))
   end
 
   def create

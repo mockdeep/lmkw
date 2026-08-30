@@ -6,13 +6,16 @@ class TrelloIntegrationsController < ApplicationController
     if integration
       redirect_to(new_trello_integration_check_path(integration))
     else
-      render(locals: { trello_authorize_url: })
+      url = trello_authorize_url
+      render(Views::TrelloIntegrations::New.new(authorize_url: url))
     end
   end
 
   def create
     # first render needs JS to reformat "#" in URL to "?"
-    return unless params.key?(:token)
+    unless params.key?(:token)
+      return render(Views::TrelloIntegrations::Create.new)
+    end
 
     integration = Integration::Trello.create!(integration_params)
 
