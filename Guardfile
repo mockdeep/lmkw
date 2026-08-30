@@ -18,7 +18,7 @@ group :everything, halt_on_fail: true do
     ruby = dsl.ruby
     dsl.watch_spec_files_for(ruby.lib_files)
 
-    rails = dsl.rails(view_extensions: ["haml"])
+    rails = dsl.rails(view_extensions: ["rb"])
     dsl.watch_spec_files_for(rails.app_files)
     dsl.watch_spec_files_for(rails.views)
 
@@ -30,11 +30,6 @@ group :everything, halt_on_fail: true do
     end
 
     watch(rails.app_controller) { "#{rspec.spec_dir}/controllers" }
-  end
-
-  guard :haml_lint, all_on_start: false do
-    watch(/.+\.html.*\.haml$/)
-    watch(%r{(?:.+/)?\.haml-lint\.yml$}) { |m| File.dirname(m[0]) }
   end
 
   guard :rubocop, all_on_start: false, cli: ["-A", "--display-cop-names"] do

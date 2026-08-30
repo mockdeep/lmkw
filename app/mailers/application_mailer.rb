@@ -4,5 +4,6 @@ require "action_mailer"
 
 class ApplicationMailer < ActionMailer::Base
   default from: "from@example.com"
-  layout "mailer"
+  # Phlex renders HTML only, so the text part is left unwrapped.
+  layout(-> { Components::MailerLayout if formats.include?(:html) })
 end

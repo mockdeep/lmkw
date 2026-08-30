@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Components::Layout < Components::Base
+  include Phlex::Rails::Layout
+
   FAVICON_COLORS = ["black", "blue", "purple", "orange"].freeze
   FONT_AWESOME = "@fortawesome/fontawesome-free/css/all.min"
   HOTKEYS_ACTION = "keydown@document->hotkeys#handleKeydown"

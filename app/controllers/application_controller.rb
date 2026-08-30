@@ -3,8 +3,7 @@
 require "action_controller"
 
 class ApplicationController < ActionController::Base
-  # Phlex views wrap themselves in Components::Layout.
-  layout(false)
+  layout(-> { Components::Layout })
 
   before_action(:authenticate_user)
   protect_from_forgery(with: :exception, unless: :api_request?)

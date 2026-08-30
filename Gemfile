@@ -15,7 +15,6 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "faraday-retry", require: false # wanted by octokit
 gem "goldiloader"
-gem "haml-rails"
 gem "http"
 gem "jsbundling-rails"
 gem "junk_drawer"
@@ -40,10 +39,8 @@ end
 group :development do
   gem "brakeman", require: false
   gem "guard", require: false
-  gem "guard-haml_lint", require: false
   gem "guard-rspec", require: false
   gem "guard-rubocop", require: false
-  gem "haml_lint", require: false
   gem "listen"
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
