@@ -388,6 +388,8 @@ GEM
     sawyer (0.9.3)
       addressable (>= 2.3.5)
       faraday (>= 0.17.3, < 3)
+    scout_apm (6.3.0)
+      parser
     securerandom (0.4.1)
     selenium-webdriver (4.48.0)
       base64 (~> 0.2)
@@ -477,6 +479,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
+  scout_apm
   selenium-webdriver
   shoulda-matchers
   sidekiq
