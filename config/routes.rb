@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   get "/trello_integrations/create", to: "trello_integrations#create"
   get "/github_integrations/create", to: "github_integrations#create"
 
+  constraints AdminConstraint.new do
+    mount GoodJob::Engine, at: "good_job"
+  end
+
   if Rails.env.test? && ENV["FAKE_APIS"] != "false"
     require_relative "routes/fake_api"
   end

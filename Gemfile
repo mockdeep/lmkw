@@ -15,6 +15,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "faraday-retry", require: false # wanted by octokit
 gem "goldiloader"
+gem "good_job"
 gem "http"
 gem "jsbundling-rails"
 gem "junk_drawer"
