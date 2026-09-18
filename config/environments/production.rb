@@ -54,9 +54,8 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "let_me_know_when_production"
+  # Run jobs in the separate worker process declared in the Procfile.
+  config.good_job.execution_mode = :external
 
   config.action_mailer.perform_caching = false
 
