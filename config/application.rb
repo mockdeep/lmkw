@@ -30,9 +30,15 @@ class LetMeKnowWhen::Application < Rails::Application
   # config.time_zone = "Central Time (US & Canada)"
   # config.eager_load_paths << Rails.root.join("extras")
 
-  config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :solid_queue
 
   config.active_record.belongs_to_required_by_default = false
+
+  config.solid_queue.clear_finished_jobs_after = 14.days
+
+  # The dashboard is mounted behind AdminConstraint in config/routes.rb, so
+  # it doesn't need HTTP basic auth.
+  config.mission_control.jobs.http_basic_auth_enabled = false
 
   extra_paths = [
     Rails.root.join("app/models/nulls"),

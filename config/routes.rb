@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require "sidekiq/web"
-
 Rails.application.routes.draw do
-  mount Sidekiq::Web, at: "/sidekiq", constraints: AdminConstraint.new
+  mount MissionControl::Jobs::Engine, at: "jobs", constraints: AdminConstraint.new
 
   root to: "welcome#index"
 
