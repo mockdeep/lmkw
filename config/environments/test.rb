@@ -42,6 +42,11 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Keep enqueued jobs in memory so specs don't touch the queue tables.
+  config.active_job.queue_adapter = :test
+  # The jobs dashboard can't display the :test adapter, so point it at Solid Queue.
+  config.mission_control.jobs.adapters = [:solid_queue]
+
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
