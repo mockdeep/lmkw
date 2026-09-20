@@ -6,4 +6,6 @@ esbuild app/assets/stylesheets/application.css \
   --bundle \
   --outdir=app/assets/builds \
   --public-path=/assets \
+  --loader:.woff2=file \
+  --asset-names=[name]-[hash].digested \
   "$@"

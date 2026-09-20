@@ -4,7 +4,6 @@ class Components::Layout < Components::Base
   include Phlex::Rails::Layout
 
   FAVICON_COLORS = ["black", "blue", "purple", "orange"].freeze
-  FONT_AWESOME = "@fortawesome/fontawesome-free/css/all.min"
   HOTKEYS_ACTION = "keydown@document->hotkeys#handleKeydown"
   STYLESHEET_OPTIONS = { media: "all", "data-turbo-track": "reload" }.freeze
 
@@ -30,7 +29,6 @@ class Components::Layout < Components::Base
     csp_meta_tag
     meta(name: "viewport", content: "width=device-width, initial-scale=1.0")
 
-    stylesheet_link_tag(FONT_AWESOME, **STYLESHEET_OPTIONS)
     stylesheet_link_tag("application", **STYLESHEET_OPTIONS)
     javascript_include_tag("application", "data-turbo-track": "reload")
     favicon_link_tag("fat-dot-#{FAVICON_COLORS.sample}.ico")
