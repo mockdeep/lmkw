@@ -45,6 +45,7 @@ group :development do
   gem "guard-rspec", require: false
   gem "guard-rubocop", require: false
   gem "listen"
+  gem "rspec_junit_formatter", require: false
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-factory_bot", require: false
